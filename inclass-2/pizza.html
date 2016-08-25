@@ -11,11 +11,11 @@
 
 <form action="" id="pizzaForm">
   <p>Name<br>
-  <input type="text" name="Name" placeholder="your name" required><br>
+  <input type="text" name="name" placeholder="your name" required><br>
   <p>Address: #### Street Name<br>
-  <input type="text" name="Address" placeholder="delivery address" required><br>
+  <input type="text" name="address" placeholder="delivery address" required><br>
   <p>Phone Number: 123-123-1234<br>
-  <input type="text" name="Address" placeholder="123-123-1234" required><br>
+  <input type="text" name="phone" placeholder="123-123-1234" required><br>
   <p>Pizza size<br>
   <input type="radio" name="size" value="large" required> Large
   <input type="radio" name="size" value="medium"> Medium
@@ -28,13 +28,31 @@
   <input type="checkbox" name="topping" value="onions"> Onions<br> 
 
   <br>
-  <input type="submit" name="place_order" value="Place Order">
+  <input type="submit" name="place_order" value="Place Order" onclick="return isValidate(this.parent)">
   <input type="reset" name="clear" value="Clear">
 </form>
 <br>
 
-<script type="text/javascript">
-	
+<script>
+	function isValidate(form) {
+		// incase the argument is missing
+		if (!form) {
+			form = document.getElementById('pizzaForm');
+		}
+		console.log(form);
+		// validate by regular expression
+		// 123-123-1234
+		var phoneRe = /\d{3}[-]\d{3}[-]\d{4}$/;
+		// var addressRe;
+		var phoneNumber = form.phone.value;
+		console.log(phoneNumber);
+		if (phoneNumber.match(phoneRe) !== null) {
+			return true;
+		} else {
+			console.log("phone number format is wrong.");			
+			return false;
+		}
+	}
 </script>
 
 
