@@ -9,14 +9,29 @@
 
 <img src="pizza_heart.jpg" width="400px" title="A Heart-shape Pizza" alt="Image Missing">
 
-<h2>Comment</h2>
-<form action="" id="usrform">
-  Name: <input type="text" name="usrname">
-  <input type="submit">
+<form action="" id="pizzaForm">
+  <p>Name<br>
+  <input type="text" name="Name" placeholder="your name"><br>
+  <p>Address: #### Street Name<br>
+  <input type="text" name="Address" placeholder="delivery address"><br>
+  <p>Phone Number: 123-123-1234<br>
+  <input type="text" name="Address" placeholder="123-123-1234"><br>
+  <p>Pizza size<br>
+  <input type="radio" name="size" value="large"> Large
+  <input type="radio" name="size" value="medium"> Medium
+  <input type="radio" name="size" value="small"> Small<br>
+  <p>Pizza Toppings<br>
+  <input type="checkbox" name="topping" value="sausage"> Sausage
+  <input type="checkbox" name="topping" value="pepperoni"> Pepperoni
+  <input type="checkbox" name="topping" value="olives"> Olives
+  <input type="checkbox" name="topping" value="anchovies"> Anchovies
+  <input type="checkbox" name="topping" value="onions"> Onions<br> 
+
+  <br>
+  <input type="submit" name="place_order" value="Place Order">
+  <input type="submit" name="clear" value="Clear">
 </form>
 <br>
-<textarea rows="4" cols="50" name="comment" form="usrform">
-Feel free to leave some comments here...</textarea>
 
 
 </body>
