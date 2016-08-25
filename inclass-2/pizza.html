@@ -11,13 +11,13 @@
 
 <form action="" id="pizzaForm">
   <p>Name<br>
-  <input type="text" name="Name" placeholder="your name"><br>
+  <input type="text" name="Name" placeholder="your name" required><br>
   <p>Address: #### Street Name<br>
-  <input type="text" name="Address" placeholder="delivery address"><br>
+  <input type="text" name="Address" placeholder="delivery address" required><br>
   <p>Phone Number: 123-123-1234<br>
-  <input type="text" name="Address" placeholder="123-123-1234"><br>
+  <input type="text" name="Address" placeholder="123-123-1234" required><br>
   <p>Pizza size<br>
-  <input type="radio" name="size" value="large"> Large
+  <input type="radio" name="size" value="large" required> Large
   <input type="radio" name="size" value="medium"> Medium
   <input type="radio" name="size" value="small"> Small<br>
   <p>Pizza Toppings<br>
@@ -29,9 +29,13 @@
 
   <br>
   <input type="submit" name="place_order" value="Place Order">
-  <input type="submit" name="clear" value="Clear">
+  <input type="reset" name="clear" value="Clear">
 </form>
 <br>
+
+<script type="text/javascript">
+	
+</script>
 
 
 </body>
