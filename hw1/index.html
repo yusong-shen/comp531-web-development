@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pizza Order Form : Homework 01</title>
+</head>
+<body>
+
+<h1>Pizza Guys Order Form</h1>
+
+<img src="pizza_heart.jpg" width="400px" title="A Heart-shape Pizza" alt="Image Missing">
+
+<form action="" id="pizzaForm">
+  <p>Name<br>
+  <input type="text" name="name" placeholder="your name" required><br>
+  <p>Address: #### StreetName Street<br>
+  <input type="text" name="address" placeholder="delivery address" required><br>
+  <p>Phone Number: 123-123-1234<br>
+  <input type="text" name="phone" placeholder="123-123-1234" required><br>
+  <p>Pizza size<br>
+  <input type="radio" name="size" value="large" required> Large
+  <input type="radio" name="size" value="medium"> Medium
+  <input type="radio" name="size" value="small"> Small<br>
+  <p>Pizza Toppings<br>
+  <input type="checkbox" name="topping" value="sausage"> Sausage
+  <input type="checkbox" name="topping" value="pepperoni"> Pepperoni
+  <input type="checkbox" name="topping" value="olives"> Olives
+  <input type="checkbox" name="topping" value="anchovies"> Anchovies
+  <input type="checkbox" name="topping" value="onions"> Onions<br> 
+
+  <br>
+  <input type="submit" name="place_order" value="Place Order" onclick="return isValidated(this.parent)">
+  <input type="reset" name="clear" value="Clear">
+</form>
+<br>
+
+<script>
+	function isValidated(form) {
+		// incase the argument is missing
+		if (!form) {
+			form = document.getElementById('pizzaForm');
+		}
+		console.log(form);
+		// validate by regular expression
+		// 123-123-1234
+		var phoneRe = /\d{3}[-]\d{3}[-]\d{4}$/;
+		var addressRe = /(\d+) ((\w+)+) ((\w+)+)/;
+		var phoneNumber = form.phone.value;
+		var address = form.address.value;
+		// console.log(phoneNumber);
+		var isPhoneValidated = true;
+		var isAddressValidated = true;		
+		if (phoneNumber.match(phoneRe) === null) {
+			window.alert("phone number format should look like : 123-123-1234");			
+			isPhoneValidated = false;
+		}
+		if (address.match(addressRe) === null) {
+			window.alert("address format should look like : #### StreetName Street");			
+			isAddressValidated = false;
+		}		
+		return (isPhoneValidated && isAddressValidated);
+	}
+</script>
+
+
+</body>
+</html>
