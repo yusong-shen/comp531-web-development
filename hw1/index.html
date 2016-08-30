@@ -7,19 +7,6 @@
 </head>
 <body>
 
-<!-- A form with text fields for user's
- account name display name (optional) email address phone number date of birth zipcode password password confirmation
-Clear button that empties all fields
-Submit button that performs validation on the form
-There should also be a hidden field named timestamp which will contain the current timestamp in millis (i.e., since epoch) when the submit button is pressed (this can be the time when the page was loaded).
-All fields are required except the display name which is optional.
-Fields should be validated for proper content, i.e., valid phone number, valid email address. [These do not need to be exhaustive, e.g., a@b.co is a "valid" email, but 123-123 is not a valid phone number.]
-Only individuals 18 years of age or older on the day of registration are allowed to register, use a JavaScript alert or a HTML5 validation message to notify underage attempts
-Account name can only be upper or lower case letters and numbers, but may not start with a number
-Validate password equality with the password confirmation field.
-If the form is not valid then use a JavaScript alert or HTML5 validation messages to inform the user what specifically is wrong so they know what to fix
-The submit button makes a GET request to the form processor page (see below) with the form contents
- -->
 <h1>Ricebook</h1>
 
 <img src="rice-logo.jpg" width="400px" title="Rice logo" alt="Image Missing">
@@ -30,13 +17,17 @@ The submit button makes a GET request to the form processor page (see below) wit
 	<p>Display Name (Optional)<br>
 	<input type="text" name="display_name" placeholder="your display name"><br>  
 	<p>Email Address<br>
-	<input type="text" name="email_address" placeholder="name@example.com" required><br>
+	<input type="text" name="email" placeholder="name@example.com" required><br>
 	<p>Phone Number<br>
 	<input type="text" name="phone" placeholder="123-123-1234" required><br>
 	<p>Date of Birth<br>
 	<input type="text" name="date_of_birth" placeholder="01/01/1970" required><br>
 	<p>Zipcode <br>
 	<input type="text" name="zipcode" placeholder="77005" required><br>
+	<p>Password <br>
+	<input type="password" name="password" required><br>
+	<p>Password Confirmation <br>
+	<input type="password" name="password_confirmation" required><br>
 
 	<br>
 	<p><input type="hidden" name="timestamp" id="timestamp" value=""></p>
@@ -51,24 +42,34 @@ The submit button makes a GET request to the form processor page (see below) wit
 		if (!form) {
 			form = document.getElementById("userForm");
 		}
-		console.log(form);
+		// console.log(form);
+		var alertMsg = "";
 		// validate by regular expression
 		// 123-123-1234
-		var phoneRe = /\d{3}[-]\d{3}[-]\d{4}$/;
-		var addressRe = /(\d+) ((\w+)+) ((\w+)+)/;
+		var phoneRe = /^\d{3}[-]\d{3}[-]\d{4}$/;
+		var emailRe = /[^\s@]+@[^\s@]+\.[^\s@]+/;
+		// Account name can only be upper or lower case letters and numbers, 
+		// but may not start with a number
+		var accountRe = /^[a-zA-Z][a-zA-Z0-9]*$/;
+		var zipcodeRe = /^\d{5}/;
 		var phoneNumber = form.phone.value;
-		var address = form.address.value;
+		var email = form.email.value;
+		var account = form.account_name.value;
 		// console.log(phoneNumber);
 		var isPhoneValidated = true;
-		var isAddressValidated = true;		
+		var isEmailValidated = true;		
 		if (phoneNumber.match(phoneRe) === null) {
 			window.alert("phone number format should look like : 123-123-1234");			
 			isPhoneValidated = false;
 		}
-		if (address.match(addressRe) === null) {
-			window.alert("address format should look like : #### StreetName Street");			
-			isAddressValidated = false;
-		}		
+		if (email.match(emailRe) === null) {
+			window.alert("email format should look like : name@example.com");			
+			isEmailValidated = false;
+		}	
+		if (account.match(accountRe) === null) {
+			window.alert("Account name can only be upper or lower case letters and numbers, but may not start with a number");			
+			isAccountValidated = false;
+		}			
 		// return (isPhoneValidated && isAddressValidated);
 		return true;
 	}

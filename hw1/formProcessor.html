@@ -1,6 +1,3 @@
-<!-- Extract the query parameter from the location and display the key-value pairs in a table
-The "hidden field" timestamp should be rendered as a human readable datetime
- -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,23 +24,11 @@ th, td {
 
 <table style="width:400px" id="userTable">
   <caption>RiceBook User Inforamtion</caption>
-<!--   <tr>
-    <th>Month</th>
-    <th>Savings</th>
-  </tr>
-  <tr>
-    <td>January</td>
-    <td>$100</td>
-  </tr>
-  <tr>
-    <td>February</td>
-    <td>$50</td>
-  </tr> -->
 </table>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
-// ?account_name=YS&display_name=yyss&email_address=ys%40rice.edu&phone=123-123-1234&date_of_birth=01%2F01%2F1970&zipcode=77005&timestamp=1472519812120
+	// Extract the query parameter from the location to Json
 	function parseQueryParams() {
 		var paramsJson = {};
 		var query = window.location.search.substring(1);	
@@ -53,23 +38,24 @@ th, td {
 			// first entry of this name
 			paramsJson[pair[0]] = decodeURIComponent(pair[1]);
 		}
-		console.log(paramsJson);
 		return paramsJson;
 	}
 	var paramsJson = parseQueryParams();
+	// console.log(paramsJson);	
+	// the "hidden field" timestamp should be rendered as a human readable datetime
 	if (paramsJson.hasOwnProperty("timestamp")) {
 		// need to covert string to int, base 10
 		paramsJson["datetime"] = new Date(parseInt(paramsJson["timestamp"], 10));
 	}
-	// console.log(paramsJson);
+	// built HTML Table from JSON
 	function buildHTMLTable(tableId, data) {
 		for (var key in data) {
 			var row = "<tr><th>" + key + "</th> <th>" + data[key] +"</th></tr>";
-			console.log(row);
+			// console.log(row);
 			$("#" + tableId).append(row);
 		}
 	}
-	buildHTMLTable("userTable", paramsJson);
+	buildHTMLTable("userTable", paramsJson);		
 </script>
 
 
