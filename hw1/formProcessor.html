@@ -57,6 +57,10 @@ th, td {
 		return paramsJson;
 	}
 	var paramsJson = parseQueryParams();
+	if (paramsJson.hasOwnProperty("timestamp")) {
+		// need to covert string to int, base 10
+		paramsJson["datetime"] = new Date(parseInt(paramsJson["timestamp"], 10));
+	}
 	// console.log(paramsJson);
 	function buildHTMLTable(tableId, data) {
 		for (var key in data) {
