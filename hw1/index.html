@@ -17,7 +17,7 @@
 	<p>Display Name (Optional)<br>
 	<input type="text" name="display_name" placeholder="your display name"><br>  
 	<p>Email Address<br>
-	<input type="text" name="email" placeholder="name@example.com" required><br>
+	<input type="email" name="email" placeholder="name@example.com" required><br>
 	<p>Phone Number<br>
 	<input type="text" name="phone" placeholder="123-123-1234" required><br>
 	<p>Date of Birth<br>
@@ -59,7 +59,7 @@
 		}
 	}
 	function validatePassword(pw, pw_cf) {
-		return pw == pw_cf;		
+		return pw === pw_cf;		
 	}
 	function isValidated(form) {
 		// incase the argument is missing
