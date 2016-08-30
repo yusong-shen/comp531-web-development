@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>COMP531 Web Development In-Class Exercise 1</title>
+	<meta charset="utf-8">
+	<meta name="author" content="Yusong Shen">
+	<title>Hello JavaScripit! COMP531 Web Development In-Class Exercise 3</title>
 </head>
 <body>
 
@@ -17,13 +19,64 @@
 
 <h2>Comment</h2>
 <form action="" id="usrform">
-  Name: <input type="text" name="usrname">
-  <input type="submit">
+	Name: 
+	<input type="text" name="usrname">
+	<br>
+	<textarea rows="4" cols="50" name="comment" form="usrform" id="comment">
+	Feel free to leave some comments here...
+	</textarea>
+	<br>
+	<input type="submit">
+	<button type="reset" onclick="clearContent()">Clear</button>
 </form>
-<br>
-<textarea rows="4" cols="50" name="comment" form="usrform">
-Feel free to leave some comments here...</textarea>
 
+<h2>Clock Countdown</h2>
+<span id="indicator" style="font-size:300%;">
+	15
+</span>
+<br>
+<button name="pause" onclick="pause()">Pause</button>
+<button name="Resume" onclick="resume()">Resume</button>
+
+<script type="text/javascript">
+	var isPaused = false;
+	function pause() {
+		// pause the countdown
+		isPaused = true;
+	}
+	function resume() {
+		// resume the countdown
+		isPaused = false;
+	}
+	function clearContent() {
+		var textarea = document.getElementById("comment");
+		textarea.value = "";
+		textarea.innerHTML = "";
+	}
+	function reminder() {
+		window.alert("the page will redirect when the counter reaches zero");
+	}
+	setTimeout(reminder, 5000);
+	function redirect(url) {
+		window.location = url;
+	}
+	function countdownByOne() {
+		var num;
+		if (!isPaused) {
+			var indicator = document.getElementById("indicator");
+			// console.log(indicator.innerHTML);
+			num = parseInt(indicator.innerHTML, 10);
+			num--;
+			indicator.innerHTML = num;
+		}
+		// if count down to zero, redirect the page
+		if (num <= 0) {
+			redirect("hello.html");
+		}
+	}
+	setInterval(countdownByOne, 1000);
+	
+</script>
 
 </body>
 </html>
