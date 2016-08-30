@@ -42,8 +42,21 @@ th, td {
 </table>
 
 <script>
-
-
+// ?account_name=YS&display_name=yyss&email_address=ys%40rice.edu&phone=123-123-1234&date_of_birth=01%2F01%2F1970&zipcode=77005&timestamp=1472519812120
+	function parseQueryParams() {
+		var paramsJson = {};
+		var query = window.location.search.substring(1);	
+		var params = query.split("&");
+		for (var i = 0; i < params.length; i++) {
+			var pair = params[i].split("=");	
+			// first entry of this name
+			paramsJson[pair[0]] = decodeURIComponent(pair[1]);
+		}
+		console.log(paramsJson);
+		return paramsJson;
+	}
+	var paramsJson = parseQueryParams();
+	console.log(paramsJson);
 </script>
 
 
