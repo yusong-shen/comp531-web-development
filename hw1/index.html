@@ -1,35 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pizza Order Form : Homework 01</title>
+	<meta charset="utf-8">
+	<meta name="author" content="Yusong Shen">
+	<title>Ricebook Simple Page : Homework 01</title>
 </head>
 <body>
 
-<h1>Pizza Guys Order Form</h1>
+<!-- A form with text fields for user's
+ account name display name (optional) email address phone number date of birth zipcode password password confirmation
+Clear button that empties all fields
+Submit button that performs validation on the form
+There should also be a hidden field named timestamp which will contain the current timestamp in millis (i.e., since epoch) when the submit button is pressed (this can be the time when the page was loaded).
+All fields are required except the display name which is optional.
+Fields should be validated for proper content, i.e., valid phone number, valid email address. [These do not need to be exhaustive, e.g., a@b.co is a "valid" email, but 123-123 is not a valid phone number.]
+Only individuals 18 years of age or older on the day of registration are allowed to register, use a JavaScript alert or a HTML5 validation message to notify underage attempts
+Account name can only be upper or lower case letters and numbers, but may not start with a number
+Validate password equality with the password confirmation field.
+If the form is not valid then use a JavaScript alert or HTML5 validation messages to inform the user what specifically is wrong so they know what to fix
+The submit button makes a GET request to the form processor page (see below) with the form contents
+ -->
+<h1>Ricebook</h1>
 
-<img src="pizza_heart.jpg" width="400px" title="A Heart-shape Pizza" alt="Image Missing">
+<img src="rice-logo.jpg" width="400px" title="Rice logo" alt="Image Missing">
 
-<form action="" id="pizzaForm">
-  <p>Name<br>
-  <input type="text" name="name" placeholder="your name" required><br>
-  <p>Address: #### StreetName Street<br>
-  <input type="text" name="address" placeholder="delivery address" required><br>
-  <p>Phone Number: 123-123-1234<br>
-  <input type="text" name="phone" placeholder="123-123-1234" required><br>
-  <p>Pizza size<br>
-  <input type="radio" name="size" value="large" required> Large
-  <input type="radio" name="size" value="medium"> Medium
-  <input type="radio" name="size" value="small"> Small<br>
-  <p>Pizza Toppings<br>
-  <input type="checkbox" name="topping" value="sausage"> Sausage
-  <input type="checkbox" name="topping" value="pepperoni"> Pepperoni
-  <input type="checkbox" name="topping" value="olives"> Olives
-  <input type="checkbox" name="topping" value="anchovies"> Anchovies
-  <input type="checkbox" name="topping" value="onions"> Onions<br> 
+<form action="formProcessor.html" id="userForm">
+	<p>Account Name<br>
+	<input type="text" name="account_name" placeholder="your account name" required><br>
+	<p>Display Name (Optional)<br>
+	<input type="text" name="display_name" placeholder="your display name"><br>  
+	<p>Email Address<br>
+	<input type="text" name="email_address" placeholder="name@example.com" required><br>
+	<p>Phone Number<br>
+	<input type="text" name="phone" placeholder="123-123-1234" required><br>
+	<p>Date of Birth<br>
+	<input type="text" name="date_of_birth" placeholder="01/01/1970" required><br>
+	<p>Zipcode <br>
+	<input type="text" name="zipcode" placeholder="77005" required><br>
 
-  <br>
-  <input type="submit" name="place_order" value="Place Order" onclick="return isValidated(this.parent)">
-  <input type="reset" name="clear" value="Clear">
+	<br>
+	<p><input type="hidden" name="timestamp" id="timestamp" value=""></p>
+	<input type="submit" name="place_order" value="Place Order" onclick="return isValidated(this.parent)">
+	<input type="reset" name="clear" value="Clear">
 </form>
 <br>
 
@@ -37,7 +49,7 @@
 	function isValidated(form) {
 		// incase the argument is missing
 		if (!form) {
-			form = document.getElementById('pizzaForm');
+			form = document.getElementById("userForm");
 		}
 		console.log(form);
 		// validate by regular expression
@@ -57,8 +69,14 @@
 			window.alert("address format should look like : #### StreetName Street");			
 			isAddressValidated = false;
 		}		
-		return (isPhoneValidated && isAddressValidated);
+		// return (isPhoneValidated && isAddressValidated);
+		return true;
 	}
+	// record the timestamp in millisecond when page is loaded
+	function setDate() {
+		document.getElementById("timestamp").value = Date.now();
+	}
+	setDate();
 </script>
 
 
