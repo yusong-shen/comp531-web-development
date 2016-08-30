@@ -61,16 +61,16 @@
 		window.location = url;
 	}
 	function countdownByOne() {
-		var num;
+		var counter;
 		if (!isPaused) {
 			var indicator = document.getElementById("indicator");
 			// console.log(indicator.innerHTML);
-			num = parseInt(indicator.innerHTML, 10);
-			num--;
-			indicator.innerHTML = num;
+			counter = parseInt(indicator.innerHTML, 10);
+			counter--;
+			indicator.innerHTML = counter;
 		}
 		// if count down to zero, redirect the page
-		if (num <= 0) {
+		if (counter <= 0) {
 			redirect("hello.html");
 		}
 	}
