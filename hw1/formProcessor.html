@@ -26,8 +26,8 @@ th, td {
 <img src="rice-logo.jpg" width="400px" title="Rice logo" alt="Image Missing">
 
 <table style="width:400px" id="userTable">
-  <caption>Monthly savings</caption>
-  <tr>
+  <caption>RiceBook User Inforamtion</caption>
+<!--   <tr>
     <th>Month</th>
     <th>Savings</th>
   </tr>
@@ -38,9 +38,10 @@ th, td {
   <tr>
     <td>February</td>
     <td>$50</td>
-  </tr>
+  </tr> -->
 </table>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
 // ?account_name=YS&display_name=yyss&email_address=ys%40rice.edu&phone=123-123-1234&date_of_birth=01%2F01%2F1970&zipcode=77005&timestamp=1472519812120
 	function parseQueryParams() {
@@ -56,7 +57,15 @@ th, td {
 		return paramsJson;
 	}
 	var paramsJson = parseQueryParams();
-	console.log(paramsJson);
+	// console.log(paramsJson);
+	function buildHTMLTable(tableId, data) {
+		for (var key in data) {
+			var row = "<tr><th>" + key + "</th> <th>" + data[key] +"</th></tr>";
+			console.log(row);
+			$("#" + tableId).append(row);
+		}
+	}
+	buildHTMLTable("userTable", paramsJson);
 </script>
 
 
