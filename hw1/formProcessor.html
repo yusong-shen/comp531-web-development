@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-th, td {
-    padding: 5px;
-    text-align: left;
-}
-</style>
+	<style>
+	table, th, td {
+	    border: 1px solid black;
+	    border-collapse: collapse;
+	}
+	th, td {
+	    padding: 5px;
+	    text-align: left;
+	}
+	</style>
 	<meta charset="utf-8">
 	<meta name="author" content="Yusong Shen">
 	<title>Ricebook Simple Page : Homework 01</title>
@@ -50,6 +50,7 @@ th, td {
 	// built HTML Table from JSON
 	function buildHTMLTable(tableId, data) {
 		for (var key in data) {
+			// may be vulnerable for malicious injection
 			var row = "<tr><th>" + key + "</th> <th>" + data[key] +"</th></tr>";
 			// console.log(row);
 			$("#" + tableId).append(row);

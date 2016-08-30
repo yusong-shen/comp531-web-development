@@ -21,7 +21,7 @@
 	<p>Phone Number<br>
 	<input type="text" name="phone" placeholder="123-123-1234" required><br>
 	<p>Date of Birth<br>
-	<input type="text" name="date_of_birth" placeholder="01/01/1970" required><br>
+	<input type="date" name="bday" placeholder="mm/dd/yyyy" required><br>
 	<p>Zipcode <br>
 	<input type="text" name="zipcode" placeholder="77005" required><br>
 	<p>Password <br>
@@ -31,12 +31,36 @@
 
 	<br>
 	<p><input type="hidden" name="timestamp" id="timestamp" value=""></p>
-	<input type="submit" name="submit" onclick="return isValidated(this.parent)">
-	<input type="reset" name="clear" >
+	<input type="submit" onclick="return isValidated(this.parent)">
+	<input type="reset">
 </form>
 <br>
 
+<script src="moment.js"></script>
 <script>
+	function validateRe(re, value) {
+		return (value.match(re) !== null);
+	}
+	function validateBday(date) {
+		// Only individuals 18 years of age or older on the day of 
+		// registration are allowed to register
+		var eighteenYearsAgo = moment().subtract(18, "years");
+		var birthday = moment(date);
+
+		if (!birthday.isValid()) {
+			// console.log(date);
+		    return false;    
+		}
+		else if (eighteenYearsAgo.isAfter(birthday)) {
+		    return true;    
+		}
+		else {
+		    return false;    
+		}
+	}
+	function validatePassword(pw, pw_cf) {
+		return pw == pw_cf;		
+	}
 	function isValidated(form) {
 		// incase the argument is missing
 		if (!form) {
@@ -52,26 +76,42 @@
 		// but may not start with a number
 		var accountRe = /^[a-zA-Z][a-zA-Z0-9]*$/;
 		var zipcodeRe = /^\d{5}/;
-		var phoneNumber = form.phone.value;
-		var email = form.email.value;
-		var account = form.account_name.value;
-		// console.log(phoneNumber);
-		var isPhoneValidated = true;
-		var isEmailValidated = true;		
-		if (phoneNumber.match(phoneRe) === null) {
-			window.alert("phone number format should look like : 123-123-1234");			
-			isPhoneValidated = false;
+		// perform validations
+		var isPhoneValidated = validateRe(phoneRe, form.phone.value);
+		var isEmailValidated = validateRe(emailRe, form.email.value);
+		var isAccountValidated = validateRe(accountRe, form.account_name.value);	
+		var isZipValidated = validateRe(zipcodeRe, form.zipcode.value);	
+		// generate alert message
+		if (!isPhoneValidated) {
+			alertMsg += "* Phone number format should look like : 123-123-1234\n";
+			// window.alert("Phone number format should look like : 123-123-1234");	
 		}
-		if (email.match(emailRe) === null) {
-			window.alert("email format should look like : name@example.com");			
-			isEmailValidated = false;
+		if (!isEmailValidated) {
+			alertMsg += "* Email format should look like : name@example.com\n";
+			// window.alert("Email format should look like : name@example.com");			
 		}	
-		if (account.match(accountRe) === null) {
-			window.alert("Account name can only be upper or lower case letters and numbers, but may not start with a number");			
-			isAccountValidated = false;
-		}			
-		// return (isPhoneValidated && isAddressValidated);
-		return true;
+		if (!isAccountValidated) {
+			alertMsg += "* Account name can only be upper or lower case letters and numbers, but may not start with a number\n";
+			// window.alert("Account name can only be upper or lower case letters and numbers, but may not start with a number");
+		}	
+		var isBdayValidated = validateBday(form.bday.value);	
+		if (!isBdayValidated) {
+			alertMsg += "* Only individuals 18 years of age or older on the day of registration are allowed to register\n";
+			// window.alert("Only individuals 18 years of age or older on the day of registration are allowed to register");
+		}
+		var isPwValidated = validatePassword(form.password.value, form.password_confirmation.value);
+		if (!isPwValidated) {
+			alertMsg += "* Passwords you enter are not equal\n";
+			// window.alert("Passwords you enter are not equal");
+		}
+		// console.log(alertMsg);
+		if (isAccountValidated && isEmailValidated && isPhoneValidated && isBdayValidated &&
+			isZipValidated && isPwValidated) {
+			return true;
+		} else {
+			window.alert(alertMsg);
+			return false;
+		}
 	}
 	// record the timestamp in millisecond when page is loaded
 	function setDate() {
