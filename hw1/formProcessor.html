@@ -41,7 +41,6 @@
 		return paramsJson;
 	}
 	var paramsJson = parseQueryParams();
-	// console.log(paramsJson);	
 	// the "hidden field" timestamp should be rendered as a human readable datetime
 	if (paramsJson.hasOwnProperty("timestamp")) {
 		// need to covert string to int, base 10
@@ -52,7 +51,6 @@
 		for (var key in data) {
 			// may be vulnerable for malicious injection
 			var row = "<tr><th>" + key + "</th> <th>" + data[key] +"</th></tr>";
-			// console.log(row);
 			$("#" + tableId).append(row);
 		}
 	}
