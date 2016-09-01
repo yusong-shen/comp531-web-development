@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://www.clear.rice.edu/comp431/sample/hello-styled.html -->
+<html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Hello HTML!</title>
+    
+
+	<link rel="stylesheet" href="./hello-styled_files/hello-styled.css">
+</head>
+
+<body>
+
+<nav>
+	<div>
+		<ul>
+			<li class="first">&nbsp;</li>
+			<li>Landing</li>
+			<li>Blog</li>
+			<li>Links</li>
+			<li>Random</li>			
+		</ul>
+	</div>
+</nav>
+
+<div class="navoffset">&nbsp;</div>
+
+<div class="table">
+	<table>
+		<thead>
+			<tr><th>Athenian</th><td>Owl</td></tr>
+		</thead>
+		<tbody>
+			<tr><td colspan="2"><img src="./hello-styled_files/riceacademicseal1.jpg"></td></tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="links">
+	<ul>
+		<li><a href="http://www.rice.edu/">Rice</a></li>
+		<li><a href="http://www.chron.com/">Houston Chronicle</a></li>
+		<li><a href="http://www.twitter.com/">Twitter</a></li>
+		<li><a href="http://www.twosigma.com/">TwoSigma</a></li>
+	</ul>
+</div>
+
+<div class="rightBar">
+	&nbsp;
+</div>
+
+<div class="content">
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p><a target="_blank" href="https://www.google.com/search?q=lorem+ipsum">Lorem ipsum</a> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+
+<div class="clear"></div>
+
+<div>
+<textarea rows="10" cols="50">
+
+ --- Enter your message here --- 
+
+
+</textarea>
+</div>
+<button onclick="clearMessage()">Clear</button>
+<button onclick="submitMessage()">Submit</button>
+
+<input readonly="" type="text" id="result" size="35">
+
+<script>
+
+clearMessage = function() {
+	document.getElementsByTagName("textarea")[0].value = "";
+}
+
+submitMessage = function() { 
+	var content = document.getElementsByTagName("textarea")[0].value;
+	var result = window.confirm('You submitted\n---\n' + encodeURIComponent(content) + '\n---')
+	var el = document.getElementById("result");
+	if (result) {
+		el.value = "User confirmed";
+		el.style.color = "blue";
+	} else {
+		el.value = "User did not confirm";	
+		el.style.color = "red";
+	}
+}
+
+</script></body></html>

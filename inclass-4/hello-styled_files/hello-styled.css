@@ -1,0 +1,112 @@
+/* style sheet for hello-styled.html */
+
+.table {
+	margin: auto;
+	width: 60%;	
+	padding-bottom: 2em;
+}
+
+table {
+	width: 100%;
+	text-align: center;
+	border: 0.5em double blue;
+	border-radius: 2em 0em 2em 0em;
+}
+
+tr, td {
+
+	border: 0.15em solid red;
+	
+	/* top right bottom left */
+	padding: 1em 0.5em 1em 0.5em;
+
+	border-radius: 2em;
+}
+
+th {
+	padding-left: 1em;
+}
+
+:link, :visited {	
+	font-weight: bolder;
+	font-family: courier;
+	color: #0B8211;
+}
+
+.rightBar {	
+	float: left;
+	background-color: #eeaaee;
+	width: 25%;
+	min-height: 20em;
+	margin-right: -2em;
+}
+
+.links {
+	margin: 1em;
+	float: right;
+	background-color: #ddffdd;
+	width: 25%;
+	min-height: 20em;
+}
+
+.links li {
+	list-style-type: square;
+	padding: 0.25em;
+}
+
+.links li :hover {
+	color: #ffffff;
+	background-color: #000044;
+	cursor: pointer;	
+}
+
+.content {
+	text-align: justify;
+}
+
+.content :hover {
+	background: #ccc;
+}
+
+.clear {
+	clear: right;
+}
+
+nav div { 
+	background-color: #01F901;
+	position: fixed;
+	width: 100%;
+	top: -1em;
+	left: 0em;
+}
+
+nav li {
+	height: 100%;
+	float: left;
+	display: inline;
+	list-style-type: none;
+	margin: 0em;
+	padding-left: 1em;
+	padding-right: 1em;		
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+nav li.first {
+	width: 5%;
+}
+
+nav li:hover {
+	background-color: #00AA00;	
+	color: #aaaaaa;
+	cursor: pointer;
+}
+
+.navoffset {
+	height: 2em;
+}
+
+#result {
+	border-style: none;
+	text-align: right;
+}
