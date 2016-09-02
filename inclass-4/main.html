@@ -7,37 +7,45 @@
 
 <script>
 window.onload = function() {
-	var LOGIN = "Login"
-	var LOGOUT = "LogOut"
+	var LOGIN = "Login";
+	var LOGOUT = "LogOut";
 	
-	var username = document.getElementById("username")
-	var loginBtn = document.getElementById("login")
+	var username = document.getElementById("username");
+	var loginBtn = document.getElementById("login");
+	var post = document.getElementById("post");
 	
-	loginBtn.value = LOGIN
+	loginBtn.value = LOGIN;
 
 	loginBtn.onclick = function() {
 		if (loginBtn.value == LOGIN) {
-			login()
+			login();
 		} else {
-			logout()
+			logout();
 		}
 	}
 
 	function login() {
 		if (!username.value) {
-			window.alert("Please enter a username")
+			window.alert("Please enter a username");
 		} else {
-			console.log('login was clicked')
-			// hide the input field
-			// make the post div visible
+			console.log('login was clicked');
 			// change the text of the login button to logout
+			loginBtn.value = LOGOUT;
+			// hide the input field
+			username.setAttribute('type', 'hidden');
+			// make the post div visible
+			post.style.display = 'block';
+
 		}
 	}
 
 	function logout() {
-		// reverse hiding done in login 
 		// change the text of button to login
-		console.log('logout was clicked')
+		loginBtn.value = LOGIN;
+		// reverse hiding done in login
+		username.setAttribute('type', 'text');
+		username.value = '';
+		post.style.display = 'none';		
 	}
 
 }
@@ -51,7 +59,7 @@ window.onload = function() {
 <input type="text" placeholder="username" id="username">
 <input type="button" value="Login" id="login">
 
-<div style="display: none">
+<div id="post" style="display: none">
 	<input type="text" placeholder="share something" width="200">
 	<input type="button" value="Post">
 </div>
