@@ -1,0 +1,48 @@
+nav div { 
+	background-color: #01F901;
+	position: fixed;
+	width: 100%;
+	top: -1em;
+	left: 0em;
+}
+
+nav li {
+	height: 100%;
+	float: left;
+	display: inline;
+	list-style-type: none;
+	margin: 0em;
+	padding-left: 1em;
+	padding-right: 1em;		
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+nav li.first {
+	width: 5%;
+}
+
+nav li:hover {
+	background-color: #00AA00;	
+	color: #aaaaaa;
+	cursor: pointer;
+}
+
+input[type=text] {
+	padding: 5px; 
+	border: 2px solid #ccc; 
+	-webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+input[type=text]:focus {
+	border-color: #333; 
+}
+
+input[type=submit] {
+	padding: 5px 15px; 
+	background: #ccc; 
+	border: 0 none;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}
