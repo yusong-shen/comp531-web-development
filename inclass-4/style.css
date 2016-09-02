@@ -1,5 +1,5 @@
 nav div { 
-	background-color: #01F901;
+	background-color: #ccd9ff;
 	position: fixed;
 	width: 100%;
 	top: -1em;
@@ -45,4 +45,13 @@ input[type=submit] {
     cursor: pointer;
     -webkit-border-radius: 5px;
     border-radius: 5px; 
+}
+
+span {
+	background-color: #ddffdd;	
+}
+
+div :hover {
+	background-color: #0099ff;
+
 }
