@@ -16,7 +16,7 @@ window.onload = function() {
 		}
 	}
 
-	function login() {
+	var login = function () {
 		if (!username.value) {
 			window.alert("Please enter a username");
 		} else {
@@ -31,7 +31,7 @@ window.onload = function() {
 		}
 	}
 
-	function logout() {
+	var logout = function () {
 		// change the text of button to login
 		loginBtn.value = LOGIN;
 		// reverse hiding done in login
@@ -40,13 +40,43 @@ window.onload = function() {
 		post.style.display = 'none';		
 	}
 
+	var isStopped = false;
+	var stop = function () {
+		isStopped = true;
+	}
+	var start = function () {
+		isStopped = false;
+	}
+
+
+	var changeImage = function (imgId) {
+		if (!isStopped) {
+			var randImgSrc = "http://placekitten.com/400/300?image=";
+			// 16 kitten images in total
+			var randInd = Math.floor(Math.random() * 16);
+			document.getElementById(imgId).src = randImgSrc + randInd;
+		}
+	}
+	// start dynamic image change
+	var randInterval = Math.floor(Math.random() * 4) + 1;
+	setInterval(changeImage, randInterval * 1000, "img01");
+
+	// setup the stop and start button
+	var stopBtn01 = document.getElementById("stopBtn01");
+	stopBtn01.value = "Stop";
+	stopBtn01.onclick = function () {
+		console.log("stop button 01 is clicked!");
+		if (isStopped) {
+			start();
+			stopBtn01.value = "Start";
+		} else {
+			stop();
+			stopBtn01.value = "Stop";		
+		}
+	}
+
+
+
 }
 
-var changeImage = function (imgId) {
-	var randImgSrc = "http://placekitten.com/400/300?image=";
-	// 16 kitten images in total
-	var randInd = Math.floor(Math.random() * 16);
-	document.getElementById(imgId).src = randImgSrc + randInd;
-}
-var randInterval = Math.floor(Math.random() * 4) + 1;
-setInterval(changeImage, randInterval * 1000, "img01");
+
