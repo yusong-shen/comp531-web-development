@@ -6,18 +6,16 @@
 	<title>Ricebook Simple Page : Homework 01</title>
 </head>
 <body>
+<script src="moment.js"></script>
+<script src="profile.js"></script>
 
 <h1>Ricebook</h1>
 
 <img src="rice-logo.jpg" width="400px" title="Rice logo" alt="Image Missing">
 
-<form action="formProcessor.html" id="userForm">
+<div id="userForm">
 	<p>
-		Account Name<br />
-		<input type="text" name="account_name" placeholder="your account name" required /><br />
-	</p>
-	<p>
-		Display Name (Optional)<br />
+		Display Name <br />
 		<input type="text" name="display_name" placeholder="your display name" /><br />  
 	</p>
 	<p>
@@ -48,14 +46,13 @@
 	<p>
 		<input type="hidden" name="timestamp" id="timestamp" value="">
 	</p>
+
 	<input type="submit" onclick="return isValidated(this.parent)">
-	<input type="reset">
-</form>
+</div>
 <br />
-
-<script src="moment.js"></script>
-<script src="profile.js"></script>
-
+<p>
+	Come back to <a href="main.html">main page</a>.
+</p>
 
 </body>
 </html>
