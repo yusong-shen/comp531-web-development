@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://www.clear.rice.edu/comp431/sample/hello-events.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="./hello-events_files/hello-events.css">
+	<script src="./hello-events_files/hello-events.js"></script>
+<style>
+body {
+	z-index: 1;
+}
+div#response {
+	background-color: white;
+    z-index: 1001;
+}
+</style></head>
+
+<body>
+
+<h1>DOM Level 0</h1>
+<h2>Inline</h2>
+<p>Inline events are what we've done so far.  We have 
+an element and place an event handler on it.  For example, with the onclick attribute: 
+<a href="https://www.clear.rice.edu/comp431/sample/hello-events.html?q=true" onclick="return clickMe()">click me</a>.
+Now check the box and click again. <input type="checkbox" id="clickMeBox" onclick="return clickMe(this)">
+</p>
+
+<div id="response"></div>
+
+<div>
+	<button onclick="resetPage()">reset</button>
+</div>
+
+<h2>Traditional</h2>
+<p>Instead of "inline" we attach and detach event handlers using JavaScript.  This is likely the best approach as it is 100% cross-browser compatible.  The onload() function in this page is a good example.  We could also do body.onload() or document.onload().  In general window is the best to assure everything is ready to go.</p>
+<button id="pressMe">Press Me</button>
+
+<h1>DOM Level 2</h1>
+
+<p id="level2p">Here is some text that has an event listener attached to it.  Go ahead, try clicking on it, again and again.</p>
+
+<h1>Bubbling</h1>
+
+<div id="myList">
+	Here is an unordered list.  Each entry has
+	a click handler added to it.
+	<p>Note that <em>this</em> paragraph does not have an explicit handler.</p>
+	<ul id="myListItems">
+		<li>item 1</li>
+		<li>item 2</li>
+		<li>item 3</li>
+		<li>item 4</li>
+		<li>item 5</li>
+	</ul>
+</div>
+<label>Allow Bubbling
+	<input type="checkbox" checked="" id="allowBubble">
+</label> 
+
+<div>
+	<button onclick="resetPage()">reset</button>
+</div>
+
+<button id="fireEvent">Fire event to item 1</button>
+
+<div>
+	<p>Now let's exercise key events</p>
+	<label>Keydown : <input type="text" id="keydown"></label><br>
+	<label>Keypress: <input type="text" id="keypress" placeholder="&quot;d&quot; is not shown"></label> 
+</div>
+
+<p>Scroll down for mouse events</p>
+
+<div class="vspace"></div>
+
+<p>Mouse Action <button id="moveTheBox">Float box: left</button></p>
+<div id="box" class="redBox">
+	<div class="blueBox" style="color: pink;">
+		<div class="hideable purpleBox">&nbsp;</div>
+	</div>
+	<div class="greenBox">&nbsp;</div>
+</div>
+
+
+<div class="vspace"></div>
+
+
+</body></html>
