@@ -51,7 +51,8 @@ span {
 	background-color: #ddffdd;	
 }
 
-div :hover {
-	background-color: #0099ff;
-
+.content {
+    text-align: center;
+    padding: 1px;
+    margin: 1px;
 }

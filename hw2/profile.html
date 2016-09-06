@@ -4,55 +4,59 @@
 	<meta charset="utf-8">
 	<meta name="author" content="Yusong Shen">
 	<title>Ricebook Simple Page : Homework 01</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <script src="moment.js"></script>
 <script src="profile.js"></script>
 
-<h1>Ricebook</h1>
+<div class="content">
+	<h1>Ricebook</h1>
 
-<img src="rice-logo.jpg" width="400px" title="Rice logo" alt="Image Missing">
+	<img src="rice-logo.jpg" width="400px" title="Rice logo" alt="Image Missing">
 
-<div id="userForm">
-	<p>
-		Display Name <br />
-		<input type="text" name="display_name" placeholder="your display name" /><br />  
-	</p>
-	<p>
-		Email Address<br />
-		<input type="email" name="email" placeholder="name@example.com" required /><br />
-	</p>
-	<p>
-		Phone Number<br />
-		<input type="text" name="phone" placeholder="123-123-1234" required /><br />
-	</p>
-	<p>
-		Date of Birth<br />
-		<input type="date" name="bday" placeholder="mm/dd/yyyy" required /><br />
-	</p>
-	<p>
-		Zipcode <br />
-		<input type="text" name="zipcode" placeholder="77005" required /><br />
-	</p>
-	<p>
-		Password <br />
-		<input type="password" name="password" required /><br />
-	</p>
-	<p>
-		Password Confirmation <br />
-		<input type="password" name="password_confirmation" required /><br />
-	</p>
+	<div id="userForm">
+		<p>
+			Display Name <br />
+			<input type="text" name="display_name" placeholder="your display name" /><br />  
+		</p>
+		<p>
+			Email Address<br />
+			<input type="email" name="email" placeholder="name@example.com" required /><br />
+		</p>
+		<p>
+			Phone Number<br />
+			<input type="text" name="phone" placeholder="123-123-1234" required /><br />
+		</p>
+		<p>
+			Date of Birth<br />
+			<input type="date" name="bday" placeholder="mm/dd/yyyy" required /><br />
+		</p>
+		<p>
+			Zipcode <br />
+			<input type="text" name="zipcode" placeholder="77005" required /><br />
+		</p>
+		<p>
+			Password <br />
+			<input type="password" name="password" required /><br />
+		</p>
+		<p>
+			Password Confirmation <br />
+			<input type="password" name="password_confirmation" required /><br />
+		</p>
+		<br />
+		<p>
+			<input type="hidden" name="timestamp" id="timestamp" value="">
+		</p>
+
+		<input type="submit" onclick="return isValidated(this.parent)">
+	</div>
 	<br />
 	<p>
-		<input type="hidden" name="timestamp" id="timestamp" value="">
+		Come back to <a href="main.html">main page</a>.
 	</p>
 
-	<input type="submit" onclick="return isValidated(this.parent)">
 </div>
-<br />
-<p>
-	Come back to <a href="main.html">main page</a>.
-</p>
 
 </body>
 </html>
