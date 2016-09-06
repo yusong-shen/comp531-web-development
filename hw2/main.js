@@ -41,3 +41,12 @@ window.onload = function() {
 	}
 
 }
+
+var changeImage = function (imgId) {
+	var randImgSrc = "http://placekitten.com/400/300?image=";
+	// 16 kitten images in total
+	var randInd = Math.floor(Math.random() * 16);
+	document.getElementById(imgId).src = randImgSrc + randInd;
+}
+var randInterval = Math.floor(Math.random() * 4) + 1;
+setInterval(changeImage, randInterval * 1000, "img01");
