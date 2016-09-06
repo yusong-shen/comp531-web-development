@@ -43,11 +43,15 @@ window.onload = function() {
 	// setup the stop and start button
 	var setupBtn = function(cardId) {
 		var isStopped = false;
+		var randInterval = Math.floor(Math.random() * 4) + 1;		
 		var stop = function () {
 			isStopped = true;
 		}
 		var start = function () {
+			// When restarting an interval there should be a 
+			// new random delay time for that interval.
 			isStopped = false;
+			randInterval = Math.floor(Math.random() * 4) + 1;
 		}
 
 
@@ -74,7 +78,6 @@ window.onload = function() {
 			}
 		}
 		// start dynamic image change
-		var randInterval = Math.floor(Math.random() * 4) + 1;
 		setInterval(changeImage, randInterval * 1000, imgId);
 	}
 
