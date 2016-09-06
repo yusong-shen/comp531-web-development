@@ -57,26 +57,32 @@ window.onload = function() {
 			document.getElementById(imgId).src = randImgSrc + randInd;
 		}
 	}
-	// start dynamic image change
-	var randInterval = Math.floor(Math.random() * 4) + 1;
-	setInterval(changeImage, randInterval * 1000, "img01");
 
 	// setup the stop and start button
-	var stopBtn01 = document.getElementById("stopBtn01");
-	stopBtn01.value = "Stop";
-	stopBtn01.onclick = function () {
-		console.log("stop button 01 is clicked!");
-		if (isStopped) {
-			start();
-			stopBtn01.value = "Start";
-		} else {
-			stop();
-			stopBtn01.value = "Stop";		
+	var setupBtn = function(cardId) {
+		var btnId = "stopBtn" + cardId;
+		var imgId = "img" + cardId;
+		var stopBtn = document.getElementById(btnId);
+		stopBtn.value = "Stop";
+		stopBtn.onclick = function () {
+			console.log(btnId + " is clicked!");
+			if (isStopped) {
+				start();
+				stopBtn.value = "Start";
+			} else {
+				stop();
+				stopBtn.value = "Stop";		
+			}
 		}
+		// start dynamic image change
+		var randInterval = Math.floor(Math.random() * 4) + 1;
+		setInterval(changeImage, randInterval * 1000, imgId);
 	}
 
-
-
+	var numBtn = 6;
+	for (var i = 1; i <= numBtn; i++) {
+		setupBtn(i);
+	}
 }
 
 
