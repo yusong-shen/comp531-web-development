@@ -40,38 +40,37 @@ window.onload = function() {
 		post.style.display = 'none';		
 	}
 
-	var isStopped = false;
-	var stop = function () {
-		isStopped = true;
-	}
-	var start = function () {
-		isStopped = false;
-	}
-
-
-	var changeImage = function (imgId) {
-		if (!isStopped) {
-			var randImgSrc = "http://placekitten.com/400/300?image=";
-			// 16 kitten images in total
-			var randInd = Math.floor(Math.random() * 16);
-			document.getElementById(imgId).src = randImgSrc + randInd;
-		}
-	}
-
 	// setup the stop and start button
 	var setupBtn = function(cardId) {
+		var isStopped = false;
+		var stop = function () {
+			isStopped = true;
+		}
+		var start = function () {
+			isStopped = false;
+		}
+
+
+		var changeImage = function (imgId) {
+			if (!isStopped) {
+				var randImgSrc = "http://placekitten.com/400/300?image=";
+				// 16 kitten images in total
+				var randInd = Math.floor(Math.random() * 16);
+				document.getElementById(imgId).src = randImgSrc + randInd;
+			}
+		}
 		var btnId = "stopBtn" + cardId;
 		var imgId = "img" + cardId;
 		var stopBtn = document.getElementById(btnId);
-		stopBtn.value = "Stop";
+		// stopBtn.value = "Stop";
 		stopBtn.onclick = function () {
 			console.log(btnId + " is clicked!");
 			if (isStopped) {
 				start();
-				stopBtn.value = "Start";
+				stopBtn.value = "Stop";
 			} else {
 				stop();
-				stopBtn.value = "Stop";		
+				stopBtn.value = "Start";		
 			}
 		}
 		// start dynamic image change
