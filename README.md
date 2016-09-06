@@ -1,6 +1,6 @@
 # comp531-web-development
 comp531 web development and design
-
+course website : https://www.clear.rice.edu/comp431/
 
 ## Description
 In this project-based course, students create multi-user Web applications utilizing many of the latest Web design technologies.
