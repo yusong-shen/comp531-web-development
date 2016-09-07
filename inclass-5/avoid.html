@@ -5,6 +5,11 @@
 	<meta name="author" content="Yusong Shen">
 	<title>Mouse Game </title>
 	<style type="text/css">
+		#playground {
+			width: 1000px;
+			height: 800px;
+			border: 5px solid black;
+		}
 		button:focus {
 			border-color: #333; 
 		}
@@ -19,7 +24,17 @@
 		    cursor: pointer;
 		    -webkit-border-radius: 5px;
 		    border-radius: 5px; 
-		}		
+		}
+		#msg {
+			text-align: center;
+		    position: absolute;			
+			border-radius: 10px;
+			background-color: #7FFFD4;
+			width: 150px;
+			display: none;
+			border: solid red;
+			color: #0000FF;
+		}
 	</style>
 </head>
 <body>
@@ -27,10 +42,14 @@
 <h1>Mouse Game</h1>
 <p>Hello Event! COMP531 Web Development In-Class Exercise 5</p>
 
-<div>
+<div id="playground">
 	<button id="btnClk">Click Me!</button>
 </div>
 
+<div id="msg">
+	Congratulations! <br \>
+	You won!
+</div>
 
 </body>
 </html>
