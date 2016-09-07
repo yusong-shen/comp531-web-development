@@ -4,6 +4,24 @@ input[type=text] {
 	-webkit-border-radius: 5px;
     border-radius: 5px;
 }
+input[type=date] {
+	padding: 5px; 
+	border: 2px solid #ccc; 
+	-webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+input[type=email] {
+	padding: 5px; 
+	border: 2px solid #ccc; 
+	-webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+input[type=password] {
+	padding: 5px; 
+	border: 2px solid #ccc; 
+	-webkit-border-radius: 5px;
+    border-radius: 5px;
+}
 input[type=text]:focus {
 	border-color: #333; 
 }
