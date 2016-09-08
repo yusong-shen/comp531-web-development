@@ -6,11 +6,20 @@
 // Style the profile page (you may include styles in the same file as for the main page).
 window.onload = function() {
 	var alertMsgs = {
-			'phone' : '* Phone number format should look like : 123-123-1234\n',
-			'email' : '* Email format should look like : name@example.com\n',
-			'bday' : '* Only individuals 18 years of age or older on the day of registration are allowed to register\n',
-			'password' : '* Passwords you enter are not equal\n'
-	};	
+		'displayName' : '',
+		'phone' : '* Phone number format should look like : 123-123-1234\n',
+		'email' : '* Email format should look like : name@example.com\n',
+		'bday' : '* Only individuals 18 years of age or older on the day of registration are allowed to register\n',
+		'password' : '* Passwords you enter are not equal\n',
+		'zipcode' : '* Zipcode should be 5 digits like 77005\n'
+	};
+	var validatedREs = {
+		'phone' : /^\d{3}[-]\d{3}[-]\d{4}$/,
+		'email' : /[^\s@]+@[^\s@]+\.[^\s@]+/,
+		'zipcode' : /^\d{5}/
+	}
+	var inputFields = ['displayName', 'phone', 'email', 'zipcode'];
+	var displayFields = ['currentDisplayName', 'currentPhone', 'currentEmail', 'currentZipcode'];
 	function validateRe(re, value) {
 		return (value.match(re) !== null);
 	}
@@ -67,23 +76,34 @@ window.onload = function() {
 		var allInputs = document.getElementsByTagName('input');
 		allInputs.value = '';
 	}
+	// return the string indicating sucessfully updated
 	function updatedMsg(field, oldVal, newVal) {
 		return '* ' + field + ' is updated from ' + oldVal + ' to ' + newVal;
 	}
+	function updateField(field, oldElement, newElement) {
+		// assume oldElement is span, newElement is input
+		var oldVal = oldElement.innerText;
+		var newVal = newElement.value;
+		window.alert(updatedMsg(field, oldVal, newVal));
+		oldElement.innerText = newVal;
+	}
 	var submitBtn = document.getElementById('submit');
 	submitBtn.onclick = function () {
-		var userForm = document.getElementById('userForm');
-		var inputPhone = document.getElementById('phone');
-		var currentPhone = document.getElementById('currentPhone');
-		var phoneRe = /^\d{3}[-]\d{3}[-]\d{4}$/;
-		var oldVal = currentPhone.value;
-		var newVal = inputPhone.value;
-		var isPhoneValidated = validateRe(phoneRe, newVal);		
-		if (newVal && !isPhoneValidated) {
-			window.alert(alertMsgs['phone']);
-		} else if (newVal && oldVal !== newVal) {
-			window.alert(updatedMsg('phone', oldVal, newVal));
-			currentPhone.innerText = newVal;
-		}
+		inputFields.forEach(function(item, index) {
+			var oldElement = document.getElementById(displayFields[index]);
+			var newElement = document.getElementById(item);
+			var oldVal = oldElement.innerText;
+			var newVal = newElement.value;
+			var isValidated = true;
+			// check if that field needed to be validated
+			if (validatedREs[item]) {
+				isValidated = validateRe(validatedREs[item], newVal);
+			}
+			if (newVal && !isValidated) {
+				window.alert(alertMsgs[item]);				
+			} else if (newVal && oldVal !== newVal) {
+				updateField(item, oldElement, newElement);
+			}
+		});
 	}
 }
