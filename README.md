@@ -14,8 +14,10 @@ The first half course is about Front-End Development, second half course is abou
 3. Hello JavaScript
 4. Dynamic Style
 5. Mouse Game
+6. Skyline Game
 
 
 ### Homework
 1. Simple Page, due Tue 08/30
 2. Dynamic Page, due Thu 09/08
+3. Draft Front End, due Tue 09/20
