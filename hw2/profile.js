@@ -58,11 +58,19 @@ window.onload = function() {
 			}
 			if (newVal && !isValidated) {
 				window.alert(alertMsgs[item]);				
-			} else if (newVal && oldVal !== newVal) {
+			} else if (newVal && isValidated && oldVal !== newVal) {
 				updateField(item, oldElement, newElement);
 			}
 		});
-
+		// update password if user input them
+		var pwVal = document.getElementById('password').value;
+		var pwConfirmVal = document.getElementById('passwordConfirmation').value;
+		if (pwVal && pwConfirmVal && !validatePassword(pwVal, pwConfirmVal)) {
+			window.alert(alertMsgs['password']);
+		} else if (pwVal && pwConfirmVal && validatePassword(pwVal, pwConfirmVal)) {
+			window.alert('Password is updated!!');
+			document.getElementById('currentPwMsg').innerText = 'Password is updated!!';
+		}
 		// clear all the contents
 		clearContent();
 	}
