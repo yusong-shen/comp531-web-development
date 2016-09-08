@@ -1,27 +1,10 @@
-input[type=text] {
+input[type=text], input[type=date], input[type=email], input[type=password] {
 	padding: 5px; 
 	border: 2px solid #ccc; 
 	-webkit-border-radius: 5px;
     border-radius: 5px;
 }
-input[type=date] {
-	padding: 5px; 
-	border: 2px solid #ccc; 
-	-webkit-border-radius: 5px;
-    border-radius: 5px;
-}
-input[type=email] {
-	padding: 5px; 
-	border: 2px solid #ccc; 
-	-webkit-border-radius: 5px;
-    border-radius: 5px;
-}
-input[type=password] {
-	padding: 5px; 
-	border: 2px solid #ccc; 
-	-webkit-border-radius: 5px;
-    border-radius: 5px;
-}
+
 input[type=text]:focus {
 	border-color: #333; 
 }
@@ -43,4 +26,15 @@ span {
     text-align: center;
     padding: 1px;
     margin: 1px;
+}
+
+.col-md-6 {
+	height: 300px;
+	border: solid #80d4ff;
+}
+
+.row {
+	background-color : #fff2e6;
+	border-radius: 10px;
+	border: solid #80d4ff;
 }
