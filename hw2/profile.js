@@ -10,7 +10,7 @@ window.onload = function() {
 			'email' : '* Email format should look like : name@example.com\n',
 			'bday' : '* Only individuals 18 years of age or older on the day of registration are allowed to register\n',
 			'password' : '* Passwords you enter are not equal\n'
-	};
+	};	
 	function validateRe(re, value) {
 		return (value.match(re) !== null);
 	}
@@ -67,9 +67,23 @@ window.onload = function() {
 		var allInputs = document.getElementsByTagName('input');
 		allInputs.value = '';
 	}
+	function updatedMsg(field, oldVal, newVal) {
+		return '* ' + field + ' is updated from ' + oldVal + ' to ' + newVal;
+	}
 	var submitBtn = document.getElementById('submit');
 	submitBtn.onclick = function () {
 		var userForm = document.getElementById('userForm');
-		console.log(userForm.getElementsByTagName('input'));
+		var inputPhone = document.getElementById('phone');
+		var currentPhone = document.getElementById('currentPhone');
+		var phoneRe = /^\d{3}[-]\d{3}[-]\d{4}$/;
+		var oldVal = currentPhone.value;
+		var newVal = inputPhone.value;
+		var isPhoneValidated = validateRe(phoneRe, newVal);		
+		if (newVal && !isPhoneValidated) {
+			window.alert(alertMsgs['phone']);
+		} else if (newVal && oldVal !== newVal) {
+			window.alert(updatedMsg('phone', oldVal, newVal));
+			currentPhone.innerText = newVal;
+		}
 	}
 }
