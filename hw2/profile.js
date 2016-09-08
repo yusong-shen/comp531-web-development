@@ -1,9 +1,15 @@
+// The page will load with hardcoded values for each field. The submit button will determine 
+// which fields have changed and provide an alert to the user informing which fields are being updated. 
+// When the alert closes the updated values are displayed, the input fields should all be cleared. 
+// Be sure to validate the inputs (and perform password match) and alert the user of incorrect entries 
+// before updating values on the screen.
+// Style the profile page (you may include styles in the same file as for the main page).
 window.onload = function() {
 	var alertMsgs = {
-			"phone" : "* Phone number format should look like : 123-123-1234\n",
-			"email" : "* Email format should look like : name@example.com\n",
-			"bday" "* Only individuals 18 years of age or older on the day of registration are allowed to register\n",
-			"password" : "* Passwords you enter are not equal\n"
+			'phone' : '* Phone number format should look like : 123-123-1234\n',
+			'email' : '* Email format should look like : name@example.com\n',
+			'bday' : '* Only individuals 18 years of age or older on the day of registration are allowed to register\n',
+			'password' : '* Passwords you enter are not equal\n'
 	};
 	function validateRe(re, value) {
 		return (value.match(re) !== null);
@@ -11,7 +17,7 @@ window.onload = function() {
 	function validateBday(date) {
 		// Only individuals 18 years of age or older on the day of 
 		// registration are allowed to register
-		var eighteenYearsAgo = moment().subtract(18, "years");
+		var eighteenYearsAgo = moment().subtract(18, 'years');
 		var birthday = moment(date);
 
 		if (!birthday.isValid()) {
@@ -21,7 +27,7 @@ window.onload = function() {
 		    return true;    
 		}
 		else {
-		    return false;    
+		    return false;
 		}
 	}
 	function validatePassword(pw, pw_cf) {
@@ -30,25 +36,21 @@ window.onload = function() {
 	function isValidated(form) {
 		// incase the argument is missing
 		if (!form) {
-			form = document.getElementById("userForm");
+			form = document.getElementById('userForm');
 		}
-		var alertMsg = "something is wrong!";
+		var alertMsg = 'something is wrong!';
 		// validate by regular expression
 		// 123-123-1234
 		var phoneRe = /^\d{3}[-]\d{3}[-]\d{4}$/;
 		var emailRe = /[^\s@]+@[^\s@]+\.[^\s@]+/;
-		// Account name can only be upper or lower case letters and numbers, 
-		// but may not start with a number
-		var accountRe = /^[a-zA-Z][a-zA-Z0-9]*$/;
 		var zipcodeRe = /^\d{5}/;
 		// perform validations
 		var isPhoneValidated = validateRe(phoneRe, form.phone.value);
 		var isEmailValidated = validateRe(emailRe, form.email.value);
-		var isAccountValidated = validateRe(accountRe, form.account_name.value);
 		var isZipValidated = validateRe(zipcodeRe, form.zipcode.value);
 		var isBdayValidated = validateBday(form.bday.value);
 		var isPwValidated = validatePassword(form.password.value, form.password_confirmation.value);
-		if (isAccountValidated && isEmailValidated && isPhoneValidated && isBdayValidated &&
+		if (isEmailValidated && isPhoneValidated && isBdayValidated &&
 			isZipValidated && isPwValidated) {
 			return true;
 		} else {
@@ -58,7 +60,16 @@ window.onload = function() {
 	}
 	// record the timestamp in millisecond when page is loaded
 	function setDate() {
-		document.getElementById("timestamp").value = Date.now();
+		document.getElementById('timestamp').value = Date.now();
 	}
 	setDate();
+	function clearContent() {
+		var allInputs = document.getElementsByTagName('input');
+		allInputs.value = '';
+	}
+	var submitBtn = document.getElementById('submit');
+	submitBtn.onclick = function () {
+		var userForm = document.getElementById('userForm');
+		console.log(userForm.getElementsByTagName('input'));
+	}
 }

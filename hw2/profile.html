@@ -17,40 +17,46 @@
 
 	<div id="userForm">
 		<p>
-			Display Name : <span>Cool Guy</span><br />
-			<input type="text" name="display_name" placeholder="your display name" />
+			Display Name : 
+			<span id="currentName" class="currentVal">Cool Guy</span><br />
+			<input type="text" id="display_name" placeholder="your display name" />
 		</p>
 		<p>
-			Email Address : <span>foobar@example.com</span><br />
-			<input type="email" name="email" placeholder="name@example.com" required />
+			Email Address : 
+			<span id="currentEmail" class="currentVal">foobar@example.com</span><br />
+			<input type="email" id="email" placeholder="name@example.com" required />
 		</p>
 		<p>
-			Phone Number : <span>123-123-1234</span><br />
-			<input type="text" name="phone" placeholder="123-123-1234" required />
+			Phone Number : 
+			<span id="currentPhone" class="currentVal">123-123-1234</span><br />
+			<input type="text" id="phone" placeholder="123-123-1234" required />
 						
 		</p>
 		<p>
-			Date of Birth : <span>01/01/1970</span><br />
-			<input type="date" name="bday" placeholder="mm/dd/yyyy" required />
+			Date of Birth : 
+			<span id="currentBday" class="currentVal">01/01/1970</span><br />
+			<input type="date" id="bday" placeholder="mm/dd/yyyy" required />
 		</p>
 		<p>
-			Zipcode : <span>77005</span><br />
-			<input type="text" name="zipcode" placeholder="77005" required />
+			Zipcode : 
+			<span id="currentZipcode" class="currentVal">77005</span><br />
+			<input type="text" id="zipcode" placeholder="77005" required />
 		</p>
 		<p>
-			Password : <span>Password is hidden</span><br />
-			<input type="password" name="password" required />
+			Password : 
+			<span id="currentPwMsg" class="currentVal">Password is hidden</span><br />
+			<input type="password" id="password" required />
 		</p>
 		<p>
 			Password Confirmation<br />
-			<input type="password" name="password_confirmation" required />
+			<input type="password" id="password_confirmation" required />
 		</p>
 		<br />
 		<p>
 			<input type="hidden" name="timestamp" id="timestamp" value="">
 		</p>
 
-		<input type="submit" onclick="return isValidated(this.parent)">
+		<input type="submit" id="submit">
 	</div>
 	<br />
 	<p>
