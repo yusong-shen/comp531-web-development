@@ -1,10 +1,10 @@
 window.onload = function() {
-	var LOGIN = "Login";
-	var LOGOUT = "LogOut";
+	var LOGIN = 'Login';
+	var LOGOUT = 'LogOut';
 	
-	var username = document.getElementById("username");
-	var loginBtn = document.getElementById("login");
-	var post = document.getElementById("post");
+	var username = document.getElementById('username');
+	var loginBtn = document.getElementById('login');
+	var post = document.getElementById('post');
 	
 	loginBtn.value = LOGIN;
 
@@ -18,7 +18,7 @@ window.onload = function() {
 
 	var login = function () {
 		if (!username.value) {
-			window.alert("Please enter a username");
+			window.alert('Please enter a username');
 		} else {
 			console.log('login was clicked');
 			// change the text of the login button to logout
@@ -57,34 +57,39 @@ window.onload = function() {
 
 		var changeImage = function (imgId) {
 			if (!isStopped) {
-				var randImgSrc = "http://placekitten.com/400/300?image=";
+				var randImgSrc = 'http://placekitten.com/400/300?image=';
 				// 16 kitten images in total
 				var randInd = Math.floor(Math.random() * 16);
 				document.getElementById(imgId).src = randImgSrc + randInd;
 			}
 		}
-		var btnId = "stopBtn" + cardId;
-		var imgId = "img" + cardId;
+		var btnId = 'stopBtn' + cardId;
+		var imgId = 'img' + cardId;
 		var stopBtn = document.getElementById(btnId);
-		// stopBtn.value = "Stop";
+		// stopBtn.value = 'Stop';
 		stopBtn.onclick = function () {
-			console.log(btnId + " is clicked!");
+			console.log(btnId + ' is clicked!');
 			if (isStopped) {
 				start();
-				stopBtn.value = "Stop";
+				stopBtn.value = 'Stop';
 			} else {
 				stop();
-				stopBtn.value = "Start";		
+				stopBtn.value = 'Start';		
 			}
 		}
 		// start dynamic image change
 		setInterval(changeImage, randInterval * 1000, imgId);
 	}
 
-	var numBtn = 6;
-	for (var i = 1; i <= numBtn; i++) {
-		setupBtn(i);
-	}
+	// return a node list
+	var allStopBtns = document.getElementsByClassName('stopBtn');
+	// need to take a walk around to use forEach
+	// for loop is bad!! since it use global variable.
+	// reference : http://stackoverflow.com/a/22416614/2943842
+	Array.prototype.forEach.call (allStopBtns, function (_, idx) {
+		// button index start from 1
+		setupBtn(idx + 1);
+	} );
 }
 
 
