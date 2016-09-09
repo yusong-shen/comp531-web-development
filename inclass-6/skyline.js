@@ -16,8 +16,33 @@ var createApp = function (canvas) {
     var sunX = 100;
     var sunY = 50;
 
+    // common size for windows
+    var windowSpacing = 2, floorSpacing = 3;
+    var windowHeight = 5, windowWidth = 3;
+
+    // colors of buildings
+    var blgColors = ['red', 'blue', 'gray', 'orange'];
+
     // array to store all the building
     var buildings = [];
+
+    // add event listener for mouse events
+    var heightenBuilding = function (event) {
+        var x = event.pageX;
+        var y = event.pageY;
+        // loop through all the buildings
+        buildings.forEach(function (item) {
+            var x0 = item.x0;
+            var blgWidth = item.blgWidth;
+            var blgHeight = item.blgHeight;
+            if (x > x0 && x < x0 + blgWidth && y < floor && y > floor - blgHeight) {
+                item.blgHeight += 20;
+            }
+        });
+    };
+    canvas.addEventListener("mousedown", heightenBuilding, false);
+
+
 
     // Create the ground
     var grad = c.createLinearGradient(0, floor, 0, canvas.height);
@@ -26,12 +51,6 @@ var createApp = function (canvas) {
     c.fillStyle = grad;
     c.fillRect(0, floor, canvas.width, canvas.height);
 
-    // common size for windows
-    var windowSpacing = 2, floorSpacing = 3;
-    var windowHeight = 5, windowWidth = 3;
-
-    // colors of buildings
-    var blgColors = ['red', 'blue', 'gray', 'orange'];
 
     //build a building
     var build = function () {
