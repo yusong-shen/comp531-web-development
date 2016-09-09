@@ -6,6 +6,7 @@ var modulo = function (x, y) {
 
 var createApp = function (canvas) {
     var c = canvas.getContext("2d");
+    // set initial position
     var floor = canvas.height / 2;
     var carWidth = 70;
     var carHeight = 30;
@@ -14,6 +15,9 @@ var createApp = function (canvas) {
     var dx = 0.1 * canvas.width;
     var sunX = 100;
     var sunY = 50;
+
+    // array to store all the building
+    var buildings = [];
 
     // Create the ground
     var grad = c.createLinearGradient(0, floor, 0, canvas.height);
@@ -34,6 +38,34 @@ var createApp = function (canvas) {
         var x0 = Math.random() * canvas.width;
         var blgWidth = (windowWidth + windowSpacing) * Math.floor(Math.random() * 10);
         var blgHeight = Math.random() * canvas.height / 2;
+        var color = blgColors[Math.floor(Math.random() * blgColors.length)];
+        var building =  {
+            x0 : x0,
+            blgWidth : blgWidth,
+            blgHeight : blgHeight,
+            color : color
+        };
+        buildings.push(building);
+    };
+
+    var drawBuilding = function (building) {
+        var x0 = building.x0;
+        var blgWidth = building.blgWidth;
+        var blgHeight = building.blgHeight;
+        c.fillStyle = building.color;
+        c.fillRect(x0, floor - blgHeight, blgWidth, blgHeight);
+        c.fillStyle = "yellow";
+        for (var y = floor - floorSpacing; y > floor - blgHeight; y -= floorSpacing + windowHeight) {
+            for (var x = windowSpacing; x < blgWidth - windowWidth; x += windowSpacing + windowWidth) {
+                // not all lights are on in each building
+                if (Math.random() < 0.7) {
+                    c.fillRect(x0 + x, y - windowHeight, windowWidth, windowHeight);
+                }
+            }
+        }
+    };
+
+    var draw = function () {
         // clear the canvas above floor
         c.clearRect(0, 0, canvas.width, canvas.height / 2);
 
@@ -45,22 +77,10 @@ var createApp = function (canvas) {
         c.fillStyle = "orange";
         c.fill();
 
-        // draw the building
-        c.fillStyle = blgColors[Math.floor(Math.random() * blgColors.length)];
-        c.fillRect(x0, floor - blgHeight, blgWidth, blgHeight);
-        c.fillStyle = "yellow";
-        var light = true;
-        for (var y = floor - floorSpacing; y > floor - blgHeight; y -= floorSpacing + windowHeight) {
-            for (var x = windowSpacing; x < blgWidth - windowWidth; x += windowSpacing + windowWidth) {
-                // not all lines in each building
-                if (light) {
-                    c.fillRect(x0 + x, y - windowHeight, windowWidth, windowHeight);
-                    light = false;
-                } else {
-                    light = true;
-                }
-            }
-        }
+        // draw all the buildings
+        buildings.forEach(function (building) {
+            drawBuilding(building);
+        });
 
         // draw the car
         var carImg = new Image();
@@ -70,14 +90,15 @@ var createApp = function (canvas) {
     };
 
     return {
-        build: build
+        build: build,
+        draw: draw
     }
 };
 
 window.onload = function () {
     var app = createApp(document.querySelector("canvas"));
     document.getElementById("build").onclick = app.build;
-    setInterval(app.build, 500);
+    setInterval(app.draw, 500);
 };
 
 
