@@ -15,6 +15,7 @@ The first half course is about Front-End Development, second half course is abou
 4. Dynamic Style
 5. Mouse Game
 6. Skyline Game
+7. Promising to Fetch
 
 
 ### Homework
