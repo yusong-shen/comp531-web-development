@@ -32,32 +32,94 @@
         // throw new Error('Implement me!')
         // var url = 'https://webdev-dummy.herokuapp.com/sample';
         // return fetch(url).then(r => r.json()).then(r => console.log(r.text));
-        var doc;
-        var map = {};
-        doc.forEach(function(item, index) {
-            var text = item['text'];
-            var len = text.split(' ').length;
-            var map[item['_id']] = len;
+        // var doc;
+        // var map = {};
+        // doc.forEach(function(item, index) {
+        //     var text = item['text'];
+        //     var len = text.split(' ').length;
+        //     var map[item['_id']] = len;
+        // })
+        // return {};
+        return fetch(url)
+        .then(r => r.json())
+        .then(r => {
+            var docs = r.articles;
+            var map = {};
+            docs.forEach(doc => {
+                // console.log(doc.text);
+                var text = doc['text'];
+                var len = text.split(' ').length;
+                map[(doc['_id'])] = len;
+                // console.log(doc['_id']);
+                // console.log(len);
+                // console.log(map);
+            });
+            return map;
+            // console.log(map);
         })
-        return {};
+        .catch(err => {
+            console.log(err);
+            return {};
+        });
     }
 
-    // same but no errors even with empty array
+    // same but no errors even with bad url
     function countWordsSafe(url) {
-        throw new Error('Implement me!')
+        // throw new Error('Implement me!')
+        return fetch(url)
+        .then(r => r.json())
+        .then(r => {
+            var docs = r.articles;
+            var map = {};
+            docs.forEach(doc => {
+                // console.log(doc.text);
+                var text = doc['text'];
+                var len = text.split(' ').length;
+                map[(doc['_id'])] = len;
+                // console.log(doc['_id']);
+                // console.log(len);
+                // console.log(map);
+            });
+            return map;
+        })
+        .catch(err => {
+            console.log(err);
+            return {};
+        })
     }
 
     //  article id with most number of words
     function getLargest(url) {
-        var max = -1;
-        var maxId = -1;
-        for (id in map) {
-            if (map[id] > max) {
-                max = map[id];
-                maxId = id;
-            }
-        }
-        throw new Error('Implement me!')
+        // var max = -1;
+        // var maxId = -1;
+        // for (id in map) {
+        //     if (map[id] > max) {
+        //         max = map[id];
+        //         maxId = id;
+        //     }
+        // }
+        // throw new Error('Implement me!')
+        return fetch(url)
+        .then(r => r.json())
+        .then(r => {
+            var docs = r.articles;
+            var maxLen = -1;
+            var maxId = -1;
+            docs.forEach(doc => {
+                var text = doc['text'];
+                var len = text.split(' ').length;
+                if (len > maxLen) {
+                    maxLen = len;
+                    maxId = doc['_id'];
+                }
+            });
+            console.log(maxId);
+            return maxId.toString();
+        })
+        .catch(err => {
+            console.log(err);
+            return -1;
+        })
     }
 
     exports.inclass = {
