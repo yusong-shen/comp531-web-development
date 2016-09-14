@@ -28,8 +28,8 @@
     'use strict'
 
     function countWords(url) {
-        // throw new Error('Implement me!')
-        return fetch(url).then(r => r.json);
+        throw new Error('Implement me!')
+        // return fetch(url).then(r => r.json).then(r => console.log(r));
     }
 
     function countWordsSafe(url) {
@@ -41,7 +41,7 @@
     }
 
     exports.inclass = {
-        author: undefined,
+        author: "Yusong Shen",
         countWords, countWordsSafe, getLargest
     }
 
