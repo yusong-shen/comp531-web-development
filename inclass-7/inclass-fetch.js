@@ -27,16 +27,36 @@
 
     'use strict'
 
+    // map from article id to number of words in article
     function countWords(url) {
-        throw new Error('Implement me!')
-        // return fetch(url).then(r => r.json).then(r => console.log(r));
+        // throw new Error('Implement me!')
+        // var url = 'https://webdev-dummy.herokuapp.com/sample';
+        // return fetch(url).then(r => r.json()).then(r => console.log(r.text));
+        var doc;
+        var map = {};
+        doc.forEach(function(item, index) {
+            var text = item['text'];
+            var len = text.split(' ').length;
+            var map[item['_id']] = len;
+        })
+        return {};
     }
 
+    // same but no errors even with empty array
     function countWordsSafe(url) {
         throw new Error('Implement me!')
     }
 
+    //  article id with most number of words
     function getLargest(url) {
+        var max = -1;
+        var maxId = -1;
+        for (id in map) {
+            if (map[id] > max) {
+                max = map[id];
+                maxId = id;
+            }
+        }
         throw new Error('Implement me!')
     }
 
