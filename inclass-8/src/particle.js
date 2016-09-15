@@ -2,12 +2,12 @@ const random = (min=0, max=800) =>
     Math.random() * (max - min) + min
 
 // default values
-const particle = (
+const particle = ({
     mass=random(5, 30),
     position=[random(), random()],
     velocity=[random(-0.1, 0.1), random(-0.1, 0.1)],
     acceleration=[0, 0]
-) => {
+}) => {
     return {acceleration, velocity, position, mass}
 }
 

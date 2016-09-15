@@ -44,9 +44,8 @@ describe('Particle Functionality', () => {
         // update(p, 3.521, { width:111, height: 222 })
         var width = 800
         var height = 800
-        const p = particle({ position: [900, 865], velocity: [0.5, -0.5] })
+        const p = particle({ position: [-20, 865], velocity: [0.5, -0.5] })
         const { position } = update(p, 1)
-        console.log(position)
         expect(position[0] <= width).to.be.true
         expect(position[0] >= 0).to.be.true
         expect(position[1] <= height).to.be.true
