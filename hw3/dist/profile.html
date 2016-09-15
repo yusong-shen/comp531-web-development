@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Yusong Shen">
+	<title>Ricebook User Profile</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<script src="profile.js"></script>
+
+<div class="content">
+	<h1>Ricebook User Profile</h1>
+
+	<img src="rice-logo.jpg" width="400px" title="Rice logo" alt="Image Missing">
+
+	<div id="userForm">
+		<p>
+			Display Name : 
+			<span id="currentDisplayName" class="currentVal">Cool Guy</span><br />
+			<input type="text" id="displayName" placeholder="your display name" />
+		</p>
+		<p>
+			Email Address : 
+			<span id="currentEmail" class="currentVal">foobar@example.com</span><br />
+			<input type="email" id="email" placeholder="name@example.com" required />
+		</p>
+		<p>
+			Phone Number : 
+			<span id="currentPhone" class="currentVal">123-123-1234</span><br />
+			<input type="text" id="phone" placeholder="123-123-1234" required />
+						
+		</p>
+		<p>
+			Zipcode : 
+			<span id="currentZipcode" class="currentVal">77005</span><br />
+			<input type="text" id="zipcode" placeholder="77005" required />
+		</p>
+		<p>
+			Password : 
+			<span id="currentPwMsg" class="currentVal">Password is hidden</span><br />
+			<input type="password" id="password" required />
+		</p>
+		<p>
+			Password Confirmation<br />
+			<input type="password" id="passwordConfirmation" required />
+		</p>
+		<br />
+		<p>
+			<input type="hidden" name="timestamp" id="timestamp" value="">
+		</p>
+
+		<input type="submit" id="submit">
+	</div>
+	<br />
+	<p>
+		Come back to <a href="main.html">main page</a>.
+	</p>
+
+</div>
+
+</body>
+</html>
