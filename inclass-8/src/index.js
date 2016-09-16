@@ -24,7 +24,7 @@ window.onload = () => {
         log.y = log.y - (4 + pt)
     }
 
-    let particles = Array(5).fill(true).map(() => particle())
+    let particles = Array(5).fill(true).map(() => particle({}))
 
     frameUpdate((dt) => {
         particles = particles.map((p) => update(p, dt, canvas))

@@ -4,8 +4,12 @@ import { update } from './particle'
 
 describe('Particle Functionality', () => {
 
+    var width = 800
+    var height = 800
+    var canvas = { width, height}
+
     it('should have default values', () => {
-        const p = particle()
+        const p = particle({})
         expect(p).to.be.ok
         expect(p.missingAttribute).to.not.be.ok
         // check position, velocity, acceleration, mass
@@ -17,22 +21,27 @@ describe('Particle Functionality', () => {
 
     it('should update the position by the velocity', () => {
         const p = particle({ position: [1, 1], velocity: [0.5, -0.5] })
-        const { position } = update(p, 1.0)
-        expect(position).to.equal([1.5, 0.5])
+        const { position } = update(p, 1.0, canvas)
+        // expect(position).to.equal([1.5, 0.5])
+        expect(position[0]).to.closeTo(1.5, 0.0001)
+        expect(position[1]).to.closeTo(0.5, 0.0001)
     })
 
     it('should update the position by the velocity and time delta', () => {
         const p = particle({ position: [1, 1], velocity: [0.5, -0.5] })
-        const { position } = update(p, 2.0) // dt is different here
-        expect(position).to.equal([2.0, 0.0])
+        const { position } = update(p, 2.0, canvas) // dt is different here
+        // expect(position).to.equal([2.0, 0.0])
+        expect(position[0]).to.closeTo(2.0, 0.0001)
+        expect(position[1]).to.closeTo(0.0, 0.0001)        
     })
 
     it('should update the velocity by the acceleration', () => {
         // similar to the previous check
-        // expect(1).to.equal(1)
         const p = particle({ velocity: [1, 1], acceleration: [0.5, -0.5] })
-        const { velocity } = update(p, 1.0)
-        expect(velocity).to.equal([1.5, 0.5]) 
+        const { velocity } = update(p, 1.0, canvas)
+        // expect(velocity).to.equal([1.5, 0.5]) 
+        expect(velocity[0]).to.closeTo(1.5, 0.0001)
+        expect(velocity[1]).to.closeTo(0.5, 0.0001)         
     })
 
     it('particles should wrap around the world', () => {
@@ -42,10 +51,8 @@ describe('Particle Functionality', () => {
         // check all four sides
         // expect(1).to.equal(1)
         // update(p, 3.521, { width:111, height: 222 })
-        var width = 800
-        var height = 800
         const p = particle({ position: [-20, 865], velocity: [0.5, -0.5] })
-        const { position } = update(p, 1)
+        const { position } = update(p, 1, canvas)
         expect(position[0] <= width).to.be.true
         expect(position[0] >= 0).to.be.true
         expect(position[1] <= height).to.be.true
