@@ -1,0 +1,15 @@
+{
+  "name": "hw3",
+  "version": "1.0.0",
+  "description": "COMP 531 HW3 Front End Draft",
+  "main": "./dist/index.html",
+  "scripts": {
+    "deploy": "surge -p dist",
+    "start": "cd dist && (python -m SimpleHTTPServer 8081 || python -m http.server 8081)"
+  },
+  "author": "Yusong Shen",
+  "license": "MIT",
+  "devDependencies": {
+    "surge": "^0.18.0"
+  }
+}
