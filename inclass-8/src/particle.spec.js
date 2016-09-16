@@ -22,26 +22,21 @@ describe('Particle Functionality', () => {
     it('should update the position by the velocity', () => {
         const p = particle({ position: [1, 1], velocity: [0.5, -0.5] })
         const { position } = update(p, 1.0, canvas)
-        // expect(position).to.equal([1.5, 0.5])
-        expect(position[0]).to.closeTo(1.5, 0.0001)
-        expect(position[1]).to.closeTo(0.5, 0.0001)
+        // use .to.eql() instead of .to.equal() to deep compare arrays
+        expect(position).to.eql([1.5, 0.5])
     })
 
     it('should update the position by the velocity and time delta', () => {
         const p = particle({ position: [1, 1], velocity: [0.5, -0.5] })
         const { position } = update(p, 2.0, canvas) // dt is different here
-        // expect(position).to.equal([2.0, 0.0])
-        expect(position[0]).to.closeTo(2.0, 0.0001)
-        expect(position[1]).to.closeTo(0.0, 0.0001)        
+        expect(position).to.eql([2.0, 0.0])     
     })
 
     it('should update the velocity by the acceleration', () => {
         // similar to the previous check
         const p = particle({ velocity: [1, 1], acceleration: [0.5, -0.5] })
         const { velocity } = update(p, 1.0, canvas)
-        // expect(velocity).to.equal([1.5, 0.5]) 
-        expect(velocity[0]).to.closeTo(1.5, 0.0001)
-        expect(velocity[1]).to.closeTo(0.5, 0.0001)         
+        expect(velocity).to.eql([1.5, 0.5])      
     })
 
     it('particles should wrap around the world', () => {
