@@ -4,58 +4,84 @@
 	<meta charset="utf-8">
 	<meta name="author" content="Yusong Shen">
 	<title>Ricebook User Profile</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Bootstrap -->
+	<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<script src="index.js"></script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 <script src="profile.js"></script>
 
-<div class="content">
-	<h1>Ricebook User Profile</h1>
-
-	<img src="rice-logo.jpg" width="400px" title="Rice logo" alt="Image Missing">
-
-	<div id="userForm">
-		<p>
-			Display Name : 
-			<span id="currentDisplayName" class="currentVal">Cool Guy</span><br />
-			<input type="text" id="displayName" placeholder="your display name" />
-		</p>
-		<p>
-			Email Address : 
-			<span id="currentEmail" class="currentVal">foobar@example.com</span><br />
-			<input type="email" id="email" placeholder="name@example.com" required />
-		</p>
-		<p>
-			Phone Number : 
-			<span id="currentPhone" class="currentVal">123-123-1234</span><br />
-			<input type="text" id="phone" placeholder="123-123-1234" required />
-						
-		</p>
-		<p>
-			Zipcode : 
-			<span id="currentZipcode" class="currentVal">77005</span><br />
-			<input type="text" id="zipcode" placeholder="77005" required />
-		</p>
-		<p>
-			Password : 
-			<span id="currentPwMsg" class="currentVal">Password is hidden</span><br />
-			<input type="password" id="password" required />
-		</p>
-		<p>
-			Password Confirmation<br />
-			<input type="password" id="passwordConfirmation" required />
-		</p>
-		<br />
-		<p>
-			<input type="hidden" name="timestamp" id="timestamp" value="">
-		</p>
-
-		<input type="submit" id="submit">
+<div class="container text-center">
+	<div class="row">
+		<h1>Ricebook User Profile</h1>
+		<div class="col-md-6">
+			User Profile Picture
+			<br />
+			<p>
+				Come back to <a href="main.html">main page</a>.
+			</p>
+		</div>
+		<div class="col-md-6">
+			<img src="rice-logo.jpg" width="400px" title="Rice logo" alt="Image Missing">
+		</div>
 	</div>
+
 	<br />
-	<p>
-		Come back to <a href="main.html">main page</a>.
-	</p>
+	<div class="row">
+		<div class="col-sm-6">
+			User Current Profile
+			<br />
+			<span id="currentDisplayName" class="currentVal">Cool Guy</span><br />
+			<span id="currentEmail" class="currentVal">foobar@example.com</span><br />
+			<span id="currentPhone" class="currentVal">123-123-1234</span><br />
+			<span id="currentZipcode" class="currentVal">77005</span><br />
+			<span id="currentPwMsg" class="currentVal">Password is hidden</span><br />
+
+		</div>
+		<div class="col-sm-6">
+			<img src="rice-logo.jpg" width="400px" title="Rice logo" alt="Image Missing">
+			<div id="userForm">
+				<p>
+					Display Name :
+					<input type="text" id="displayName" placeholder="your display name" />
+				</p>
+				<p>
+					Email Address :
+					<input type="email" id="email" placeholder="name@example.com" required />
+				</p>
+				<p>
+					Phone Number :
+					<input type="text" id="phone" placeholder="123-123-1234" required />
+
+				</p>
+				<p>
+					Zipcode :
+					<input type="text" id="zipcode" placeholder="77005" required />
+				</p>
+				<p>
+					Password :
+					<input type="password" id="password" required />
+				</p>
+				<p>
+					Password Confirmation<br />
+					<input type="password" id="passwordConfirmation" required />
+				</p>
+				<br />
+				<p>
+					<input type="hidden" name="timestamp" id="timestamp" value="">
+				</p>
+
+				<input type="submit" id="submit">
+			</div>
+		</div>
+	</div>
 
 </div>
 

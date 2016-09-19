@@ -33,6 +33,9 @@ span {
 	border: solid #80d4ff;
 }
 
+.col-sm-6 {
+}
+
 .row {
 	background-color : #fff2e6;
 	border-radius: 10px;

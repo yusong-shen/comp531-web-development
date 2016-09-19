@@ -57,7 +57,7 @@ window.onload = function() {
 
 		var changeImage = function (imgId) {
 			if (!isStopped) {
-				var randImgSrc = 'http://placekitten.com/400/300?image=';
+				var randImgSrc = 'https://placekitten.com/400/300?image=';
 				// 16 kitten images in total
 				var randInd = Math.floor(Math.random() * 16);
 				document.getElementById(imgId).src = randImgSrc + randInd;
