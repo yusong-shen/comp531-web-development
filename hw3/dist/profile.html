@@ -59,50 +59,49 @@
 		<div class="col-sm-6">
 			<div class="user-info">
 				<h3>User Current Info</h3>
-				<br />
-				<span id="currentDisplayName" class="currentVal">Cool Guy</span><br />
-				<span id="currentEmail" class="currentVal">foobar@example.com</span><br />
-				<span id="currentPhone" class="currentVal">123-123-1234</span><br />
-				<span id="currentZipcode" class="currentVal">77005</span><br />
-				<span id="currentPwMsg" class="currentVal">Password is hidden</span><br />
-
+				<div id="currentDisplayName">
+					<div class="currentVal">Cool Guy</div>
+					<div class="alert"></div>
+				</div>
+				<div id="currentEmail">
+					<div class="currentVal">foobar@example.com</div>
+					<div class="alert"></div>
+				</div>
+				<div id="currentPhone" class="currentVal">
+					<div class="currentVal">123-123-1234</div>
+					<div class="alert"></div>
+				</div>
+				<div id="currentZipcode" class="currentVal">
+					<div class="currentVal">77005</div>
+					<div class="alert"></div>
+				</div>
 			</div>
 		</div>
 		<div class="col-sm-6">
 			<div class="user-info">
 			<h3>Update Info</h3>
 				<div id="userForm">
-					<p>
+					<div class="displayName">
 						Display Name :
 						<input type="text" id="displayName" placeholder="your display name" />
-					</p>
-					<p>
+						<div class="alert"></div>
+					</div>
+					<div class="email">
 						Email Address :
 						<input type="email" id="email" placeholder="name@example.com" required />
-					</p>
-					<p>
+						<div class="alert"></div>
+					</div>
+					<div class="phone">
 						Phone Number :
 						<input type="text" id="phone" placeholder="123-123-1234" required />
-
-					</p>
-					<p>
+						<div class="alert"></div>
+					</div>
+					<div class="zipcode">
 						Zipcode :
 						<input type="text" id="zipcode" placeholder="77005" required />
-					</p>
-					<p>
-						Password :
-						<input type="password" id="password" required />
-					</p>
-					<p>
-						Password Confirmation<br />
-						<input type="password" id="passwordConfirmation" required />
-					</p>
-					<br />
-					<p>
-						<input type="hidden" name="timestamp" id="timestamp" value="">
-					</p>
-
-					<input type="submit" id="submit">
+						<div class="alert"></div>
+					</div>
+					<input type="submit" id="submit" value="Update Info">
 				</div>
 			</div>
 		</div>
