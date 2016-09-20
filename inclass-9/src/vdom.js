@@ -18,7 +18,35 @@ function createElement(node) {
 	// create the element and return it to the caller
 	// the node might have event listeners that need to be registered
 	// the node might have children that need to be created as well
-	return null
+    var foo = document.createTextNode("I am element")
+    // var element = document.createElement(node)
+    // perform a tree traversal
+    // leaf
+    if (!node.children) {
+        var leaf = document.createTextNode(node)
+        console.log(node)
+        return leaf
+    }
+    var element = document.createElement(node.tag);
+    node.children.forEach(function (item) {
+        console.log(item)
+        var childElement = createElement(item)
+        element.appendChild(childElement)
+    });
+    // loop through property object
+    Object.keys(node.props).forEach(function (key, index) {
+        console.log('att : ' + key)
+        console.log('value : ' + node.props[key])
+        var attName = key
+        if (key === 'className') {
+            attName = 'class'
+        }
+        var att = document.createAttribute(attName)
+        att.value = node.props[key]
+        element.setAttributeNode(att)
+    })
+
+	return element;
 }
 
 function changed(node1, node2) {
