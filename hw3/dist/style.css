@@ -1,4 +1,9 @@
 
+.col-md-3 {
+	/*height: 300px;*/
+	border: solid #80d4ff;
+}
+
 .col-md-6 {
 	/*height: 300px;*/
 	border: solid #80d4ff;
