@@ -6,5 +6,3 @@ window.onload = function() {
 		textArea.innerText = '';
 	};
 };
-
-
