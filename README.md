@@ -17,9 +17,11 @@ The first half course is about Front-End Development, second half course is abou
 6. Skyline Game
 7. Promising to Fetch
 8. Unit Testing
+9. Virtual DOM
 
 
 ### Homework
 1. Simple Page, due Tue 08/30
 2. Dynamic Page, due Thu 09/08
 3. Draft Front End, due Tue 09/20
+4. Javascript Game, due Thu 09/29

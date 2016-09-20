@@ -13,7 +13,6 @@ window.onload = function() {
         'rg_zipcode' : /^\d{5}/
     };
     var inputFields = ['rg_account_name', 'rg_phone', 'rg_email', 'rg_zipcode'];
-    // var displayFields = ['currentDisplayName', 'currentPhone', 'currentEmail', 'currentZipcode'];
     function validateRe(re, value) {
         return (value.match(re) !== null);
     }
