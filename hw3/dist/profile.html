@@ -37,65 +37,73 @@
 	<div class="row">
 		<h1>Ricebook User Profile</h1>
 		<div class="col-md-6">
-			<h3>User Profile Picture</h3>
-			<br />
-			<img src="https://placekitten.com/200/150?image=10" alt="image missing">
-			<br />
-			<label class="btn btn-default btn-file">
-				Upload a new image<input type="file" id="profile_picture" size="40" style="display: none;">
-			</label>
+			<div class="logo">
+				<h3>User Profile Picture</h3>
+				<br />
+				<img src="https://placekitten.com/200/150?image=10" alt="image missing">
+				<br />
+				<label class="btn btn-default btn-file">
+					Upload a new image<input type="file" id="profile_picture" size="40" style="display: none;">
+				</label>
+			</div>
 		</div>
 		<div class="col-md-6">
-			<img src="./img/rice-logo.jpg" width="400px" title="Rice logo" alt="Image Missing">
+			<div class="logo">
+				<img src="./img/rice-logo.jpg" width="400px" title="Rice logo" alt="Image Missing">
+			</div>
 		</div>
 	</div>
 
 	<br />
 	<div class="row">
 		<div class="col-sm-6">
-			<h3>User Current Info</h3>
-			<br />
-			<span id="currentDisplayName" class="currentVal">Cool Guy</span><br />
-			<span id="currentEmail" class="currentVal">foobar@example.com</span><br />
-			<span id="currentPhone" class="currentVal">123-123-1234</span><br />
-			<span id="currentZipcode" class="currentVal">77005</span><br />
-			<span id="currentPwMsg" class="currentVal">Password is hidden</span><br />
+			<div class="user-info">
+				<h3>User Current Info</h3>
+				<br />
+				<span id="currentDisplayName" class="currentVal">Cool Guy</span><br />
+				<span id="currentEmail" class="currentVal">foobar@example.com</span><br />
+				<span id="currentPhone" class="currentVal">123-123-1234</span><br />
+				<span id="currentZipcode" class="currentVal">77005</span><br />
+				<span id="currentPwMsg" class="currentVal">Password is hidden</span><br />
 
+			</div>
 		</div>
 		<div class="col-sm-6">
+			<div class="user-info">
 			<h3>Update Info</h3>
-			<div id="userForm">
-				<p>
-					Display Name :
-					<input type="text" id="displayName" placeholder="your display name" />
-				</p>
-				<p>
-					Email Address :
-					<input type="email" id="email" placeholder="name@example.com" required />
-				</p>
-				<p>
-					Phone Number :
-					<input type="text" id="phone" placeholder="123-123-1234" required />
+				<div id="userForm">
+					<p>
+						Display Name :
+						<input type="text" id="displayName" placeholder="your display name" />
+					</p>
+					<p>
+						Email Address :
+						<input type="email" id="email" placeholder="name@example.com" required />
+					</p>
+					<p>
+						Phone Number :
+						<input type="text" id="phone" placeholder="123-123-1234" required />
 
-				</p>
-				<p>
-					Zipcode :
-					<input type="text" id="zipcode" placeholder="77005" required />
-				</p>
-				<p>
-					Password :
-					<input type="password" id="password" required />
-				</p>
-				<p>
-					Password Confirmation<br />
-					<input type="password" id="passwordConfirmation" required />
-				</p>
-				<br />
-				<p>
-					<input type="hidden" name="timestamp" id="timestamp" value="">
-				</p>
+					</p>
+					<p>
+						Zipcode :
+						<input type="text" id="zipcode" placeholder="77005" required />
+					</p>
+					<p>
+						Password :
+						<input type="password" id="password" required />
+					</p>
+					<p>
+						Password Confirmation<br />
+						<input type="password" id="passwordConfirmation" required />
+					</p>
+					<br />
+					<p>
+						<input type="hidden" name="timestamp" id="timestamp" value="">
+					</p>
 
-				<input type="submit" id="submit">
+					<input type="submit" id="submit">
+				</div>
 			</div>
 		</div>
 	</div>

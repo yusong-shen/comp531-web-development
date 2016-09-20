@@ -53,52 +53,58 @@
 	<h1>Rice Book</h1>
 	<div class="row">
 		<div class="col-md-2">
-			<img src="./img/rice-logo.jpg" width="100%" alt="image missing">
+			<div class="main-head">
+				<img src="./img/rice-logo.jpg" width="100%" alt="image missing">
+			</div>
 		</div>
 		<div class="col-md-6">
-			<div class="row">
-				<div class="col-md-4">
-					<label class="btn btn-default btn-file">
-						Upload a new image<input type="file" id="post_picture" size="40" style="display: none;">
-					</label>
+			<div class="main-head">
+				<div class="row">
+					<div class="col-md-4">
+						<label class="btn btn-default btn-file">
+							Upload a new image<input type="file" id="post_picture" size="40" style="display: none;">
+						</label>
+					</div>
+					<div class="col-md-8">
+						<textarea class="form-control" rows="5" id="post" placeholder="Edit your post here"></textarea>
+					</div>
 				</div>
-				<div class="col-md-8">
-					<textarea class="form-control" rows="5" id="post" placeholder="Edit your post here"></textarea>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<button class="btn btn-primary">
-						Cancel
-					</button>
-				</div>
-				<div class="col-md-8">
-					<button class="btn btn-primary">
-						post
-					</button>
+				<div class="row">
+					<div class="col-md-4">
+						<button class="btn btn-primary">
+							Cancel
+						</button>
+					</div>
+					<div class="col-md-8">
+						<button class="btn btn-primary">
+							post
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-offset-1 col-md-3">
-			<h3>Profile : </h3>
-			<div class="row">
-				<img src="https://placekitten.com/200/150?image=10" alt="image missing">
-				<div>User Name</div>
-				<div>User Status</div>
-			</div>
-			<div class="row">
-				<div>
-					<input type="text" placeholder="new status">
-					<button class="btn btn-primary">
-						Update
-					</button>
+		<div class="col-md-4">
+			<div class="main-head">
+				<h3>Profile : </h3>
+				<div class="row">
+					<img src="https://placekitten.com/200/150?image=10" alt="image missing">
+					<div>User Name</div>
+					<div>User Status</div>
+				</div>
+				<div class="row">
+					<div>
+						<input type="text" placeholder="new status">
+						<button class="btn btn-primary">
+							Update
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="col-md-offset-2 col-md-6">
+		<div class="col-md-8">
 			<div class="row">
 				<div class="card">
 					<img class="card-img-top" src="https://placekitten.com/400/300?image=1" alt="Card image cap">
@@ -254,31 +260,34 @@
 		</div> <!--/col-md-9-->
 
 
-		<div class="col-md-offset-1 col-md-3">
-			<h3>Friends : </h3>
-			<div class="row">
-				<img src="https://placekitten.com/200/150?image=11" alt="image missing">
-				<div>User Name</div>
-				<div>User Status</div>
-			</div>
-			<br />
-			<div class="row">
-				<img src="https://placekitten.com/200/150?image=12" alt="image missing">
-				<div>User Name</div>
-				<div>User Status</div>
-			</div>
-			<br />
-			<div class="row">
-				<img src="https://placekitten.com/200/150?image=13" alt="image missing">
-				<div>User Name</div>
-				<div>User Status</div>
-			</div>
-			<br />
-			<div>
-				<input type="text" placeholder="User">
-				<button class="btn btn-primary">
-					Add
-				</button>
+		<div class="col-md-4">
+			<div class="friend">
+				<h3>Friends : </h3>
+				<div class="row">
+					<img src="https://placekitten.com/200/150?image=11" alt="image missing">
+					<div>User Name</div>
+					<div>User Status</div>
+				</div>
+				<br />
+				<div class="row">
+					<img src="https://placekitten.com/200/150?image=12" alt="image missing">
+					<div>User Name</div>
+					<div>User Status</div>
+				</div>
+				<br />
+				<div class="row">
+					<img src="https://placekitten.com/200/150?image=13" alt="image missing">
+					<div>User Name</div>
+					<div>User Status</div>
+				</div>
+				<br />
+				<div>
+					<input type="text" placeholder="User">
+					<button class="btn btn-primary">
+						Add
+					</button>
+				</div>
+
 			</div>
 		</div><!--/span-->
 
