@@ -29,17 +29,20 @@ function createElement(node) {
     }
     var element = document.createElement(node.tag);
     node.children.forEach(function (item) {
-        console.log(item)
+        // console.log(item)
         var childElement = createElement(item)
         element.appendChild(childElement)
     });
     // loop through property object
     Object.keys(node.props).forEach(function (key, index) {
-        console.log('att : ' + key)
-        console.log('value : ' + node.props[key])
+        // console.log('att : ' + key)
+        // console.log('value : ' + node.props[key])
         var attName = key
         if (key === 'className') {
             attName = 'class'
+        }
+        if (key === 'onClick') {
+            attName = 'onclick'
         }
         var att = document.createAttribute(attName)
         att.value = node.props[key]
