@@ -10,7 +10,7 @@ window.onload = function() {
 		'phone' : /^\d{3}[-]\d{3}[-]\d{4}$/,
 		'email' : /[^\s@]+@[^\s@]+\.[^\s@]+/,
 		'zipcode' : /^\d{5}/
-	}
+	};
 	var inputFields = ['displayName', 'phone', 'email', 'zipcode'];
 	var displayFields = ['currentDisplayName', 'currentPhone', 'currentEmail', 'currentZipcode'];
 	function validateRe(re, value) {
@@ -62,4 +62,4 @@ window.onload = function() {
 		// clear all the contents
 		clearContent();
 	}
-}
+};

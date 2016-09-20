@@ -45,46 +45,52 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">
-				<form class="form">
+				<form class="form" action="main.html" id="rg_form">
 					Register Form
-					<div class="form-group">
+					<div class="form-group rg_account_name">
 						<label for="rg_account_name">Account name:</label>
-						<input type="text" class="form-control" id="rg_account_name">
+						<span class="alert"></span>
+						<input type="text" class="form-control" id="rg_account_name" required>
 					</div>
-					<div class="form-group">
+					<div class="form-group rg_display_name">
 						<label for="rg_display_name">Display name (Optional):</label>
 						<input type="text" class="form-control" id="rg_display_name">
 					</div>
-					<div class="form-group">
-						<label for="email">Email address:</label>
-						<input type="email" class="form-control" id="rg_email">
+					<div class="form-group rg_email">
+						<label for="rg_email">Email address:</label>
+						<span class="alert"></span>
+						<input type="email" class="form-control" id="rg_email" required>
 					</div>
-					<div class="form-group">
-						<label for="rg_phone">Phone number:</label>
-						<input type="text" class="form-control" id="rg_phone">
+					<div class="form-group rg_phone">
+						<label for="rg_phone">Phone number: (like 123-123-1234)</label>
+						<span class="alert"></span>
+						<input type="text" class="form-control" id="rg_phone" required>
 					</div>
-					<div class="form-group">
+					<div class="form-group rg_dob">
 						<label for="rg_dob">Date of birth:</label>
-						<input type="date" class="form-control" id="rg_dob">
+						<span class="alert"></span>
+						<input type="date" class="form-control" id="rg_dob" required>
 					</div>
-					<div class="form-group">
+					<div class="form-group rg_zipcode">
 						<label for="rg_zipcode">Zip code:</label>
-						<input type="text" class="form-control" id="rg_zipcode">
+						<span class="alert"></span>
+						<input type="text" class="form-control" id="rg_zipcode" required>
 					</div>
-					<div class="form-group">
+					<div class="form-group rg_pwd">
 						<label for="rg_pwd">Password:</label>
-						<input type="password" class="form-control" id="rg_pwd">
+						<span class="alert"></span>
+						<input type="password" class="form-control" id="rg_pwd" required>
 					</div>
-					<div class="form-group">
+					<div class="form-group rg_cf_pwd">
 						<label for="rg_cf_pwd">Password confirmation:</label>
-						<input type="password" class="form-control" id="rg_cf_pwd">
+						<input type="password" class="form-control" id="rg_cf_pwd" required>
 					</div>
-					<button type="submit" class="btn btn-default">Register</button>
+					<button type="submit" id="rg_submit" class="btn btn-default">Register</button>
 				</form>
 			</div>
 		</div>
 		<div class="col-md-6">
-			<form class="form" action="main.html">
+			<form class="form" action="main.html" id="lg_form">
 				Login Form
 				<div class="form-group">
 					<label for="lg_account_name">Account name:</label>
