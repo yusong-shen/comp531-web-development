@@ -18,8 +18,6 @@ function createElement(node) {
 	// create the element and return it to the caller
 	// the node might have event listeners that need to be registered
 	// the node might have children that need to be created as well
-    var foo = document.createTextNode("I am element")
-    // var element = document.createElement(node)
     // perform a tree traversal
     // leaf
     if (!node.children) {
@@ -51,6 +49,7 @@ function createElement(node) {
         } else {
             element.setAttributeNode(att)
             var func = node.props[key]
+            // register event listener
             element.onclick = function(event) {
                 func(event)
                 update()
@@ -77,20 +76,14 @@ function updateElement(parent, newNode, oldNode, index=0) {
 	// at the same location in the DOM.
 	// ideally we also handle inserts, but ignore that functionality for now.
     // YS : index is used to correspond from VDOM oldNode to parent's child DOM
-    console.log('parent : ', parent)
 
     if (!oldNode) {
         parent.appendChild(createElement(newNode))
     } else {
     	console.log('update element that may have changed')
     	// you can use my changed(node1, node2) method above
-    	// to determine if an element has changed or not
-        console.log('old node : ', oldNode)
-        console.log('new node : ', newNode)       
+    	// to determine if an element has changed or not     
         if (changed(newNode, oldNode)) {
-            console.log('element has changed!')
-            console.log('old node : ' , oldNode)
-            console.log('new node : ' , newNode)
             // remove the oldNode's correponding DOM from parent
             parent.removeChild(parent.childNodes[index])
             // append the newNode's corresponding DOM to parent
@@ -98,12 +91,9 @@ function updateElement(parent, newNode, oldNode, index=0) {
         } else {
             // be sure to also update the children!
             if (oldNode.children && oldNode.children.length > 0) {
-                console.log('oldNode chidren list : ', oldNode.children)
                 oldNode.children.forEach( function (childNode, childInd) {
                     if (newNode.children && newNode.children.length > 0) {
-                        console.log('old child node : ', childNode)
                         var newChildNode = newNode.children[childInd]
-                        console.log('new child node : ', newChildNode)
                         updateElement(parent.childNodes[index], newChildNode, childNode, childInd)
                     }
                 })
