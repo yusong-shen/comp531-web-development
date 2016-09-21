@@ -1,5 +1,7 @@
 ## HW3 Draft Frond-End
-Yusong Shen
+Author : Yusong Shen
+
+Visite here : https://ricebook-ys2016.surge.sh
 
 ##Landing Page Requirements
 
