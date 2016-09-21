@@ -51,12 +51,10 @@ window.onload = function() {
         var alert = div.getElementsByClassName('alert')[0];
         alert.className += ' alert-danger';
         alert.innerText = alertMsgs[elemendId];
-        console.log(alertMsgs[elemendId]);
     };
 
     var submitBtn = document.getElementById('rg_submit');
 
-    // submitBtn.onclick = validateForm();
     submitBtn.onclick = function () {
         var result = true;
         inputFields.forEach(function(item) {
@@ -70,8 +68,6 @@ window.onload = function() {
             if (!isValidated) {
                 createAlert(item);
                 result = false;
-            } else if (isValidated) {
-                console.log(item + ' : true');
             }
         });
         // validate birthday
@@ -88,7 +84,6 @@ window.onload = function() {
             createAlert('rg_pwd');
             result = false;
         }
-        console.log(result);
         // clear all the contents
         clearContent();
         return result;
