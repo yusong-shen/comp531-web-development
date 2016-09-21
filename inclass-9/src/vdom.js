@@ -60,6 +60,7 @@ function createElement(node) {
 	return element;
 }
 
+// only have different children won't be considered as changed
 function changed(node1, node2) {
     return typeof node1 !== typeof node2 ||
             (typeof node1 === 'string' && node1 !== node2) ||
@@ -84,19 +85,27 @@ function updateElement(parent, newNode, oldNode, index=0) {
     	// you can use my changed(node1, node2) method above
     	// to determine if an element has changed or not     
         if (changed(newNode, oldNode)) {
-            // remove the oldNode's correponding DOM from parent
-            parent.removeChild(parent.childNodes[index])
-            // append the newNode's corresponding DOM to parent
-            parent.appendChild(createElement(newNode))
+            // insert element right after oldNode
+            console.log('Change happen!')
+            var element = createElement(newNode)
+            Array.prototype.splice(parent.children, index, 0, element)
         } else {
             // be sure to also update the children!
-            if (oldNode.children && oldNode.children.length > 0) {
-                oldNode.children.forEach( function (childNode, childInd) {
-                    if (newNode.children && newNode.children.length > 0) {
-                        var newChildNode = newNode.children[childInd]
-                        updateElement(parent.childNodes[index], newChildNode, childNode, childInd)
-                    }
+            // append or modified
+            if (newNode.children >= oldNode.children) {
+                // console.log('newNode children : ', newNode.children)
+                // console.log('oldNode children : ', oldNode.children)                
+                newNode.children.forEach( function (newChildNode, childInd) {
+                    var oldChildNode = oldNode.children[childInd]
+                    updateElement(parent.childNodes[index], newChildNode, oldChildNode, childInd)
                 })
+            } 
+            // delete
+            else {
+                // remove the oldNode's correponding DOM from parent
+                parent.removeChild(parent.childNodes[index])
+                // append the newNode's corresponding DOM to parent
+                parent.appendChild(createElement(newNode))
             }
         }
     }
