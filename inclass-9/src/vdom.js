@@ -14,7 +14,7 @@ function h(tag, props, ...children) {
 }
 
 function createElement(node) {
-	console.log('Create element called for', node)
+	// console.log('Create element called for', node)
 	// create the element and return it to the caller
 	// the node might have event listeners that need to be registered
 	// the node might have children that need to be created as well
@@ -24,7 +24,7 @@ function createElement(node) {
     // leaf
     if (!node.children) {
         var leaf = document.createTextNode(node)
-        console.log(node)
+        // console.log(node)
         return leaf
     }
     var element = document.createElement(node.tag);
@@ -50,7 +50,11 @@ function createElement(node) {
             element.setAttributeNode(att)
         } else {
             element.setAttributeNode(att)
-            element.onclick = node.props[key]
+            var func = node.props[key]
+            element.onclick = function(event) {
+                func(event)
+                update()
+            }
         }
     })
 
@@ -72,6 +76,8 @@ function updateElement(parent, newNode, oldNode, index=0) {
 	// the new node is different from the old node 
 	// at the same location in the DOM.
 	// ideally we also handle inserts, but ignore that functionality for now.
+    // YS : index is used to correspond from VDOM oldNode to parent's child DOM
+    console.log('parent : ', parent)
 
     if (!oldNode) {
         parent.appendChild(createElement(newNode))
@@ -79,8 +85,30 @@ function updateElement(parent, newNode, oldNode, index=0) {
     	console.log('update element that may have changed')
     	// you can use my changed(node1, node2) method above
     	// to determine if an element has changed or not
-
-    	// be sure to also update the children!
+        console.log('old node : ', oldNode)
+        console.log('new node : ', newNode)       
+        if (changed(newNode, oldNode)) {
+            console.log('element has changed!')
+            console.log('old node : ' , oldNode)
+            console.log('new node : ' , newNode)
+            // remove the oldNode's correponding DOM from parent
+            parent.removeChild(parent.childNodes[index])
+            // append the newNode's corresponding DOM to parent
+            parent.appendChild(createElement(newNode))
+        } else {
+            // be sure to also update the children!
+            if (oldNode.children && oldNode.children.length > 0) {
+                console.log('oldNode chidren list : ', oldNode.children)
+                oldNode.children.forEach( function (childNode, childInd) {
+                    if (newNode.children && newNode.children.length > 0) {
+                        console.log('old child node : ', childNode)
+                        var newChildNode = newNode.children[childInd]
+                        console.log('new child node : ', newChildNode)
+                        updateElement(parent.childNodes[index], newChildNode, childNode, childInd)
+                    }
+                })
+            }
+        }
     }
 }
 
