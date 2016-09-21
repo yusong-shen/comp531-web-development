@@ -45,8 +45,13 @@ function createElement(node) {
             attName = 'onclick'
         }
         var att = document.createAttribute(attName)
-        att.value = node.props[key]
-        element.setAttributeNode(att)
+        if (key !== 'onClick') {
+            att.value = node.props[key]
+            element.setAttributeNode(att)
+        } else {
+            element.setAttributeNode(att)
+            element.onclick = node.props[key]
+        }
     })
 
 	return element;
