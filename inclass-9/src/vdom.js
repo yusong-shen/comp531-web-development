@@ -87,14 +87,18 @@ function updateElement(parent, newNode, oldNode, index=0) {
         if (changed(newNode, oldNode)) {
             // insert element right after oldNode
             console.log('Change happen!')
-            var element = createElement(newNode)
-            Array.prototype.splice(parent.children, index, 0, element)
+            // var element = createElement(newNode)
+            // Array.prototype.splice(parent.children, index, 0, element)
+            // remove the oldNode's correponding DOM from parent
+            parent.removeChild(parent.childNodes[index])
+            // append the newNode's corresponding DOM to parent
+            parent.appendChild(createElement(newNode))
         } else {
             // be sure to also update the children!
             // append or modified
             if (newNode.children >= oldNode.children) {
-                // console.log('newNode children : ', newNode.children)
-                // console.log('oldNode children : ', oldNode.children)                
+                console.log('newNode children : ', newNode.children)
+                console.log('oldNode children : ', oldNode.children)                
                 newNode.children.forEach( function (newChildNode, childInd) {
                     var oldChildNode = oldNode.children[childInd]
                     updateElement(parent.childNodes[index], newChildNode, oldChildNode, childInd)
@@ -102,6 +106,7 @@ function updateElement(parent, newNode, oldNode, index=0) {
             } 
             // delete
             else {
+                console.log('remove!')
                 // remove the oldNode's correponding DOM from parent
                 parent.removeChild(parent.childNodes[index])
                 // append the newNode's corresponding DOM to parent
