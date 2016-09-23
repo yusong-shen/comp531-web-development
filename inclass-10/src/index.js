@@ -12,6 +12,10 @@
 
 'use strict'
 
+// "global" task id counter
+let _taskId = 1;
+
+
 class ToDoItem extends React.Component {
 
     constructor(props) {
@@ -21,9 +25,17 @@ class ToDoItem extends React.Component {
         }
     }
 
+    toggleDone() {
+        this.setState({
+            done: !this.state.done
+        })
+    }    
+
     render() { return (
-        <li>
-        {this.props.text}
+        <li id={'task'+_taskId++} key={_taskId}>
+            <i className="check glyphicon glyphicon-check" onClick={() => this.toggleDone()}></i>
+            <span className={this.state.done ? "completed" : ""}>{this.props.text}</span>
+            <i className="destroy glyphicon glyphicon-remove" onClick={() => this.props.remove()}></i>         
         </li>
         /*
         h("li", { id: `task${_taskId++}`}, [
@@ -48,9 +60,14 @@ class ToDos extends React.Component {
         }
     }
 
-    addTodo() {
+    addTodo(text) {
         // IMPLEMENT ME!
-        const text = 'add another item'
+        console.log('call addTodo')
+        const newTODO = document.getElementById("newTODO")
+        if (newTODO) {
+            text = newTODO.value
+            newTODO.value = ''
+        }
         this.setState({ todoItems: [
                 ...this.state.todoItems, 
                 {id:this.nextId++, text}
@@ -59,6 +76,7 @@ class ToDos extends React.Component {
     }
 
     removeTodo(removeId) {
+        console.log('call removeTodo')                
         this.setState({ 
             todoItems: this.state.todoItems.filter(({id, text}) => id != removeId)
         })
@@ -66,8 +84,13 @@ class ToDos extends React.Component {
 
     render() { return (
         <div>
+            <input id="newTODO" type="text" placeholder="To Do"></input>
+            <button onClick={() => this.addTodo()}>Add Item</button>
+            <span className="submit">
+                <a href="https://webdev-rice.herokuapp.com" target="_blank">Submit your exercise</a>
+            </span>
             <ul className="todo">
-                <ToDoItem key="1" text="Test Item" remove={() => this.removeTodo(1) } />
+                {this.state.todoItems.map((x, i) => <ToDoItem key={i} text={x.text} remove={() => this.removeTodo(i) } />)}
             </ul>
         </div>
         /*

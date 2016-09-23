@@ -8,6 +8,9 @@
 
 'use strict'
 
+// "global" task id counter
+let _taskId = 1;
+
 function h(tag, props, ...children) {
     return { tag, props: props ? props : { }, 
         children: Array.isArray(children[0]) ? children[0] : children }
