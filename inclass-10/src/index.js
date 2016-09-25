@@ -60,7 +60,7 @@ class ToDos extends React.Component {
         }
     }
 
-    addTodo(text) {
+    addTodo : function (text) {
         // IMPLEMENT ME!
         console.log('call addTodo')
         const newTODO = document.getElementById("newTODO")
@@ -85,7 +85,7 @@ class ToDos extends React.Component {
     render() { return (
         <div>
             <input id="newTODO" type="text" placeholder="To Do"></input>
-            <button onClick={() => this.addTodo()}>Add Item</button>
+            <button onClick={this.addTodo}>Add Item</button>
             <span className="submit">
                 <a href="https://webdev-rice.herokuapp.com" target="_blank">Submit your exercise</a>
             </span>
@@ -93,7 +93,7 @@ class ToDos extends React.Component {
                 {this.state.todoItems.map((x, i) => <ToDoItem key={i} text={x.text} remove={() => this.removeTodo(i) } />)}
             </ul>
         </div>
-        /*
+        /*  
         h("div", { },
             h("input", { id: "newTODO", type: "text", placeholder: "To Do"}),
             h("button", { onClick: addItem }, "Add Item"),
