@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 
 export const ToDoItem = ({ text, done, toggle, remove }) => (
     <li>
-        <i className="check glyphicon glyphicon-check" onClick={toggle}/>
+        <span onClick={toggle}>--</span>
         <span className={ done ? "completed" : ""}>{ text }</span>
-        <i className="destroy glyphicon glyphicon-remove" onClick={remove}/>
+        <span onClick={remove}>X</span>
     </li>
 )
 
