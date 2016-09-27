@@ -19,6 +19,7 @@ The first half course is about Front-End Development, second half course is abou
 8. Unit Testing
 9. Virtual DOM
 10. Hello React
+11. Hello Redux
 
 
 ### Homework

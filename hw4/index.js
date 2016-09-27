@@ -1,5 +1,9 @@
 'use strict';
 
+var modulo = function (x, y) {
+    return ((x % y) + y) % y;
+};
+
 var createApp = function (canvas) {
     // canvas : 600 * 400
     var c = canvas.getContext("2d");
@@ -25,30 +29,40 @@ var createApp = function (canvas) {
         c.fillStyle = color;
         c.fill();
     };
-    // color : blue 100
-    var holeX = 0.7 * canvas.width;
-    draw_hole(30, "#BBDEFB", holeX, floor);
 
-    // bear image size : 274 * 370
-    var bearImg = new Image();
-    bearImg.src = "/img/ice-bear.png";
-    var bearX = 0.75 * canvas.width;
-    var bearWidth = 0.1 * canvas.width;
-    var bearHeight = 1.5 * bearWidth;
-    var bearY = floor - bearHeight;
-    // have to wait for image loading
-    bearImg.onload = function () {
-        c.drawImage(bearImg, bearX, bearY, bearWidth, bearHeight);
-    };
+    
+    var draw = function () {
+        // clear the canvas above floor
+        c.clearRect(0, 0, canvas.width, floor);
 
-    // fish image size : 182 * 198
-    var fishImg = new Image();
-    fishImg.src = "/img/gray-fish.png";
-    var fishSize = 0.5 * bearWidth;
-    fishImg.onload = function () {
-        c.drawImage(fishImg, holeX - 0.5 * fishSize, floor - fishSize, fishSize, fishSize);
-    };
+        // color : blue 100
+        var holeX = 0.8 * canvas.width;
+        draw_hole(30, "#BBDEFB", holeX, floor);
 
+        // bear image size : 274 * 370
+        var bearImg = new Image();
+        bearImg.src = "/img/ice-bear.png";
+        var bearX = 0.85 * canvas.width;
+        var bearWidth = 0.1 * canvas.width;
+        var bearHeight = 1.5 * bearWidth;
+        var bearY = floor - bearHeight;
+        // have to wait for image loading
+        bearImg.onload = function () {
+            c.drawImage(bearImg, bearX, bearY, bearWidth, bearHeight);
+        };
+
+        // fish image size : 182 * 198
+        var fishImg = new Image();
+        fishImg.src = "/img/gray-fish.png";
+        var fishSize = 0.5 * bearWidth;
+        var fishX = holeX - 0.5 * fishSize;
+        var fishY = floor - fishSize;
+        fishImg.onload = function () {
+            c.drawImage(fishImg, fishX, fishY, fishSize, fishSize);
+        };
+    }
+
+    setInterval(draw, 1000);
 };
 
 window.onload = function () {
