@@ -20,6 +20,7 @@ The first half course is about Front-End Development, second half course is abou
 9. Virtual DOM
 10. Hello React
 11. Hello Redux
+12. Frontend Testing
 
 
 ### Homework
@@ -27,3 +28,4 @@ The first half course is about Front-End Development, second half course is abou
 2. Dynamic Page, due Thu 09/08
 3. Draft Front End, due Tue 09/20
 4. Javascript Game, due Thu 10/06
+5. Frontend App, due Tue 10/18
