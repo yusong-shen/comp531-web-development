@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { url, login, logout } from './dummy'
+import { url, login, logout, updateHeadline } from './dummy'
 
 // npm install https://www.clear.rice.edu/comp431/sample/mock-fetch.tgz
 import fetch, { mock } from 'mock-fetch'
@@ -73,10 +73,41 @@ describe('Validate login', () => {
 	it('should update the headline', (done) => {
 		// IMPLEMENT ME
 		//   * Log the user in
+		const div = createDOM('user', 'pass', 'hello')
+		expect(div.innerHTML).to.eql('hello')
+
+		mock(`${url}/login`, { 
+			method: 'POST',
+			headers: {'Content-Type': 'application/json'}
+		})
+		mock(`${url}/headlines`, {
+			headers: {'Content-Type': 'application/json'},
+			json: {
+				headlines: [{username: 'hi', headline:'ok'}]
+			}
+		})
 		//   * Verify the current value of the headline
+		login().then(_ => {
+			expect(div.innerHTML)
+				.to.eql('you are logged in as hi "ok"')
+		})
+		const newHeadline = 'I am new headline!';
+		mock(`${url}/headline`, { 
+			method: 'PUT',			
+			headers: {'Content-Type': 'application/json'},
+			json: {
+				// headlines: [{username: 'hi', headline: newHeadline}]
+				headline: newHeadline
+			}
+
+		})
 		//   * update the headline
 		//   * Verify the new value of the headline
-		done()
+		updateHeadline(newHeadline).then(_ => {
+			expect(div.innerHTML).to.eql('New headline is "I am new headline!"')
+		})
+		.then(done)
+		.catch(done)
 	})
 
 })

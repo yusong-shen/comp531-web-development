@@ -61,12 +61,14 @@ const toggle = (show) => {
 }
 
 const updateHeadline = (headline) => {
-  resource('PUT', 'headline', { headline }).then((response) => {
+  const box2 = document.querySelector("#message")
+  return resource('PUT', 'headline', { headline }).then((response) => {
     console.log(`New headline ${response.headline}`)
     // IMPLEMENT ME
     // Update the headline shown on the screen.  Be sure to not
     // repeat yourself (DRY) => you will want to refactor some code.
-  })
+    box2.innerHTML = `New headline is "${response.headline}"`
+  }).catch(r => box2.innerHTML = `"${r.message || 'Error'}" when updating headline`)
 }
 
 export { url, login, logout, updateHeadline }
