@@ -2,7 +2,7 @@
 
 function modulo(x, y) {
     return ((x % y) + y) % y;
-};
+}
 
 function init() {
     var canvas = document.createElement('canvas');
@@ -118,7 +118,7 @@ var createApp = function (canvas) {
         // };
         // fishImg.src = "/img/gray-fish.png";
 
-        // window.requestAnimationFrame(draw);
+        window.requestAnimationFrame(draw);
     };
 
     return {
@@ -129,7 +129,5 @@ var createApp = function (canvas) {
 window.onload = function () {
     var canvas = init();
     var app = createApp(canvas);
-    // app.draw();
-    var frame_rate = 1000 / 30;
-    setInterval(app.draw, frame_rate);
+    app.draw();
 };
