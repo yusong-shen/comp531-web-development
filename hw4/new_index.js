@@ -1,14 +1,23 @@
 /**
  * Created by yusong on 10/4/16.
+ * Thanks for W3Schools HTML5 Game Tutorial
+ * http://www.w3schools.com/graphics/game_intro.asp
  */
 
-function modulo(x, y) {
-    return ((x % y) + y) % y;
+// updated modulo function to deal with negative number
+function modulo(n, m) {
+    return ((n % m) + m) % m;
 }
 
 function startGame() {
     myGameArea.start();
 }
+
+var myScore;
+var myHole;
+var mySun;
+var iceBear;
+var grayFish;
 
 var myGameArea = {
     canvas : document.createElement('canvas'),
@@ -19,53 +28,50 @@ var myGameArea = {
         this.context = this.canvas.getContext("2d");
         this.floor = this.canvas.height - this.canvas.height / 5;
         this.dx = 2;
-        this.sunX = 100;
-        this.sunY = 50;
-        this.radius = 30;
+
+        var sunX = 100;
+        var sunY = 50;
+        var radius = 30;
         var c = this.context;
 
         // draw sun
-        c.beginPath();
-        c.arc(this.sunX, this.sunY, this.radius, 0, 2 * Math.PI, false);
-        c.fillStyle = "orange";
-        c.fill();
+        mySun = new GameComponent(radius, radius, "orange", sunX, sunY, "circle");
+        mySun.speedX = 0.5;
+
+        // draw score board
+        myScore = new GameComponent("30px", "Consolas", "black", 400, 40, "text");
 
         this.draw_ground();
+
         // color : blue 100
-        this.holeX = 0.8 * this.canvas.width;
-        var holeX =  this.holeX;
-        this.draw_hole(30, "#BBDEFB", holeX, this.floor);
+        var holeX =  0.8 * this.canvas.width;
+        myHole = new GameComponent(radius, radius / 2, "#BBDEFB", holeX, this.floor, "ellipse");
 
         // fish image size : 182 * 198
-        this.fishImg = new Image();
-        var fishImg = this.fishImg;
-        this.fishSize = 0.05 * this.canvas.width;
-        var fishSize = this.fishSize;
-        this.fishX = holeX - 0.5 * fishSize;
-        var fishX = this.fishX;
-        this.fishY = this.floor - fishSize;
-        var fishY = this.fishY;
-        this.fishImg.onload = function () {
-            c.drawImage(fishImg, fishX, fishY, fishSize, fishSize);
+        var fishImg = new Image();
+        var fishSize = 0.05 * this.canvas.width;
+        var fishX = holeX - 0.5 * fishSize;
+        var fishY = this.floor - fishSize;
+        fishImg.onload = function () {
+            grayFish = new GameComponent(fishSize, fishSize, "", fishX, fishY, "image", fishImg);
+            grayFish.speedX = -2;
+            grayFish.draw();
         };
-        this.fishImg.src = "/img/gray-fish.png";
+        fishImg.src = "/img/gray-fish.png";
+
 
         // bear image size : 274 * 370
-        this.bearImg = new Image();
-        var bearImg = this.bearImg;
-        this.bearX = 0.85 * this.canvas.width;
-        var bearX = this.bearX;
-        this.bearWidth = 0.1 * this.canvas.width;
-        var bearWidth = this.bearWidth;
-        this.bearHeight = 1.5 * bearWidth;
-        var bearHeight = this.bearHeight;
-        this.bearY = this.floor - bearHeight;
-        var bearY = this.bearY;
+        var bearImg = new Image();
+        var bearX = 0.85 * this.canvas.width;
+        var bearWidth = 0.1 * this.canvas.width;
+        var bearHeight = 1.5 * bearWidth;
+        var bearY = this.floor - bearHeight;
         // have to wait for image loading
-        this.bearImg.onload = function () {
-            c.drawImage(bearImg, bearX, bearY, bearWidth, bearHeight);
+        bearImg.onload = function () {
+            iceBear = new GameComponent(bearWidth, bearHeight, "", bearX, bearY, "image", bearImg);
+            iceBear.draw();
         };
-        this.bearImg.src = "/img/ice-bear.png";
+        bearImg.src = "/img/ice-bear.png";
 
     },
 
@@ -78,57 +84,86 @@ var myGameArea = {
         this.context.fillRect(0, this.floor, this.canvas.width, this.canvas.height);
     },
 
-    draw_hole : function (radius, color, x, y) {
-        this.context.beginPath();
-        // c.arc(x, y, radius, 0, 2 * Math.PI, false);
-        this.context.ellipse(x, y, radius, radius / 2, 0, 0, 2 * Math.PI);
-
-        this.context.fillStyle = color;
-        this.context.fill();
-    },
     clear : function () {
         // clear the canvas above floor
-        this.cotext.clearRect(0, 0, this.canvas.width, this.floor);
+        this.context.clearRect(0, 0, this.canvas.width, this.floor);
     }
 };
 
-function draw() {
-    var canvas = myGameArea.canvas;
-    var ctx = myGameArea.context;
-    var floor = myGameArea.floor;
-    // clear the canvas above floor
-    // myGameArea.clear();
-    ctx.clearRect(0, 0, canvas.width, floor);
+function GameComponent(_width, _height, _color, _x, _y, _type, _image) {
+    this.type = _type;
+    this.score = 0;
+    this.width = _width;
+    this.height = _height;
+    this.color = _color;
+    this.speedX = 0;
+    this.speedY = 0;
+    this.x = _x;
+    this.y = _y;
+    this.gravity = 0;
+    this.gravitySpeed = 0;
+    this.image = _image;
 
-    // color : blue 100
-    var holeX = myGameArea.holeX;
-    myGameArea.draw_hole(30, "#BBDEFB", holeX, floor);
+    // update drawing
+    this.draw = function () {
+        var ctx = myGameArea.context;
+        if (this.type == "text") {
+            ctx.font = this.width + " " + this.height;
+            ctx.fillStyle = this.color;
+            ctx.fillText(this.text, this.x, this.y);
+        }
+        else if (this.type == "ellipse") {
+            ctx.beginPath();
+            ctx.ellipse(this.x, this.y, this.width, this.height, 0, 0, 2 * Math.PI);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        } else if (this.type == "circle") {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.width, 0, 2 * Math.PI, false);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        } else if (this.type == "image") {
+            ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+        }
+    };
+    
+    this.updatePos = function () {
+        this.x += this.speedX;
+        // make sure component stay inside boundary
+        this.x = modulo(this.x, myGameArea.canvas.width);
+        this.y += this.speedY;
+        this.y = modulo(this.y, myGameArea.canvas.height);
+    }
+}
+
+function updateGameArea() {
+    // clear the canvas above floor
+    myGameArea.clear();
+
+    // draw the hole
+    myHole.draw();
 
     // draw the sun
-    var radius = 30;
-    ctx.beginPath();
-    ctx.arc(myGameArea.sunX, myGameArea.sunY, radius, 0, 2 * Math.PI, false);
-    myGameArea.sunX = modulo(myGameArea.sunX + myGameArea.dx, canvas.width);
-    ctx.fillStyle = "orange";
-    ctx.fill();
+    mySun.updatePos();
+    mySun.draw();
 
+    // update score
+    myScore.text = "SCORE: " + myScore.score;
+    myScore.draw();
 
-    var bearX = myGameArea.bearX;
-    var bearWidth = myGameArea.bearWidth;
-    var bearHeight = myGameArea.bearHeight;
-    var bearY = myGameArea.bearY;
-    ctx.drawImage(myGameArea.bearImg, bearX, bearY, bearWidth, bearHeight);
+    if (iceBear) {
+        iceBear.draw();
+    }
 
+    if (grayFish) {
+        grayFish.updatePos();
+        grayFish.draw();
+    }
 
-    var fishSize = myGameArea.fishSize;
-    var fishY = myGameArea.fishY;
-    ctx.drawImage(myGameArea.fishImg, myGameArea.fishX, fishY, fishSize, fishSize);
-    myGameArea.fishX = modulo(myGameArea.fishX - 2* myGameArea.dx, canvas.width);
-
-    window.requestAnimationFrame(draw);
+    window.requestAnimationFrame(updateGameArea);
 }
 
 window.onload = function () {
     startGame();
-    draw();
+    updateGameArea();
 };
