@@ -21,6 +21,7 @@ The first half course is about Front-End Development, second half course is abou
 10. Hello React
 11. Hello Redux
 12. Frontend Testing
+13. Mocking Headline Update
 
 
 ### Homework
