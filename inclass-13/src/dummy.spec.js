@@ -104,7 +104,7 @@ describe('Validate login', () => {
 		//   * update the headline
 		//   * Verify the new value of the headline
 		updateHeadline(newHeadline).then(_ => {
-			expect(div.innerHTML).to.eql('New headline is "I am new headline!"')
+			expect(div.innerHTML).to.eql(`New headline is "${newHeadline}"`)
 		})
 		.then(done)
 		.catch(done)
