@@ -18,6 +18,7 @@ var myHole;
 var mySun;
 var iceBear;
 var grayFish;
+var isHit = false;
 
 var myGameArea = {
     canvas : document.createElement('canvas'),
@@ -54,7 +55,8 @@ var myGameArea = {
         var fishY = this.floor - fishSize;
         fishImg.onload = function () {
             grayFish = new GameComponent(fishSize, fishSize, "", fishX, fishY, "image", fishImg);
-            grayFish.speedX = -2;
+            grayFish.speedY = -4;
+            grayFish.gravity = 0.1;
             grayFish.draw();
         };
         fishImg.src = "/img/gray-fish.png";
@@ -86,11 +88,11 @@ var myGameArea = {
 
     clear : function () {
         // clear the canvas above floor
-        this.context.clearRect(0, 0, this.canvas.width, this.floor);
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 };
 
-function GameComponent(_width, _height, _color, _x, _y, _type, _image) {
+var GameComponent = function(_width, _height, _color, _x, _y, _type, _image) {
     this.type = _type;
     this.score = 0;
     this.width = _width;
@@ -104,41 +106,50 @@ function GameComponent(_width, _height, _color, _x, _y, _type, _image) {
     this.gravitySpeed = 0;
     this.image = _image;
 
-    // update drawing
-    this.draw = function () {
-        var ctx = myGameArea.context;
-        if (this.type == "text") {
-            ctx.font = this.width + " " + this.height;
-            ctx.fillStyle = this.color;
-            ctx.fillText(this.text, this.x, this.y);
-        }
-        else if (this.type == "ellipse") {
-            ctx.beginPath();
-            ctx.ellipse(this.x, this.y, this.width, this.height, 0, 0, 2 * Math.PI);
-            ctx.fillStyle = this.color;
-            ctx.fill();
-        } else if (this.type == "circle") {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.width, 0, 2 * Math.PI, false);
-            ctx.fillStyle = this.color;
-            ctx.fill();
-        } else if (this.type == "image") {
-            ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-        }
-    };
-    
-    this.updatePos = function () {
-        this.x += this.speedX;
-        // make sure component stay inside boundary
-        this.x = modulo(this.x, myGameArea.canvas.width);
-        this.y += this.speedY;
-        this.y = modulo(this.y, myGameArea.canvas.height);
+};
+
+// update drawing
+GameComponent.prototype.draw = function () {
+    var ctx = myGameArea.context;
+    if (this.type == "text") {
+        ctx.font = this.width + " " + this.height;
+        ctx.fillStyle = this.color;
+        ctx.fillText(this.text, this.x, this.y);
     }
-}
+    else if (this.type == "ellipse") {
+        ctx.beginPath();
+        ctx.ellipse(this.x, this.y, this.width, this.height, 0, 0, 2 * Math.PI);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+    } else if (this.type == "circle") {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.width, 0, 2 * Math.PI, false);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+    } else if (this.type == "image") {
+        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    }
+};
+
+// update position
+GameComponent.prototype.updatePos = function () {
+    this.gravitySpeed += this.gravity;
+    this.x += this.speedX;
+    // make sure component stay inside boundary
+    this.x = modulo(this.x, myGameArea.canvas.width);
+    this.y += this.speedY + this.gravitySpeed;
+    this.y = modulo(this.y, myGameArea.canvas.height);
+};
+
+// detect if component hit the bottom
+GameComponent.prototype.hitBottom = function () {
+    return (this.y > myGameArea.floor - this.height);
+};
 
 function updateGameArea() {
-    // clear the canvas above floor
+    // clear the canvas
     myGameArea.clear();
+    myGameArea.draw_ground();
 
     // draw the hole
     myHole.draw();
@@ -158,12 +169,38 @@ function updateGameArea() {
     if (grayFish) {
         grayFish.updatePos();
         grayFish.draw();
+        if (grayFish.hitBottom() && !isHit) {
+            grayFish.y = myGameArea.floor - grayFish.height;
+            grayFish.speedX *= 0.5;
+            grayFish.speedY = -4;
+            grayFish.gravitySpeed = 0;
+        } else if (grayFish.hitBottom() && isHit) {
+            grayFish.speedX = -5;
+            isHit = false;
+        }
     }
 
     window.requestAnimationFrame(updateGameArea);
 }
 
+
 window.onload = function () {
     startGame();
+
+    // reference : http://stackoverflow.com/a/18053642/2943842
+    myGameArea.canvas.addEventListener('click', function (event) {
+        var rect = myGameArea.canvas.getBoundingClientRect();
+        var x = event.clientX - rect.left;
+        var y = event.clientY - rect.top;
+        console.log("x: " + x + ", y : " + y);
+        if (x >= grayFish.x && x <= grayFish.x + grayFish.width &&
+            y >= grayFish.y && y <= grayFish.y + grayFish.height) {
+            console.log("hit fish!");
+            isHit = true;
+        }
+    });
+
     updateGameArea();
+
+
 };
