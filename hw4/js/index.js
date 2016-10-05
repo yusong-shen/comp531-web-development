@@ -18,7 +18,11 @@ var myHole;
 var mySun;
 var iceBear;
 var grayFish;
+var startButton;
+var remainingTry;
 var isHit = false;
+var startPlay = false;
+var startHit = false;
 
 var myGameArea = {
     canvas : document.createElement('canvas'),
@@ -28,19 +32,26 @@ var myGameArea = {
         document.body.childNodes[1].appendChild(this.canvas);
         this.context = this.canvas.getContext("2d");
         this.floor = this.canvas.height - this.canvas.height / 5;
-        this.dx = 2;
 
         var sunX = 100;
         var sunY = 50;
         var radius = 30;
-        var c = this.context;
 
         // draw sun
         mySun = new GameComponent(radius, radius, "orange", sunX, sunY, "circle");
         mySun.speedX = 0.5;
+        mySun.draw();
 
         // draw score board
-        myScore = new GameComponent("30px", "Consolas", "black", 400, 40, "text");
+        myScore = new GameComponent("25px", "Consolas", "black", 400, 40, "text");
+        myScore.text = "Score: " + myScore.score;
+        myScore.draw();
+
+        // draw remaining try
+        remainingTry = new GameComponent("25px", "Consolas", "black", 40, 40, "text");
+        remainingTry.score = 5;
+        remainingTry.text = "Remaining Tries: " + remainingTry.score;
+        remainingTry.draw();
 
         this.draw_ground();
 
@@ -75,6 +86,17 @@ var myGameArea = {
         };
         bearImg.src = "/img/ice-bear.png";
 
+        // draw the start button : 300 * 109
+        var btnImg = new Image();
+        var btnWidth = 150;
+        var btnHeight = 53;
+        btnImg.onload = function () {
+            startButton = new GameComponent(btnWidth, btnHeight, "",
+                0.5 * (myGameArea.canvas.width - btnWidth), 0.5 * (myGameArea.canvas.height - btnHeight),
+            "image", btnImg);
+            startButton.draw();
+        };
+        btnImg.src = "/img/play_button.png";
     },
 
     draw_ground : function () {
@@ -105,7 +127,6 @@ var GameComponent = function(_width, _height, _color, _x, _y, _type, _image) {
     this.gravity = 0;
     this.gravitySpeed = 0;
     this.image = _image;
-
 };
 
 // update drawing
@@ -146,58 +167,113 @@ GameComponent.prototype.hitBottom = function () {
     return (this.y > myGameArea.floor - this.height);
 };
 
+GameComponent.prototype.hitElement = function (clickX, clickY) {
+    return (clickX >= this.x && clickX <= this.x + this.width &&
+        clickY >= this.y && clickY <= this.y + this.height);
+};
+
+GameComponent.prototype.isStop = function () {
+    return (Math.abs(this.speedX) < 1e-6 && Math.abs(this.speedY) < 1e-6);
+};
+
+// main loop for the game
 function updateGameArea() {
-    // clear the canvas
-    myGameArea.clear();
-    myGameArea.draw_ground();
+    if (!startPlay) {
+        // draw score board
+        myScore = new GameComponent("25px", "Consolas", "black", 400, 40, "text");
+        myScore.text = "Score: " + myScore.score;
+        myScore.draw();
 
-    // draw the hole
-    myHole.draw();
-
-    // draw the sun
-    mySun.updatePos();
-    mySun.draw();
-
-    // update score
-    myScore.text = "SCORE: " + myScore.score;
-    myScore.draw();
-
-    if (iceBear) {
-        iceBear.draw();
+        // draw remaining try
+        remainingTry = new GameComponent("25px", "Consolas", "black", 40, 40, "text");
+        remainingTry.score = 5;
+        remainingTry.text = "Remaining Tries: " + remainingTry.score;
+        remainingTry.draw();
     }
+    else {
 
-    if (grayFish) {
-        grayFish.updatePos();
-        grayFish.draw();
-        if (grayFish.hitBottom() && !isHit) {
-            grayFish.y = myGameArea.floor - grayFish.height;
-            grayFish.speedX *= 0.5;
-            grayFish.speedY = -4;
-            grayFish.gravitySpeed = 0;
-        } else if (grayFish.hitBottom() && isHit) {
-            grayFish.speedX = -5;
-            isHit = false;
+        // clear the canvas
+        myGameArea.clear();
+        myGameArea.draw_ground();
+
+        // draw the hole
+        myHole.draw();
+
+        // draw the sun
+        mySun.updatePos();
+        mySun.draw();
+
+        // update score
+        myScore.text = "SCORE: " + myScore.score;
+        myScore.draw();
+        remainingTry.text = "Remaining Tries: " + remainingTry.score;
+        remainingTry.draw();
+
+        if (iceBear) {
+            iceBear.draw();
+        }
+
+        if (grayFish) {
+            grayFish.updatePos();
+            grayFish.draw();
+            // initial state, fish jump out from hole again and again
+            if (!isHit) {
+                if (grayFish.hitBottom()) {
+                    grayFish.y = myGameArea.floor - grayFish.height;
+                    grayFish.speedY = -4;
+                    grayFish.gravitySpeed = 0;
+                }
+            }
+
+            // hit the floor will reduce momentum
+            if (grayFish.hitBottom()) {
+                grayFish.y = myGameArea.floor - grayFish.height;
+                grayFish.speedY *= 0.5;
+                grayFish.gravitySpeed = 0;
+                grayFish.speedX *= 0.5;
+                if (grayFish.isStop()) {
+                    // console.log("stop!");
+                    grayFish.speedX = 0;
+                    grayFish.speedY = 0;
+                }
+            }
         }
     }
-
+    // callback
     window.requestAnimationFrame(updateGameArea);
 }
 
+var updateGameEvent = function (clickX, clickY) {
+    if (!startPlay ) {
+        //TODO
+    } else {
+        remainingTry.score -= 1;
+        if (remainingTry.score < 0) {
+            startPlay = false;
+            return;
+        }
+        if (grayFish.hitElement(clickX, clickY)) {
+            console.log("hit fish!");
+            // if fish is flying, player can't hit fish anymore
+            if (!startHit) {
+                isHit = true;
+                grayFish.speedX = -5;
+            }
+        }
+    }
+};
 
 window.onload = function () {
     startGame();
 
+    // get the coordinates of a mouse click inside canvas
     // reference : http://stackoverflow.com/a/18053642/2943842
     myGameArea.canvas.addEventListener('click', function (event) {
         var rect = myGameArea.canvas.getBoundingClientRect();
         var x = event.clientX - rect.left;
         var y = event.clientY - rect.top;
         console.log("x: " + x + ", y : " + y);
-        if (x >= grayFish.x && x <= grayFish.x + grayFish.width &&
-            y >= grayFish.y && y <= grayFish.y + grayFish.height) {
-            console.log("hit fish!");
-            isHit = true;
-        }
+        updateGameEvent(x, y);
     });
 
     updateGameArea();
