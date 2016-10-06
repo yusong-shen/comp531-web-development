@@ -24,7 +24,7 @@ describe('Test Dummy Server Example Page', () => {
         var username = common.creds.username;
         var prefix = `you are logged in as ${username} `;
         var oldHeadline = '';
-        var newHeadline = 'I am new headline two!';
+        var newHeadline = 'I am new headline three!';
         sleep(500)
         // recored the old headline
         .then(findId('message').getText()
@@ -34,6 +34,7 @@ describe('Test Dummy Server Example Page', () => {
         // find the headline input
         // .sendKeys(new headline message)
         .then(findId('newHeadline').sendKeys(newHeadline))
+        .then(findId('headline').click())
         .then(sleep(2000))
         // verify the headline is updated
         .then(findId('message').getText()
@@ -47,6 +48,7 @@ describe('Test Dummy Server Example Page', () => {
         // .then(sleep(1000))
         // .then(
         //     findId('newHeadline').sendKeys(oldHeadline.substring(prefix.length)))
+        // .then(findId('headline').click())
         // .then(sleep(2000))
         // // verify the headline is updated
         // .then(findId('message').getText()
