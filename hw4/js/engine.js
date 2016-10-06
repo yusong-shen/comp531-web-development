@@ -16,20 +16,7 @@ function startGame() {
 
 // main loop for the game
 function updateGameArea() {
-    if (!startPlay) {
-        // draw score board
-        myScore = new GameComponent("25px", "Consolas", "black", 400, 40, "text");
-        myScore.text = "Score: " + myScore.score;
-        myScore.draw();
-
-        // draw remaining try
-        remainingTry = new GameComponent("25px", "Consolas", "black", 40, 40, "text");
-        remainingTry.score = 5;
-        remainingTry.text = "Remaining Tries: " + remainingTry.score;
-        remainingTry.draw();
-    }
-    else {
-
+    if (startPlay) {
         // clear the canvas
         myGameArea.clear();
         myGameArea.drawGround();
@@ -42,7 +29,7 @@ function updateGameArea() {
         mySun.draw();
 
         // update score
-        myScore.text = "SCORE: " + myScore.score;
+        myScore.text = "Score: " + myScore.score;
         myScore.draw();
         remainingTry.text = "Remaining Tries: " + remainingTry.score;
         remainingTry.draw();
@@ -96,7 +83,7 @@ var updateGameEvent = function (clickX, clickY) {
     } else {
         // Game over!
         remainingTry.score -= 1;
-        if (remainingTry.score <= 0) {
+        if (remainingTry.score < 0) {
             startPlay = false;
             window.alert('Game over! Your score is ' + myScore.score + ' .');
             myGameArea.init();

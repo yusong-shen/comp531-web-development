@@ -13,8 +13,8 @@ const defaultTries = 5;
 var myGameArea = {
     canvas : document.createElement('canvas'),
     start : function () {
-        this.canvas.width = 800;
-        this.canvas.height = 480;
+        this.canvas.width = 1024;
+        this.canvas.height = 614;
         document.body.children[1].appendChild(this.canvas);
 
         this.context = this.canvas.getContext("2d");
@@ -38,11 +38,11 @@ var myGameArea = {
         mySun.draw();
 
         // draw score board
-        myScore = new GameComponent("25px", "Consolas", "black", 400, 40, "text");
+        myScore = new GameComponent("25px", "Consolas", "black", 0.7 * this.canvas.width, 40, "text");
         myScore.score = 0;
 
         // draw remaining try
-        remainingTry = new GameComponent("25px", "Consolas", "black", 40, 40, "text");
+        remainingTry = new GameComponent("25px", "Consolas", "black", 0.05 * this.canvas.width, 40, "text");
         remainingTry.score = defaultTries;
 
         this.drawScoreboard(myScore.score, remainingTry.score);
