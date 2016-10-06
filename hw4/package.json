@@ -1,0 +1,19 @@
+{
+  "name": "hw4-bear-fishing-game",
+  "version": "1.0.0",
+  "description": "comp531 hw4 bear fishing game",
+  "main": "index.html",
+  "scripts": {
+    "deploy": "surge -p .",
+    "start": "python -m SimpleHTTPServer 8080 || python -m http.server 8080"    
+  },
+  "keywords": [
+    "html5",
+    "game"
+  ],
+  "author": "Yusong Shen",
+  "license": "MIT",
+  "devDependencies": {
+    "surge": "^0.18.0"
+  }
+}

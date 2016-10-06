@@ -8,13 +8,15 @@ var iceBear;
 var grayFish;
 var startButton;
 var remainingTry;
+const defaultTries = 5;
 
 var myGameArea = {
     canvas : document.createElement('canvas'),
     start : function () {
-        this.canvas.width = 1000;
-        this.canvas.height = 600;
-        document.body.childNodes[1].appendChild(this.canvas);
+        this.canvas.width = 800;
+        this.canvas.height = 480;
+        document.body.children[1].appendChild(this.canvas);
+
         this.context = this.canvas.getContext("2d");
         this.floor = this.canvas.height - this.canvas.height / 5;
 
