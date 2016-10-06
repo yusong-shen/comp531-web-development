@@ -4,6 +4,21 @@
  * http://www.w3schools.com/graphics/game_intro.asp
  */
 
+var myScore;
+var myHole;
+var mySun;
+var iceBear;
+var grayFish;
+var startButton;
+var remainingTry;
+
+
+const defaultTries = 5;
+
+var isHit = false;
+var startPlay = false;
+var startHit = false;
+
 // updated modulo function to deal with negative number
 function modulo(n, m) {
     return ((n % m) + m) % m;
@@ -13,44 +28,20 @@ function startGame() {
     myGameArea.start();
 }
 
-var myScore;
-var myHole;
-var mySun;
-var iceBear;
-var grayFish;
-var startButton;
-var remainingTry;
-var isHit = false;
-var startPlay = false;
-var startHit = false;
-
 var myGameArea = {
     canvas : document.createElement('canvas'),
     start : function () {
-        this.canvas.width = 600;
-        this.canvas.height = 400;
+        this.canvas.width = 1000;
+        this.canvas.height = 600;
         document.body.childNodes[1].appendChild(this.canvas);
         this.context = this.canvas.getContext("2d");
         this.floor = this.canvas.height - this.canvas.height / 5;
 
-        this.reset();
+        this.init();
     },
 
-    draw_ground : function () {
-    // Create the ground
-        var grad = this.context.createLinearGradient(0, this.floor, 0, this.canvas.height);
-        grad.addColorStop(0, "#64B5F6"); // blue 300
-        grad.addColorStop(1, "#BBDEFB"); // blue 200
-        this.context.fillStyle = grad;
-        this.context.fillRect(0, this.floor, this.canvas.width, this.canvas.height);
-    },
-
-    clear : function () {
-        // clear the canvas above floor
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    },
-
-    reset : function () {
+    // initialize all GameComponents
+    init : function () {
         // clear the canvas
         this.clear();
 
@@ -65,20 +56,20 @@ var myGameArea = {
 
         // draw score board
         myScore = new GameComponent("25px", "Consolas", "black", 400, 40, "text");
-        myScore.text = "Score: " + myScore.score;
-        myScore.draw();
+        myScore.score = 0;
 
         // draw remaining try
         remainingTry = new GameComponent("25px", "Consolas", "black", 40, 40, "text");
-        remainingTry.score = 5;
-        remainingTry.text = "Remaining Tries: " + remainingTry.score;
-        remainingTry.draw();
+        remainingTry.score = defaultTries;
 
-        this.draw_ground();
+        this.drawScoreboard(myScore.score, remainingTry.score);
+
+        this.drawGround();
 
         // color : blue 100
         var holeX =  0.8 * this.canvas.width;
         myHole = new GameComponent(radius, radius / 2, "#BBDEFB", holeX, this.floor, "ellipse");
+        myHole.draw();
 
         // fish image size : 182 * 198
         var fishImg = new Image();
@@ -118,70 +109,66 @@ var myGameArea = {
             startButton.draw();
         };
         btnImg.src = "/img/play_button.png";
+
+    },
+
+    drawGround : function () {
+    // Create the ground
+        var grad = this.context.createLinearGradient(0, this.floor, 0, this.canvas.height);
+        grad.addColorStop(0, "#64B5F6"); // blue 300
+        grad.addColorStop(1, "#BBDEFB"); // blue 200
+        this.context.fillStyle = grad;
+        this.context.fillRect(0, this.floor, this.canvas.width, this.canvas.height);
+    },
+
+    clear : function () {
+        // clear the canvas above floor
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+
+    drawScoreboard : function (score, tries) {
+        // draw score board
+        myScore.text = "Score: " + score;
+        myScore.draw();
+
+        // draw remaining try
+        remainingTry.text = "Remaining Tries: " + tries;
+        remainingTry.draw();
+    },
+
+    reset : function (score, tries, gameOver) {
+        // clear the canvas
+        this.clear();
+
+        if (gameOver) {
+            mySun.x = 100;
+            mySun.Y = 50;
+        }
+        mySun.speedX = 0.5;
+        mySun.draw();
+
+        myScore.score = score;
+        remainingTry.score = tries;
+
+        this.drawScoreboard(myScore.score, remainingTry.score);
+        this.drawGround();
+
+        myHole.draw();
+
+        grayFish.x = myHole.x - 0.5 * grayFish.width;;
+        grayFish.y = this.floor - grayFish.width;
+        grayFish.speedY = -4;
+        grayFish.gravity = 0.1;
+        grayFish.draw();
+
+        iceBear.draw();
+
+        if (gameOver) {
+            startButton.draw();
+        }
     }
 };
 
-var GameComponent = function(_width, _height, _color, _x, _y, _type, _image) {
-    this.type = _type;
-    this.score = 0;
-    this.width = _width;
-    this.height = _height;
-    this.color = _color;
-    this.speedX = 0;
-    this.speedY = 0;
-    this.x = _x;
-    this.y = _y;
-    this.gravity = 0;
-    this.gravitySpeed = 0;
-    this.image = _image;
-};
-
-// update drawing
-GameComponent.prototype.draw = function () {
-    var ctx = myGameArea.context;
-    if (this.type == "text") {
-        ctx.font = this.width + " " + this.height;
-        ctx.fillStyle = this.color;
-        ctx.fillText(this.text, this.x, this.y);
-    }
-    else if (this.type == "ellipse") {
-        ctx.beginPath();
-        ctx.ellipse(this.x, this.y, this.width, this.height, 0, 0, 2 * Math.PI);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-    } else if (this.type == "circle") {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.width, 0, 2 * Math.PI, false);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-    } else if (this.type == "image") {
-        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-    }
-};
-
-// update position
-GameComponent.prototype.updatePos = function () {
-    this.gravitySpeed += this.gravity;
-    this.x += this.speedX;
-    // make sure component stay inside boundary
-    this.x = modulo(this.x, myGameArea.canvas.width);
-    this.y += this.speedY + this.gravitySpeed;
-    this.y = modulo(this.y, myGameArea.canvas.height);
-};
-
-// detect if component hit the bottom
-GameComponent.prototype.hitBottom = function () {
-    return (this.y > myGameArea.floor - this.height);
-};
-
-GameComponent.prototype.hitElement = function (clickX, clickY) {
-    return (clickX >= this.x && clickX <= this.x + this.width &&
-        clickY >= this.y && clickY <= this.y + this.height);
-};
-
-GameComponent.prototype.isStop = function () {
-    return (Math.abs(this.speedX) < 1e-6 && Math.abs(this.speedY) < 1e-6);
-};
 
 // main loop for the game
 function updateGameArea() {
@@ -201,7 +188,7 @@ function updateGameArea() {
 
         // clear the canvas
         myGameArea.clear();
-        myGameArea.draw_ground();
+        myGameArea.drawGround();
 
         // draw the hole
         myHole.draw();
@@ -242,6 +229,12 @@ function updateGameArea() {
                     // console.log("stop!");
                     grayFish.speedX = 0;
                     grayFish.speedY = 0;
+                    if (isHit){
+                        // setTimeout(myGameArea.reset, 1000, myScore.score, remainingTry.score, false);
+                        myScore.score += Math.round(myHole.x - grayFish.x);
+                        myGameArea.reset(myScore.score, remainingTry.score, false);
+                        isHit = false;
+                    }
                 }
             }
         }
@@ -252,16 +245,17 @@ function updateGameArea() {
 
 var updateGameEvent = function (clickX, clickY) {
     if (!startPlay ) {
-        // TODO
         if (startButton.hitElement(clickX, clickY)) {
             console.log("hit start button!");
             startPlay = true;
         }
     } else {
+        // Game over!
         remainingTry.score -= 1;
         if (remainingTry.score < 0) {
             startPlay = false;
-            myGameArea.reset();
+            window.alert('Game over! Your score is ' + myScore.score + ' .');
+            myGameArea.init();
             return;
         }
         if (grayFish.hitElement(clickX, clickY)) {
