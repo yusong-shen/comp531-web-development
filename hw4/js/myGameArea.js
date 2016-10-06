@@ -8,9 +8,11 @@ var iceBear;
 var grayFish;
 var goldFish;
 var blueFish;
+var fishPool = {};
+var curFish;
 var startButton;
 var remainingTry;
-const defaultTries = 5;
+const defaultTries = 10;
 
 var myGameArea = {
     canvas : document.createElement('canvas'),
@@ -56,6 +58,8 @@ var myGameArea = {
         myHole = new GameComponent(radius, radius / 2, "#BBDEFB", holeX, this.floor, "ellipse");
         myHole.draw();
 
+        var rand = Math.random();
+
         // default grey fish
         // fish image size : 182 * 198
         var fishImg = new Image();
@@ -63,23 +67,47 @@ var myGameArea = {
         var fishX = holeX - 0.5 * fishSize;
         var fishY = this.floor - fishSize;
         fishImg.onload = function () {
-            grayFish = new GameComponent(fishSize, fishSize, "", fishX, fishY, "image", fishImg);
-            grayFish.speedY = -4;
+            grayFish = new GameComponent(fishSize, fishSize, "green", fishX, fishY, "image", fishImg);
+            grayFish.defaultSpeedX = -5;
+            grayFish.defaultSpeedY = -4;
+            grayFish.speedY = grayFish.defaultSpeedY;
             grayFish.gravity = 0.1;
-            grayFish.draw();
+            fishPool['grayFish'] = grayFish;
+            if (rand < 0.6) {
+                grayFish.draw();
+                curFish = grayFish;
+            }
         };
         fishImg.src = "/img/GreenFish.png";
 
         // load other fish
         var goldFishImg = new Image();
         goldFishImg.onload = function () {
-            goldFish = new GameComponent(fishSize, fishSize, "", fishX, fishY, "image", goldFishImg);
+            goldFish = new GameComponent(fishSize, fishSize, "orange", fishX, fishY, "image", goldFishImg);
+            goldFish.defaultSpeedX = -10;
+            goldFish.defaultSpeedY = -6;
+            goldFish.speedY = goldFish.defaultSpeedY;
+            goldFish.gravity = 0.2;
+            fishPool['goldFish'] = goldFish;
+            if (rand >= 0.6 && rand < 0.8) {
+                goldFish.draw();
+                curFish = goldFish;
+            }
         };
         goldFishImg.src = "/img/OrangeFish.png";
 
         var blueFishImg = new Image();
         blueFishImg.onload = function () {
-            blueFish = new GameComponent(fishSize, fishSize, "", fishX, fishY, "image", blueFishImg);
+            blueFish = new GameComponent(fishSize, fishSize, "blue", fishX, fishY, "image", blueFishImg);
+            blueFish.defaultSpeedX = -8;
+            blueFish.defaultSpeedY = -5;
+            blueFish.speedY = blueFish.defaultSpeedY;
+            blueFish.gravity = 0.15;
+            fishPool['blueFish'] = blueFish;
+            if (rand >= 0.8) {
+                blueFish.draw();
+                curFish = blueFish;
+            }
         };
         blueFishImg.src = "/img/BlueFish.png";
 
@@ -153,17 +181,35 @@ var myGameArea = {
         this.drawGround();
 
         myHole.draw();
-
-        grayFish.x = myHole.x - 0.5 * grayFish.width;;
-        grayFish.y = this.floor - grayFish.width;
-        grayFish.speedY = -4;
-        grayFish.gravity = 0.1;
-        grayFish.draw();
+        
+        this.chooseFish();
+        curFish.x = myHole.x - 0.5 * grayFish.width;
+        curFish.y = this.floor - grayFish.width;
+        curFish.draw();
 
         iceBear.draw();
 
         if (gameOver) {
             startButton.draw();
         }
+    },
+
+    chooseFish : function () {
+        var randNum = Math.random();
+        console.log('random number is ' + randNum);
+        if (randNum < 0.6) {
+            console.log('choose grayFish');
+            curFish = grayFish;
+            curFish.gravity = 0.1;
+        } else if (randNum > 0.8) {
+            console.log('choose blueFish');
+            curFish = blueFish;
+            curFish.gravity = 0.1;
+        } else {
+            console.log('choose goldFish');
+            curFish = goldFish;
+            curFish.gravity = 0.2;
+        }
+        curFish.speedY = curFish.defaultSpeedY;
     }
 };

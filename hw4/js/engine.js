@@ -38,31 +38,40 @@ function updateGameArea() {
             iceBear.draw();
         }
 
-        if (grayFish) {
-            grayFish.updatePos();
-            grayFish.draw();
+        if (curFish) {
+            curFish.updatePos();
+            curFish.draw();
             // initial state, fish jump out from hole again and again
             if (!isHit) {
-                if (grayFish.hitBottom()) {
-                    grayFish.y = myGameArea.floor - grayFish.height;
-                    grayFish.speedY = -4;
-                    grayFish.gravitySpeed = 0;
+                if (curFish.hitBottom()) {
+                    curFish.y = myGameArea.floor - grayFish.height;
+                    curFish.speedY = curFish.defaultSpeedY;
+                    curFish.gravitySpeed = 0;
                 }
             }
 
             // hit the floor will reduce momentum
-            if (grayFish.hitBottom()) {
-                grayFish.y = myGameArea.floor - grayFish.height;
-                grayFish.speedY *= 0.5;
-                grayFish.gravitySpeed = 0;
-                grayFish.speedX *= 0.5;
-                if (grayFish.isStop()) {
+            if (curFish.hitBottom()) {
+                curFish.y = myGameArea.floor - grayFish.height;
+                curFish.speedY *= 0.5;
+                curFish.gravitySpeed = 0;
+                curFish.speedX *= 0.5;
+                if (curFish.isStop()) {
                     // console.log("stop!");
-                    grayFish.speedX = 0;
-                    grayFish.speedY = 0;
+                    curFish.speedX = 0;
+                    curFish.speedY = 0;
                     if (isHit){
                         // setTimeout(myGameArea.reset, 1000, myScore.score, remainingTry.score, false);
-                        myScore.score += Math.round(myHole.x - grayFish.x);
+                        var tempScore = Math.round(myHole.x - curFish.x);
+                        if (curFish.color === "orange") {
+                            console.log('Double score!');
+                            tempScore *= 2;
+                        }
+                        if (curFish.color === "blue") {
+                            console.log('Get another change!');
+                            remainingTry.score += 1;
+                        }
+                        myScore.score += tempScore;
                         myGameArea.reset(myScore.score, remainingTry.score, false);
                         isHit = false;
                     }
@@ -89,12 +98,12 @@ var updateGameEvent = function (clickX, clickY) {
             myGameArea.init();
             return;
         }
-        if (grayFish.hitElement(clickX, clickY)) {
+        if (curFish.hitElement(clickX, clickY)) {
             console.log("hit fish!");
             // if fish is flying, player can't hit fish anymore
             if (!startHit) {
                 isHit = true;
-                grayFish.speedX = -5;
+                curFish.speedX = curFish.defaultSpeedX;
             }
         }
     }

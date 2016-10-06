@@ -15,6 +15,8 @@ var GameComponent = function(_width, _height, _color, _x, _y, _type, _image) {
     this.gravity = 0;
     this.gravitySpeed = 0;
     this.image = _image;
+    this.defaultSpeedY = 0;
+    this.defaultSpeedX = 0;
 };
 
 // update drawing
