@@ -33,6 +33,27 @@ var myGameArea = {
         this.context = this.canvas.getContext("2d");
         this.floor = this.canvas.height - this.canvas.height / 5;
 
+        this.reset();
+    },
+
+    draw_ground : function () {
+    // Create the ground
+        var grad = this.context.createLinearGradient(0, this.floor, 0, this.canvas.height);
+        grad.addColorStop(0, "#64B5F6"); // blue 300
+        grad.addColorStop(1, "#BBDEFB"); // blue 200
+        this.context.fillStyle = grad;
+        this.context.fillRect(0, this.floor, this.canvas.width, this.canvas.height);
+    },
+
+    clear : function () {
+        // clear the canvas above floor
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+
+    reset : function () {
+        // clear the canvas
+        this.clear();
+
         var sunX = 100;
         var sunY = 50;
         var radius = 30;
@@ -93,24 +114,10 @@ var myGameArea = {
         btnImg.onload = function () {
             startButton = new GameComponent(btnWidth, btnHeight, "",
                 0.5 * (myGameArea.canvas.width - btnWidth), 0.5 * (myGameArea.canvas.height - btnHeight),
-            "image", btnImg);
+                "image", btnImg);
             startButton.draw();
         };
         btnImg.src = "/img/play_button.png";
-    },
-
-    draw_ground : function () {
-    // Create the ground
-        var grad = this.context.createLinearGradient(0, this.floor, 0, this.canvas.height);
-        grad.addColorStop(0, "#64B5F6"); // blue 300
-        grad.addColorStop(1, "#BBDEFB"); // blue 200
-        this.context.fillStyle = grad;
-        this.context.fillRect(0, this.floor, this.canvas.width, this.canvas.height);
-    },
-
-    clear : function () {
-        // clear the canvas above floor
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 };
 
@@ -245,11 +252,16 @@ function updateGameArea() {
 
 var updateGameEvent = function (clickX, clickY) {
     if (!startPlay ) {
-        //TODO
+        // TODO
+        if (startButton.hitElement(clickX, clickY)) {
+            console.log("hit start button!");
+            startPlay = true;
+        }
     } else {
         remainingTry.score -= 1;
         if (remainingTry.score < 0) {
             startPlay = false;
+            myGameArea.reset();
             return;
         }
         if (grayFish.hitElement(clickX, clickY)) {
