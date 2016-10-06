@@ -1,0 +1,1 @@
+sudo ln -s /usr/local/lib/node_modules/webdriver-manager/selenium/chromedriver_2.22 /usr/local/bin/chromedriver

@@ -9,6 +9,7 @@ The first half course is about Front-End Development, second half course is abou
 
 ## Table of Contents
 ### In-Class Exercise
+#### Front-End Part
 1. Hello world page
 2. Pizza order form
 3. Hello JavaScript
@@ -22,11 +23,15 @@ The first half course is about Front-End Development, second half course is abou
 11. Hello Redux
 12. Frontend Testing
 13. Mocking Headline Update
+14. End-to-End Testing
 
 
 ### Homework
+#### Front-End Part
 1. Simple Page, due Tue 08/30
 2. Dynamic Page, due Thu 09/08
-3. Draft Front End, due Tue 09/20
-4. Javascript Game, due Thu 10/06
-5. Frontend App, due Tue 10/18
+3. Draft Front-End (Ricebook), due Tue 09/20
+4. Javascript Game (Bear Fishing Game), due Thu 10/06
+5. Frontend App, due Thr 10/20
+#### Back-End Part
+6. Draft Back-End, due Thr 11/03

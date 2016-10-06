@@ -181,7 +181,7 @@ var myGameArea = {
         this.drawGround();
 
         myHole.draw();
-        
+
         this.chooseFish();
         curFish.x = myHole.x - 0.5 * grayFish.width;
         curFish.y = this.floor - grayFish.width;
