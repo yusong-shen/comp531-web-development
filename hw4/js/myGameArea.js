@@ -6,6 +6,8 @@ var myHole;
 var mySun;
 var iceBear;
 var grayFish;
+var goldFish;
+var blueFish;
 var startButton;
 var remainingTry;
 const defaultTries = 5;
@@ -54,6 +56,7 @@ var myGameArea = {
         myHole = new GameComponent(radius, radius / 2, "#BBDEFB", holeX, this.floor, "ellipse");
         myHole.draw();
 
+        // default grey fish
         // fish image size : 182 * 198
         var fishImg = new Image();
         var fishSize = 0.05 * this.canvas.width;
@@ -65,7 +68,20 @@ var myGameArea = {
             grayFish.gravity = 0.1;
             grayFish.draw();
         };
-        fishImg.src = "/img/gray-fish.png";
+        fishImg.src = "/img/GreenFish.png";
+
+        // load other fish
+        var goldFishImg = new Image();
+        goldFishImg.onload = function () {
+            goldFish = new GameComponent(fishSize, fishSize, "", fishX, fishY, "image", goldFishImg);
+        };
+        goldFishImg.src = "/img/OrangeFish.png";
+
+        var blueFishImg = new Image();
+        blueFishImg.onload = function () {
+            blueFish = new GameComponent(fishSize, fishSize, "", fishX, fishY, "image", blueFishImg);
+        };
+        blueFishImg.src = "/img/BlueFish.png";
 
 
         // bear image size : 274 * 370
