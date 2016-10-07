@@ -95,7 +95,7 @@ function updateGameArea() {
             fire.draw();
             setTimeout(function () {
                 isClick = false;
-            }, 100);
+            }, 300);
         }
 
         if (curFish.hitBottom()) {
@@ -136,6 +136,11 @@ function updateGameArea() {
             startPlay = true;
         }
     } else {
+        // Game over!
+        if (remainingTry.score < 0) {
+            startPlay = false;
+            updateAfterGameover();
+        }
         if (!isHit) {
             remainingTry.score -= 1;
             if (curFish.hitElement(clickX, clickY)) {
@@ -145,11 +150,6 @@ function updateGameArea() {
                 isHit = true;
                 curFish.speedX = curFish.defaultSpeedX;
             }
-        }
-        // Game over!
-        if (remainingTry.score < 0) {
-            startPlay = false;
-            updateAfterGameover();
         }
     }
 };
