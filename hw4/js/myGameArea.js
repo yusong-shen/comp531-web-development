@@ -1,4 +1,7 @@
 /**
+ * myGameArea is a global object define the elements inside canvas
+ * and its related function
+ *
  * Created by yusong on 10/5/16.
  */
 var myScore;
@@ -12,6 +15,7 @@ var fishPool = {};
 var curFish;
 var startButton;
 var remainingTry;
+var fire;
 const defaultTries = 10;
 
 var myGameArea = {
@@ -59,6 +63,12 @@ var myGameArea = {
         myHole.draw();
 
         var rand = Math.random();
+
+        var fireImg = new Image();
+        fireImg.onload = function () {
+            fire = new GameComponent(30, 30, "", 0, 0, "image", fireImg);
+        };
+        fireImg.src = "/img/fire.png";
 
         // default grey fish
         // fish image size : 182 * 198
@@ -196,17 +206,17 @@ var myGameArea = {
 
     chooseFish : function () {
         var randNum = Math.random();
-        console.log('random number is ' + randNum);
+        // console.log('random number is ' + randNum);
         if (randNum < 0.6) {
-            console.log('choose grayFish');
+            // console.log('choose grayFish');
             curFish = grayFish;
             curFish.gravity = 0.1;
         } else if (randNum > 0.8) {
-            console.log('choose blueFish');
+            // console.log('choose blueFish');
             curFish = blueFish;
             curFish.gravity = 0.1;
         } else {
-            console.log('choose goldFish');
+            // console.log('choose goldFish');
             curFish = goldFish;
             curFish.gravity = 0.2;
         }

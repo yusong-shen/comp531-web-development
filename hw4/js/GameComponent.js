@@ -1,4 +1,5 @@
 /**
+ * Game component class is used to abstract the game component
  * Created by yusong on 10/5/16.
  */
 
