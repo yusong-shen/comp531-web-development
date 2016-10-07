@@ -145,9 +145,7 @@ function updateGameArea() {
         if (!isHit) {
             remainingTry.score -= 1;
             if (curFish.hitElement(clickX, clickY)) {
-                if (numHitting < defaultTries) {
-                    numHitting += 1;
-                }
+                numHitting += 1;
                 // console.log("number of hitting : " + numHitting);
                 // fish is not yet hit, give it a initial x speed
                 isHit = true;
