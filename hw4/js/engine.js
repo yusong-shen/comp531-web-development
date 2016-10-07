@@ -137,14 +137,17 @@ function updateGameArea() {
         }
     } else {
         // Game over!
-        if (remainingTry.score < 0) {
-            startPlay = false;
+        if (remainingTry.score <= 0) {
             updateAfterGameover();
+            startPlay = false;
+            return;
         }
         if (!isHit) {
             remainingTry.score -= 1;
             if (curFish.hitElement(clickX, clickY)) {
-                numHitting += 1;
+                if (numHitting < defaultTries) {
+                    numHitting += 1;
+                }
                 // console.log("number of hitting : " + numHitting);
                 // fish is not yet hit, give it a initial x speed
                 isHit = true;
