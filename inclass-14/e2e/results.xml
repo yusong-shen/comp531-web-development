@@ -2,37 +2,8 @@
 > starter@1.0.0 e2e:base /Users/yusong/Code/comp531-web-development/inclass-14
 > mocha --opts e2e/mocha.opts e2e/*.spec.js "--reporter" "xunit"
 
-<testsuite name="Mocha Tests" tests="1" failures="2" errors="2" skipped="-1" timestamp="Thu, 06 Oct 2016 21:05:49 GMT" time="5.145">
-<testcase classname="Test Dummy Server Example Page" name="should log in as the test user" time="0"><failure>expected -1 to equal 0
-AssertionError: expected -1 to equal 0
-    at e2e/login.spec.js:17:51
-    at ManagedPromise.invokeCallback_ (node_modules/selenium-webdriver/lib/promise.js:1379:14)
-    at TaskQueue.execute_ (node_modules/selenium-webdriver/lib/promise.js:2913:14)
-    at TaskQueue.executeNext_ (node_modules/selenium-webdriver/lib/promise.js:2896:21)
-    at asyncRun (node_modules/selenium-webdriver/lib/promise.js:2775:27)
-    at node_modules/selenium-webdriver/lib/promise.js:639:7
-    at process._tickCallback (internal/process/next_tick.js:103:7)</failure></testcase>
-<testcase classname="Test Dummy Server Example Page" name="&quot;after all&quot; hook: should log out" time="0"><failure>element not visible
-  (Session info: chrome=53.0.2785.143)
-  (Driver info: chromedriver=2.22.397929 (fb72fb249a903a0b1041ea71eb4c8b3fa0d9be5a),platform=Mac OS X 10.10.5 x86_64)
-ElementNotVisibleError: element not visible
-  (Session info: chrome=53.0.2785.143)
-  (Driver info: chromedriver=2.22.397929 (fb72fb249a903a0b1041ea71eb4c8b3fa0d9be5a),platform=Mac OS X 10.10.5 x86_64)
-    at WebDriverError (node_modules/selenium-webdriver/lib/error.js:27:5)
-    at ElementNotVisibleError (node_modules/selenium-webdriver/lib/error.js:76:5)
-    at Object.checkLegacyResponse (node_modules/selenium-webdriver/lib/error.js:639:15)
-    at parseHttpResponse (node_modules/selenium-webdriver/http/index.js:538:13)
-    at client_.send.then.response (node_modules/selenium-webdriver/http/index.js:472:11)
-    at ManagedPromise.invokeCallback_ (node_modules/selenium-webdriver/lib/promise.js:1379:14)
-    at TaskQueue.execute_ (node_modules/selenium-webdriver/lib/promise.js:2913:14)
-    at TaskQueue.executeNext_ (node_modules/selenium-webdriver/lib/promise.js:2896:21)
-    at asyncRun (node_modules/selenium-webdriver/lib/promise.js:2820:25)
-    at node_modules/selenium-webdriver/lib/promise.js:639:7
-    at process._tickCallback (internal/process/next_tick.js:103:7)
-From: Task: WebElement.click()
-    at Driver.schedule (node_modules/selenium-webdriver/lib/webdriver.js:377:17)
-    at WebElementPromise.schedule_ (node_modules/selenium-webdriver/lib/webdriver.js:1744:25)
-    at WebElementPromise.click (node_modules/selenium-webdriver/lib/webdriver.js:1845:17)
-    at Object.exports.logout (e2e/common.js:21:28)
-    at Context.&lt;anonymous&gt; (e2e/login.spec.js:33:16)</failure></testcase>
+<testsuite name="Mocha Tests" tests="3" failures="0" errors="0" skipped="0" timestamp="Fri, 07 Oct 2016 02:25:57 GMT" time="12.208">
+<testcase classname="Test Dummy Server Example Page" name="should log in as the test user" time="0.543"/>
+<testcase classname="Test Dummy Server Example Page" name="Update the headline and verify the change" time="5.785"/>
+<testcase classname="shutdown" name="now" time="0.128"/>
 </testsuite>
