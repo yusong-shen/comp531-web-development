@@ -1,6 +1,8 @@
 #HW04 : Bear Fishing Game
 Author : Yusong Shen
 
+You can play it here : https://bear-fishing-game-ys2016.surge.sh/ 
+
 ##Description
 There is a Ice Bear trying to catch some fish for dinner. The fish jump from the ice hole, and Ice Bear stand near the hole. When the fish jump out from the hole, Ice Bear use a baseball bat to hit the fish. If the player hit at the right moment, the fish will fly for some distances. The farther the fish flies, the higher score the player get.
 
