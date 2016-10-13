@@ -43,33 +43,33 @@ function server(req, res) {
      console.log('Request content-type  :', req.headers['content-type'])
      console.log('Request payload       :', req.body)
 
-     res.setHeader('Content-Type', 'application/json')
-     res.statusCode = 200
+     var payload ={}
+
      switch (req.url) {
           case '/':
-               var payload = { 'hello': 'world' }
-               res.end(JSON.stringify(payload))
+               payload = { 'hello': 'world' }
                break
           case '/articles':
-               var payload = articles
-               res.end(JSON.stringify(payload))               
+               payload = articles
                break
           case '/login':
                if (req.method === 'POST') {
-                    var payload = {}
+                    payload = {}
                     var reqJson = JSON.parse(req.body)
                     payload.username = reqJson.username
                     payload.result = 'success'
-                    res.end(JSON.stringify(payload))
                }
                break
           case '/logout':
                if (req.method === 'PUT') {
-                    var payload = 'OK'
-                    res.end(JSON.stringify(payload))
+                    payload = 'OK'
                }
                break
           default:
                console.log('url that we do not want to handle')
      }
+     res.setHeader('Content-Type', 'application/json')
+     res.statusCode = 200
+     res.end(JSON.stringify(payload))
+
 }
