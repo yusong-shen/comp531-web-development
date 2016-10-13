@@ -24,7 +24,8 @@ The first half course is about Front-End Development, second half course is abou
 12. Frontend Testing
 13. Mocking Headline Update
 14. End-to-End Testing
-
+#### Back-End Part
+15. Simple Node Server
 
 ### Homework
 #### Front-End Part
@@ -33,5 +34,6 @@ The first half course is about Front-End Development, second half course is abou
 3. Draft Front-End (Ricebook), due Tue 09/20
 4. Javascript Game (Bear Fishing Game), due Thu 10/06
 5. Frontend App, due Thr 10/20
+
 #### Back-End Part
 6. Draft Back-End, due Thr 11/03
