@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "description": "Demo RiceBookServer",
   "license": "MIT",
-  "repository": "https://github.com/skotep/webdev",
+  "repository": "https://github.com/yusong-shen/comp531-web-development",
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.14.1",
