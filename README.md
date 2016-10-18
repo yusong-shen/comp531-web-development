@@ -24,6 +24,7 @@ The first half course is about Front-End Development, second half course is abou
 12. Frontend Testing
 13. Mocking Headline Update
 14. End-to-End Testing
+
 #### Back-End Part
 15. Simple Node Server
 16. Express Server
