@@ -3,6 +3,7 @@ COMP431/531 HW5 Front-End App
 Author : Yusong Shen
 
 Front-End App
+Sample Application : https://ricebook.surge.sh/
 
 In this assignment you will partially implement and test the frontend of your web application. We start with our draft frontend application that contains three views:
 
