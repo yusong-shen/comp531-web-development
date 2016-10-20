@@ -1,7 +1,12 @@
+/*
+	High level logic for entire front-end applicaiton
+*/
 import React from 'react'
 import { render } from 'react-dom'
 
+import App from './components/app'
+
 render(
-    <div>Hello React!</div>,
+    <App />,
     document.getElementById('app')
 )
