@@ -4,28 +4,51 @@
 */
 import React from 'react'
 import Main from './main/main'
-
-// a "location" state variable and then selectively display a Component based on the value
-var location = 'MAIN_PAGE'
+import Profile from './profile/profile'
+import Landing from './auth/landing'
 
 // TODO :  routing logic to determine which view to display.
-export const App = () => (
-    <div>
-        <div>Hello React!</div>
-        <div>
-            <Main />
-        </div>
+class App extends React.Component {
 
-    </div>
+    constructor(props) {
+        super(props)
+        this.state = {
+            // a route state variable and then selectively
+            // display a Component based on the value
+            route : window.location.hash.substr(1)
+        }
+    }
 
-    // if (location == 'MAIN_PAGE') {
-    //     <Main />
-    // } else if (location == 'PROFILE_PAGE') {
-    //     <Profile />
-    // } else {
-    //     <Landing />
-    // }
-)
+    componentDidMount() {
+        window.addEventListener('hashchange', () => {
+            this.setState({
+                route: window.location.hash.substr(1)
+            })
+            console.log(this.state.route)
+        })
+    }
+
+    render() {
+        let Child
+        switch (this.state.route) {
+            case '/main': Child = Main; break;
+            case '/profile': Child = Profile; break;
+            default: Child = Landing;
+        }
+        return (
+            <div>
+                <h1>App</h1>
+                <ul>
+                    <li><a href="#/">Landing</a></li>
+                    <li><a href="#/main">Main</a></li>
+                    <li><a href="#/profile">Profile</a></li>
+                </ul>
+                <Child/>
+            </div>
+        )
+    }
+}
+
 
 
 // TODO : Additionally we might have compound views, including a navigation section
