@@ -46,7 +46,7 @@ export default connect(
         return {
             todoItems: state.todoItems
         }
-    }, 
+    },
     (dispatch) => {
         return {
             addTodo: (text) => dispatch({ type: 'ADD_TODO', text })

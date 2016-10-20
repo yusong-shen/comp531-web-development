@@ -10,15 +10,12 @@
     "build": "webpack -d",
     "deploy": "webpack -p && surge -p dist",
     "start": "webpack-dev-server --content-base dist -d",
-
     "test": "mocha --opts mocha.opts src/**/*.spec.js",
     "test:watch": "npm run test -- -w",
     "mocha": "mocha --opts mocha.opts src/**/*.spec.js",
-
     "karma": "karma start --single-run",
     "karma:watch": "karma start",
     "coverage": "isparta cover _mocha --config istanbul.yaml -- --opts mocha.opts src/**/*.spec.js",
-
     "e2e": "npm run e2e:base -- --reporter spec",
     "e2e:base": "mocha --opts e2e/mocha.opts e2e/*.spec.js",
     "e2e:watch": "npm run e2e:base -- --reporter spec -w",
@@ -74,6 +71,7 @@
     "react": "^15.0.2",
     "react-addons-test-utils": "^15.1.0",
     "react-dom": "^15.0.2",
+    "react-forms": "^1.0.0-rc6",
     "react-redux": "^4.4.5",
     "react-router": "^2.6.1",
     "redux": "^3.5.2",

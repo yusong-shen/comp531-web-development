@@ -9,7 +9,7 @@ The first half course is about Front-End Development, second half course is abou
 
 ## Table of Contents
 ### In-Class Exercise
-#### Front-End Part
+=== Front-End Part ===
 1. Hello world page
 2. Pizza order form
 3. Hello JavaScript
@@ -25,7 +25,7 @@ The first half course is about Front-End Development, second half course is abou
 13. Mocking Headline Update
 14. End-to-End Testing
 
-#### Back-End Part
+=== Back-End Part ===
 15. Simple Node Server
 16. Express Server
 

@@ -7,7 +7,7 @@ import Main from './main/main'
 import Profile from './profile/profile'
 import Landing from './auth/landing'
 
-// TODO :  routing logic to determine which view to display.
+// routing logic to determine which view to display.
 class App extends React.Component {
 
     constructor(props) {
@@ -24,11 +24,14 @@ class App extends React.Component {
             this.setState({
                 route: window.location.hash.substr(1)
             })
-            console.log(this.state.route)
+            // console.log(this.state.route)
         })
     }
 
+    // TODO : Additionally we might have compound views, including a navigation section
     render() {
+        // As the hash portion of the URL changes, <App> will render
+        // a different <Child> by branching on this.state.route
         let Child
         switch (this.state.route) {
             case '/main': Child = Main; break;
@@ -37,7 +40,7 @@ class App extends React.Component {
         }
         return (
             <div>
-                <h1>App</h1>
+                <h1>Ricebook</h1>
                 <ul>
                     <li><a href="#/">Landing</a></li>
                     <li><a href="#/main">Main</a></li>
@@ -49,8 +52,5 @@ class App extends React.Component {
     }
 }
 
-
-
-// TODO : Additionally we might have compound views, including a navigation section
 
 export default App
