@@ -4,63 +4,34 @@
 
 import React from 'react'
 
-var ReactForms = require('react-forms')
-var Schema = ReactForms.schema.Schema
-var Property = ReactForms.schema.Property
-var Form = ReactForms.Form
+import ReactDOM from 'react-dom';
+import { Form } from 'formsy-react';
 
-var schema = (
-    <Schema>
-        <Property
-            name="description"
-            required
-            label="Message"
-            input={<textarea placeholder="Give us details here..." />}
-        />
-        <Property
-            name="email"
-            label="Email"
-            required
-            input={<input type="email" />}
-            validate={function(v) { return /.+\@.+\..+/.test(v) }}
-        />
-    </Schema>
-)
+import MyInput from './../input';
 
 const LoginForm = React.createClass({
-
-    render: function() {
-
-        // render Form as <div /> and transfer all props to it
-        var form = this.transferPropsTo(
-            <Form ref="form" component={React.DOM.div} />
-        )
-
-        // return <form /> component with rendered form and a submit button
-        return (
-            <form onSubmit={this.onSubmit} className="MyForm">
-                {form}
-                <button type="submit">Submit</button>
-            </form>
-        )
+    getInitialState() {
+        return { canSubmit: false };
     },
-
-    onSubmit: function(e) {
-        e.preventDefault()
-
-        // check if form is valid
-        var validation = this.refs.form.value().validation
-        if (ReactForms.validation.isFailure(validation)) {
-            console.log('invalid form')
-            return
-        }
-
-        alert('form submitted!')
+    submit(data) {
+        alert(JSON.stringify(data, null, 4));
+    },
+    enableButton() {
+        this.setState({ canSubmit: true });
+    },
+    disableButton() {
+        this.setState({ canSubmit: false });
+    },
+    render() {
+        return (
+            <Form onSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton} className="login">
+                <MyInput value="" name="email" title="Email" validations="isEmail" validationError="This is not a valid email" required />
+                <MyInput value="" name="password" title="Password" type="password" required />
+                <button type="submit" disabled={!this.state.canSubmit}>Submit</button>
+            </Form>
+        );
     }
-})
+});
 
-// React.renderComponent(
-//     <MyForm schema={schema} />,
-//     document.getElementById('example'))
 
 export default LoginForm
