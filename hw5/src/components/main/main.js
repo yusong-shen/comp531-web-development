@@ -6,6 +6,7 @@ import React from 'react'
 import NewPost from './newPost'
 import Headline from './headline'
 import AllFollowings from './allFollowings'
+import ArticlesView from './../article/articlesView'
 
 export const Main = () => (
     // This is the main view.
@@ -27,6 +28,7 @@ export const Main = () => (
         </div>
         <div>
             <h4>Articles</h4>
+            <ArticlesView/>
         </div>
         <div>
             <h4>Following Friends</h4>
