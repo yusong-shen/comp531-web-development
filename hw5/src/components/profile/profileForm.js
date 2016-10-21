@@ -8,7 +8,7 @@ import { Form } from 'formsy-react';
 
 import MyInput from './../input';
 
-const LoginForm = React.createClass({
+const ProfileForm = React.createClass({
     getInitialState() {
         return { canSubmit: false };
     },
@@ -33,4 +33,4 @@ const LoginForm = React.createClass({
 });
 
 
-export default LoginForm
+export default ProfileForm
