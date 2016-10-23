@@ -9,11 +9,6 @@ import { Form } from 'formsy-react';
 import MyInput from './../input';
 
 
-Formsy.addValidationRule('isZipcode', (values) => {
-    const re = /^\d{5}/
-    return (values['zipcode'].match(re) !== null)
-});
-
 Formsy.addValidationRule('isPasswordSame', (values) => {
     return values['password'] === values['passwordConfirmation'];
 });
@@ -41,7 +36,9 @@ const RegisterForm = React.createClass({
                 <MyInput value="" name="email" title="Email" validations="isEmail"
                          validationError={emailMsg} required />
                 <MyInput value="" name="zipcode" title="Zipcode" type="text"
-                         validations="isZipcode" validationError={zipcodeMsg} required />
+                         validations={{
+                        matchRegexp: /^\d{5}/
+                    }} validationError={zipcodeMsg} required />
                 <MyInput value="" name="password" title="Password" type="password" required />
                 <MyInput value="" name="passwordConfirmation" title="Password Confirmation" type="password"
                          validations="isPasswordSame" validationError={pwdMsg} required />
