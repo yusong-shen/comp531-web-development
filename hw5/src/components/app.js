@@ -7,6 +7,7 @@ import Main from './main/main'
 import Profile from './profile/profile'
 import Landing from './auth/landing'
 import BootstrapNavbar from './navBar/navbar'
+import Footer from './footer'
 
 // routing logic to determine which view to display.
 class App extends React.Component {
@@ -59,6 +60,7 @@ class App extends React.Component {
             <div>
                 <BootstrapNavbar navItems={navItems}/>
                 <Child/>
+                <Footer/>
             </div>
         )
     }

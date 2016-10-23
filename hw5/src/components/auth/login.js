@@ -13,6 +13,7 @@ const LoginForm = React.createClass({
         return { canSubmit: false };
     },
     submit(data) {
+
         alert(JSON.stringify(data, null, 4));
     },
     enableButton() {
