@@ -5,6 +5,9 @@ import React from 'react'
 import LoginForm from './login'
 import RegisterForm from './register'
 
+let navItems = []
+
+
 export const Landing = () => (
     // This is the Profile view.
     <div>

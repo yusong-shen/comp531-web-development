@@ -4,7 +4,7 @@
 import React from 'react'
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
-export const BootstrapNavbar = () => (
+export const BootstrapNavbar = ({navItems}) => (
     <Navbar inverse>
         <Navbar.Header>
             <Navbar.Brand>
@@ -14,9 +14,9 @@ export const BootstrapNavbar = () => (
         </Navbar.Header>
         <Navbar.Collapse>
             <Nav pullRight>
-                <NavItem eventKey={1} href="#/">Landing</NavItem>
-                <NavItem eventKey={2} href="#/main">Main</NavItem>
-                <NavItem eventKey={3} href="#/profile">Profile</NavItem>
+                {navItems.map((item) => {
+                    return <NavItem key={navItems.indexOf(item)} href={item.link}>{item.title}</NavItem>
+                })}
             </Nav>
         </Navbar.Collapse>
     </Navbar>

@@ -5,9 +5,9 @@ import React from 'react'
 import Avatar from './avatar'
 import ProfileForm from './profileForm'
 
+
 export const Profile = () => (
     // This is the Profile view.
-
     <div>
         <div className="row">
             <div className="col-sm-6">

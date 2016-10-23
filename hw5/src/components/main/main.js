@@ -8,6 +8,8 @@ import Headline from './headline'
 import AllFollowings from './allFollowings'
 import ArticlesView from './../article/articlesView'
 
+
+
 export const Main = () => (
     // This is the main view.
     // On this view we display the user's avatar, their headline,

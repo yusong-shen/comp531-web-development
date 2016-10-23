@@ -29,19 +29,35 @@ class App extends React.Component {
         })
     }
 
-    // TODO : Additionally we might have compound views, including a navigation section
+    // Additionally we might have compound views, including a navigation section
     render() {
         // As the hash portion of the URL changes, <App> will render
         // a different <Child> by branching on this.state.route
         let Child
+        let navItems = [
+            {link: '#/main', title: 'Main'},
+            {link: '#/profile', title: 'Profile'},
+        ]
         switch (this.state.route) {
-            case '/main': Child = Main; break;
-            case '/profile': Child = Profile; break;
+            case '/main':
+                Child = Main;
+                navItems = [
+                    {link: '#/', title: 'Logout'},
+                    {link: '#/profile', title: 'Profile'},
+                ]
+                break;
+            case '/profile':
+                Child = Profile;
+                navItems = [
+                    {link: '#/', title: 'Logout'},
+                    {link: '#/main', title: 'Main'},
+                ]
+                break;
             default: Child = Landing;
         }
         return (
             <div>
-                <BootstrapNavbar/>
+                <BootstrapNavbar navItems={navItems}/>
                 <Child/>
             </div>
         )
