@@ -8,6 +8,16 @@ import { Form } from 'formsy-react';
 
 import MyInput from './../input';
 
+
+Formsy.addValidationRule('isZipcode', (values) => {
+    const re = /^\d{5}/
+    return (values['zipcode'].match(re) !== null)
+});
+
+Formsy.addValidationRule('isPasswordSame', (values) => {
+    return values['password'] === values['passwordConfirmation'];
+});
+
 const RegisterForm = React.createClass({
     getInitialState() {
         return { canSubmit: false };
@@ -22,10 +32,19 @@ const RegisterForm = React.createClass({
         this.setState({ canSubmit: false });
     },
     render() {
+        const emailMsg = 'This is not a valid email'
+        const zipcodeMsg = 'Zipcode should be 5 digits'
+        const pwdMsg = 'Passwords should be the same'
         return (
             <Form onSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton} className="login">
-                <MyInput value="" name="email" title="Email" validations="isEmail" validationError="This is not a valid email" required />
+                <MyInput value="" name="username" title="Username" type="text" required />
+                <MyInput value="" name="email" title="Email" validations="isEmail"
+                         validationError={emailMsg} required />
+                <MyInput value="" name="zipcode" title="Zipcode" type="text"
+                         validations="isZipcode" validationError={zipcodeMsg} required />
                 <MyInput value="" name="password" title="Password" type="password" required />
+                <MyInput value="" name="passwordConfirmation" title="Password Confirmation" type="password"
+                         validations="isPasswordSame" validationError={pwdMsg} required />
                 <button type="submit" disabled={!this.state.canSubmit}>Submit</button>
             </Form>
         );

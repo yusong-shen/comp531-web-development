@@ -24,7 +24,7 @@ const LoginForm = React.createClass({
     render() {
         return (
             <Form onSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton} className="login">
-                <MyInput value="" name="email" title="Email" validations="isEmail" validationError="This is not a valid email" required />
+                <MyInput value="" name="username" title="Username" type="text" required />
                 <MyInput value="" name="password" title="Password" type="password" required />
                 <button type="submit" disabled={!this.state.canSubmit}>Submit</button>
             </Form>
