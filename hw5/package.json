@@ -22,6 +22,10 @@
     "e2e:xunit": "npm run e2e:base -- --reporter xunit > e2e/results.xml",
     "e2e:serve": "serve dist"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yusong-shen/comp531-web-development"
+  },
   "author": "Yusong Shen",
   "engines": {
     "node": ">=6",
@@ -74,6 +78,7 @@
     "moment": "^2.13.0",
     "react": "^15.0.2",
     "react-addons-test-utils": "^15.1.0",
+    "react-bootstrap": "^0.30.5",
     "react-dom": "^15.0.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.6.1",

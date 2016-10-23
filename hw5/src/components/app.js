@@ -6,6 +6,7 @@ import React from 'react'
 import Main from './main/main'
 import Profile from './profile/profile'
 import Landing from './auth/landing'
+import BootstrapNavbar from './navBar/navbar'
 
 // routing logic to determine which view to display.
 class App extends React.Component {
@@ -40,12 +41,7 @@ class App extends React.Component {
         }
         return (
             <div>
-                <h1>Ricebook</h1>
-                <ul>
-                    <li><a href="#/">Landing</a></li>
-                    <li><a href="#/main">Main</a></li>
-                    <li><a href="#/profile">Profile</a></li>
-                </ul>
+                <BootstrapNavbar/>
                 <Child/>
             </div>
         )
