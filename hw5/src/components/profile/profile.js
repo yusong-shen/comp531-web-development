@@ -4,7 +4,7 @@
 import React from 'react'
 import Avatar from './avatar'
 import ProfileForm from './profileForm'
-
+import  Headline from './../main/headline'
 
 export const Profile = () => (
     // This is the Profile view.
@@ -14,6 +14,8 @@ export const Profile = () => (
         </div>
         <div className="row">
             <div className="col-sm-6">
+                <h4>Profile and Headline</h4>
+                <Headline/>
                 <Avatar/>
             </div>
             <div className="col-sm-6 form">
