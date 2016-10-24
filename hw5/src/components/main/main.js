@@ -17,25 +17,35 @@ export const Main = () => (
     // and their list of followers.
 
     <div>
-        <div>
-            <img src='/img/rice-logo.jpg' width={300} height={100}/>
+
+        <div className="row">
+            <div className="col-sm-2">
+                <img src='/img/rice-logo.jpg' width={150} height={50}/>
+            </div>
+            <div className="col-sm-6">
+                <h4>New Post</h4>
+                <NewPost/>
+            </div>
+            <div className="col-sm-4">
+                <h4>Profile and Headline</h4>
+                <Headline/>
+            </div>
+
         </div>
-        <div>
-            <h4>New Post</h4>
-            <NewPost/>
+
+        <div className="row">
+            <div className="col-sm-2">
+            </div>
+            <div className="col-sm-6">
+                <h4>Articles</h4>
+                <ArticlesView/>
+            </div>
+            <div className="col-sm-4">
+                <h4>Following Friends</h4>
+                <AllFollowings/>
+            </div>
         </div>
-        <div>
-            <h4>Profile and Headline</h4>
-            <Headline/>
-        </div>
-        <div>
-            <h4>Articles</h4>
-            <ArticlesView/>
-        </div>
-        <div>
-            <h4>Following Friends</h4>
-            <AllFollowings/>
-        </div>
+
     </div>
 )
 

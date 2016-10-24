@@ -3,15 +3,19 @@
  */
 
 import React from 'react'
+import {Button} from 'react-bootstrap'
 
 const NewPost = () => (
     <div>
         <div>
-            Make a new post, post
+            <input type="file"/>
         </div>
+        <Button bsStyle="success">Cancel</Button>
         <div>
-            Upload a new image, cancel
+            <textarea rows="5" id="post" placeholder="Edit your post here" />
         </div>
+        <Button bsStyle="primary">Post</Button>
+
     </div>
 
 )

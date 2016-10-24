@@ -1,13 +1,12 @@
 import React from 'react'
 import Article from './article'
+import SearchBar from './searchBar'
 
 const ArticlesView = React.createClass({
     render() {
         return (
             <div>
-                <div>
-                    Search bar to search your feed
-                </div>
+                <SearchBar/>
                 <div>
                     <Article/>
                 </div>

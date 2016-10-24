@@ -1,18 +1,23 @@
 import React from 'react'
 import Comment from './comment'
+import {Button} from 'react-bootstrap'
 
 const Article = React.createClass({
     render() {
         return (
             <div>
                 <div>
-                    Profile, Username, posted on timestamp
+                    <h4> Profile, Username, posted on timestamp</h4>
                 </div>
                 <div>
-                    Article content
+                    <p>
+                        Article content
+                    </p>
                 </div>
                 <div>
-                    Show comments button, Add Comment button
+                    <Button bsStyle="primary">Show Comments</Button>
+                    <Button bsStyle="success">Add Comment</Button>
+
                 </div>
                 <div>
                     <Comment/>

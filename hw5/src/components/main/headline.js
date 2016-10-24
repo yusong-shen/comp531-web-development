@@ -4,18 +4,20 @@
 
 
 import React from 'react'
+import {Button} from 'react-bootstrap'
 
 const Headline = () => (
     <div>
         <div>
-            Profile, Username
+            <h4>User name</h4>
+            <img src="https://placekitten.com/200/150?image=8" alt="image missing" />
         </div>
         <div>
             Old headline
         </div>
-        <div>
-            input headline, update
-        </div>
+        <input type="text" placeholder="Input new headline..." />
+        <Button bsStyle="primary">Update</Button>
+
     </div>
 
 )
