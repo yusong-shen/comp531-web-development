@@ -16,6 +16,25 @@ Remember that when tackling any large task our best approach is to divide and co
 - Writing unit tests of the desired functionality and mocking the dummy server endpoints
 - Implementing logic for our site and connecting to the dummy server
 
+## Data API - the COMP 431/531 Dummy Server
+https://www.clear.rice.edu/comp431/data/api.html
+
+The "dummy" server is a "persistence-less" back-end server for your use while developing your front-end web application. Later you will develop your own back-end server and connect your front-end web app to it.
+
+The server uses simple password authentication and registers a cookie in the browser after a successful login. Cookie management is handled entirely by the server and browser, no front-end logic is required.
+
+There are four access mechanisms to use the dummy server : 
+
+- Use a command line utility, such as curl
+- Use a browser plugin like Advanced REST Client or Postman
+- Use the swagger user interface
+- Use your server connected front-end web app
+
+Dummy Server Credentialshide
+login	password
+ys43	quiet-students-degree
+ys43test	judge-sentence-return
+
 ## Project Structure
 File structure might look like :
 
