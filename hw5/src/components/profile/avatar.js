@@ -8,8 +8,9 @@ export const Avatar = () => (
     // This is the Profile view.
 
     <div>
-        <div>
-            Avatar Picture
+        <div className="avatar">
+            <h4>Avatar</h4>
+            <img src="https://placekitten.com/200/150?image=10" alt="image missing" />
         </div>
     </div>
 )

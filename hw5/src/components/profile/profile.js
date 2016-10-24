@@ -9,22 +9,19 @@ import ProfileForm from './profileForm'
 export const Profile = () => (
     // This is the Profile view.
     <div>
+        <div>
+            <img src='/img/rice-logo.jpg' width={300} height={100}/>
+        </div>
         <div className="row">
             <div className="col-sm-6">
-                <h3>Profile</h3>
-                <h4>Avatar</h4>
                 <Avatar/>
             </div>
-        </div>
-        <div>
-            <h4>Logo Picture</h4>
-        </div>
-        <div className="row">
-            <div className="col-sm-6">
+            <div className="col-sm-6 form">
                 <h4>Profile Form</h4>
                 <ProfileForm/>
             </div>
         </div>
+
     </div>
 )
 

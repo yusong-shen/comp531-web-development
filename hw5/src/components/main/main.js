@@ -18,7 +18,7 @@ export const Main = () => (
 
     <div>
         <div>
-            <h4>Logo Picture</h4>
+            <img src='/img/rice-logo.jpg' width={300} height={100}/>
         </div>
         <div>
             <h4>New Post</h4>

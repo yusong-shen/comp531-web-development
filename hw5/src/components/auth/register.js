@@ -42,7 +42,7 @@ const RegisterForm = React.createClass({
                 <MyInput value="" name="password" title="Password" type="password" required />
                 <MyInput value="" name="passwordConfirmation" title="Password Confirmation" type="password"
                          validations="isPasswordSame" validationError={pwdMsg} required />
-                <button type="submit" disabled={!this.state.canSubmit}>Submit</button>
+                <button type="submit" disabled={!this.state.canSubmit}>Register</button>
             </Form>
         );
     }
