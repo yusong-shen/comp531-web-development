@@ -81,7 +81,7 @@
     "react-bootstrap": "^0.30.5",
     "react-dom": "^15.0.2",
     "react-redux": "^4.4.5",
-    "react-router": "^2.6.1",
+    "react-router": "^2.8.1",
     "redux": "^3.5.2",
     "redux-form": "^6.1.1",
     "redux-logger": "^2.6.1",

@@ -4,6 +4,7 @@
 */
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import Main from './main/main'
 import Profile from './profile/profile'

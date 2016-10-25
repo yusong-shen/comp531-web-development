@@ -43,7 +43,6 @@ export const BootstrapNavbar = ({curPage, navigate}) => {
                     {navItems.map((item) => {
                         return (<NavItem key={navItems.indexOf(item)}
                             onClick={() => {
-                                console.log(item.nextPage)
                                 return navigate(item.nextPage)
                             }}>
                             {item.title}</NavItem>)
