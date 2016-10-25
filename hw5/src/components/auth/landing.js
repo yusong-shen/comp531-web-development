@@ -11,20 +11,15 @@ let navItems = []
 export const Landing = () => (
     // This is the Profile view.
     <div>
-        <div>
+        <div className="text-center">
             <img src='/img/rice-logo.jpg' width={300} height={100}/>
         </div>
         <div className="row">
-            <div className="col-sm-6 form">
-                <h4>Login Form</h4>
-                <LoginForm/>
-            </div>
-            <div className="col-sm-6 form">
-                <h4>Register Form</h4>
-                <RegisterForm/>
-            </div>
+            <LoginForm/>
         </div>
-
+        <div className="row">
+            <RegisterForm/>
+        </div>
     </div>
 
 )

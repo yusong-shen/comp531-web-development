@@ -3,50 +3,77 @@
  */
 
 import React from 'react'
+import { Field, reduxForm } from 'redux-form';
 
 import { Form } from 'formsy-react';
 
-import MyInput from './../input';
+const validate = values => {
+    const errors = {}
 
-
-Formsy.addValidationRule('isPasswordSame', (values) => {
-    return values['password'] === values['passwordConfirmation'];
-});
-
-const RegisterForm = React.createClass({
-    getInitialState() {
-        return { canSubmit: false };
-    },
-    submit(data) {
-        alert(JSON.stringify(data, null, 4));
-    },
-    enableButton() {
-        this.setState({ canSubmit: true });
-    },
-    disableButton() {
-        this.setState({ canSubmit: false });
-    },
-    render() {
-        const emailMsg = 'This is not a valid email'
-        const zipcodeMsg = 'Zipcode should be 5 digits'
-        const pwdMsg = 'Passwords should be the same'
-        return (
-            <Form onSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton} className="login">
-                <MyInput value="" name="username" title="Username" type="text" required />
-                <MyInput value="" name="email" title="Email" validations="isEmail"
-                         validationError={emailMsg} required />
-                <MyInput value="" name="zipcode" title="Zipcode" type="text"
-                         validations={{
-                        matchRegexp: /^\d{5}/
-                    }} validationError={zipcodeMsg} required />
-                <MyInput value="" name="password" title="Password" type="password" required />
-                <MyInput value="" name="passwordConfirmation" title="Password Confirmation" type="password"
-                         validations="isPasswordSame" validationError={pwdMsg} required />
-                <button type="submit" disabled={!this.state.canSubmit}>Register</button>
-            </Form>
-        );
+    if (!values.email) {
+        errors.email = "Please enter an email."
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Invalid email address'
     }
-});
 
+    if (!values.zipcode) {
+        errors.zipcode = "Please enter zipcode"
+    } else if (!/^\d{5}/i.test(values.email)) {
+        errors.email = 'Zipcode should be 5 digits'
+    }
 
-export default RegisterForm
+    if (!values.password) {
+        errors.password = "Please enter a password."
+    }
+
+    if (!values.passwordConfirmation) {
+        errors.passwordConfirmation = "Please enter a password confirmation."
+    }
+
+    if (values.password !== values.passwordConfirmation ) {
+        errors.password = 'Passwords do not match'
+    }
+
+    return errors
+}
+
+class RegisterForm extends React.Component {
+    handleFormSubmit = (values) => {
+        alert(JSON.stringify(values, null, 4));
+    };
+
+    renderField = ({ input, label, placeholder, type, meta: { touched, error } }) => (
+        <fieldset className="form-group">
+            <label>{label}</label>
+            <div>
+                <input {...input} placeholder={placeholder} className="form-control" type={type} />
+                {touched && error && <span>{error}</span>}
+            </div>
+        </fieldset>
+    );
+
+    render() {
+        return (
+            <div className="container">
+                <div className="col-md-6 col-md-offset-3">
+                    <h2 className="text-center">Register</h2>
+                    <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
+                        <Field name="email" type="text" component={this.renderField} label="Email" placeholder="a@b.com"/>
+                        <Field name="zipcode" type="text" component={this.renderField} label="Zipcode" placeholder="77005"/>
+                        <Field name="password" type="password" component={this.renderField} label="Password" />
+                        <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
+
+                        <button action="submit" className="btn btn-primary">Register</button>
+                    </form>
+                </div>
+            </div>
+        )
+    }
+}
+
+// export default RegisterForm
+export default reduxForm({
+    form: 'register',
+    validate
+})(RegisterForm)
+

@@ -3,37 +3,59 @@
  */
 
 import React from 'react'
+import { Field, reduxForm } from 'redux-form';
 
-import { Form } from 'formsy-react';
+const validate = values => {
+    const errors = {}
 
-import MyInput from './../input';
-
-const LoginForm = React.createClass({
-    getInitialState() {
-        return { canSubmit: false };
-    },
-    submit(data) {
-
-        alert(JSON.stringify(data, null, 4));
-    },
-    enableButton() {
-        this.setState({ canSubmit: true });
-    },
-    disableButton() {
-        this.setState({ canSubmit: false });
-    },
-    render() {
-        return (
-            <Form onSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton} className="login">
-                <MyInput value="" name="username" title="Username" type="text" required />
-                <MyInput value="" name="password" title="Password" type="password" required />
-                <button type="submit" disabled={!this.state.canSubmit}>Log In</button>
-            </Form>
-        );
+    if (!values.email) {
+        errors.email = "Please enter an email."
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Invalid email address'
     }
-});
 
+    if (!values.password) {
+        errors.password = "Please enter a password."
+    }
 
+    return errors
+}
 
+class LoginForm extends React.Component {
 
-export default LoginForm
+    handleFormSubmit = (values) => {
+        alert(JSON.stringify(values, null, 4));
+    }
+
+    renderField = ({ input, label, placeholder, type, meta: { touched, error } }) => (
+        <fieldset className="form-group">
+            <label>{label}</label>
+            <div>
+                <input {...input} placeholder={placeholder} className="form-control" type={type} />
+                {touched && error && <span>{error}</span>}
+            </div>
+        </fieldset>
+    )
+
+    render() {
+        return(
+            <div className="container">
+                <div className="col-md-6 col-md-offset-3">
+                    <h2 className="text-center">Log In</h2>
+                    <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
+                        <Field name="email" type="text" component={this.renderField} label="Email" placeholder="a@b.com"/>
+                        <Field name="password" type="password" component={this.renderField} label="Password" />
+
+                        <button action="submit" className="btn btn-primary">Log In</button>
+                    </form>
+                </div>
+            </div>
+        )
+    }
+}
+
+// export default LoginForm
+export default reduxForm({
+    form: 'login',
+    validate
+})(LoginForm);
