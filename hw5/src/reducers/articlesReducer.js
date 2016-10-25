@@ -193,11 +193,11 @@ const initState = {
 
 const articlesReducer = (state = initState, action) => {
     switch(action.type) {
-        case 'navigate':
-            return {
-                ...state,
-                nextPage: action.text
-            }
+        // case 'navigate':
+        //     return {
+        //         ...state,
+        //         nextPage: action.text
+        //     }
         default:
             return state
     }

@@ -7,7 +7,7 @@ import React, { Component, PropTypes } from 'react'
 const Comment = ({commentId, author, date, text}) => (
         <div>
             <div>
-                <h4>{`${author} commented at ${date}`}</h4>
+                <h5>{`${author} commented at ${date}`}</h5>
             </div>
             <p>
                 {text}
@@ -20,12 +20,6 @@ Comment.protoTypes = {
     author: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
-    comments: PropTypes.arrayOf(PropTypes.shape({
-        commentId: PropTypes.number.isRequired,
-        author: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-        text: PropTypes.string.isRequired,
-    }).isRequired).isRequired,
 }
 
 export default Comment

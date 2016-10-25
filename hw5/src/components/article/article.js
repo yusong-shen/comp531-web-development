@@ -34,6 +34,12 @@ Article.protoTypes = {
     author: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
+    comments: PropTypes.arrayOf(PropTypes.shape({
+        commentId: PropTypes.number.isRequired,
+        author: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+    }).isRequired).isRequired,
 }
 
 export default Article

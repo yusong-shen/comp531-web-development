@@ -3,22 +3,27 @@
  */
 
 
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
 import {Button} from 'react-bootstrap'
 
-const Following = () => (
+const Following = ({username, headline}) => (
     <div>
         <div>
-            <h4>Friend name</h4>
+            <h4>{username}</h4>
             <img src="https://placekitten.com/200/150?image=7" alt="image missing" />
         </div>
         <div>
-            Old headline
+            {headline}
         </div>
         <Button bsStyle="primary">Unfollow</Button>
 
     </div>
 
 )
+
+Following.protoTypes = {
+    username: PropTypes.string.isRequired,
+    headline: PropTypes.string.isRequired,
+}
 
 export default Following
