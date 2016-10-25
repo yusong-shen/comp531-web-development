@@ -5,7 +5,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form';
-import * as Actions from './../../action'
+import * as Actions from '../../actions/action'
 
 const validate = values => {
     const errors = {}
@@ -24,7 +24,7 @@ const validate = values => {
 class LoginForm extends React.Component {
 
     handleFormSubmit = (values) => {
-        alert(JSON.stringify(values, null, 4));
+        // alert(JSON.stringify(values, null, 4));
         this.props.navigate('MainPage')
     }
 

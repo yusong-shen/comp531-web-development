@@ -4,7 +4,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import {navigate} from './../../action'
+import {navigate} from '../../actions/action'
 
 export const BootstrapNavbar = ({curPage, navigate}) => {
     // decide the Navigation bar item according to nextPage state
@@ -24,11 +24,7 @@ export const BootstrapNavbar = ({curPage, navigate}) => {
             ]
             break
         default:
-            navItems = [
-                {nextPage: 'LandingPage', title: 'Landing'},
-                {nextPage: 'MainPage', title: 'Main'},
-                {nextPage: 'ProfilePage', title: 'Profile'},
-            ]
+            break
     }
     return (
         <Navbar inverse>

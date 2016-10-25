@@ -2,7 +2,9 @@
  * Created by yusong on 10/20/16.
  */
 import React from 'react'
+import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
+import * as Actions from '../../actions/profileActions'
 
 const validate = values => {
     const errors = {}
@@ -26,7 +28,9 @@ const validate = values => {
 class ProfileForm extends React.Component {
     handleFormSubmit = (values) => {
         if (JSON.stringify(values, null, 4) !== '{}') {
-            alert(JSON.stringify(values, null, 4))
+            // alert(JSON.stringify(values, null, 4))
+            this.props.updateEmail(values.email)
+            this.props.updateZipcode(values.zipcode)
         }
     }
 
@@ -59,8 +63,11 @@ class ProfileForm extends React.Component {
     }
 }
 
-// export default RegisterForm
-export default reduxForm({
+// export default ProfileForm
+export default connect(
+    null,
+    Actions
+)(reduxForm({
     form: 'profile',
     validate
-})(ProfileForm)
+})(ProfileForm))

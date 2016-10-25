@@ -6,9 +6,6 @@ const navigateReducer = (state =  {
 }, action) => {
     switch(action.type) {
         case 'navigate':
-            // return Object.assign({}, state, {
-            //     nextPage: action.text
-            // })
             return {
                 ...state,
                 nextPage: action.text
@@ -18,8 +15,39 @@ const navigateReducer = (state =  {
     }
 }
 
+const profileReducer = (state = {
+    username: 'foobar',
+    email: 'a@b.com',
+    zipcode: '77005'
+}, action) => {
+    switch(action.type) {
+        case 'updateEmail':
+            if (action.email) {
+                return {
+                    ...state,
+                    email: action.email
+                }
+            } else {
+                return state
+            }
+        case 'updateZipcode':
+            if (action.zipcode){
+                return {
+                    ...state,
+                    zipcode: action.zipcode
+                }
+            } else {
+                return state
+            }
+        default:
+            return state
+    }
+}
+
+
 const rootReducer = combineReducers({
     form: FormReducer,
+    profile: profileReducer,
     navigate: navigateReducer,
 });
 
