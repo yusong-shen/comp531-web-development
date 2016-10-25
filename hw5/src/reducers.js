@@ -1,12 +1,11 @@
 const Reducer = (state =  {
-
+    nextPage: 'LandingPage'
 }, action) => {
     switch(action.type) {
-        // case 'ADD_TODO':
-        //     return { ...state, nextId: state.nextId + 1,
-        //         todoItems: [ ...state.todoItems,
-        //             {id:state.nextId, text: action.text, done: false}]
-        //     }
+        case 'navigate':
+            return Object.assign({}, state, {
+                nextPage: action.text
+            })
         default:
             return state
     }
