@@ -12,10 +12,10 @@ import createLogger from 'redux-logger'
 import { createStore, applyMiddleware } from 'redux'
 
 import App from './components/app'
-import Reducer from './reducers'
+import rootReducer from './reducers/reducers'
 
 const logger = createLogger()
-const store = createStore(Reducer, applyMiddleware(logger))
+const store = createStore(rootReducer, applyMiddleware(logger))
 
 render(
 	<Provider store={store}>

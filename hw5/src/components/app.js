@@ -40,7 +40,7 @@ App.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        nextPage: state.nextPage
+        nextPage: state.navigate.nextPage
     }
 }
 

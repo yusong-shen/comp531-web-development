@@ -66,7 +66,7 @@ BootstrapNavbar.protoTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        curPage: state.nextPage,
+        curPage: state.navigate.nextPage,
     }
 }
 
