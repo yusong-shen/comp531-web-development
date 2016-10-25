@@ -69,15 +69,28 @@ import Footer from './footer'
 // }
 
 
-
-export const App = ({nextPage, navItems}) => {
+export const App = ({nextPage}) => {
+    // decide the Navigation bar and Child View
+    // according to nextPage state
     let Child = Landing
+    let navItems = [
+        {nextPage: 'MainPage', title: 'Main'},
+        {nextPage: 'ProfilePage', title: 'Profile'},
+    ]
     switch (nextPage) {
         case 'MainPage':
             Child = Main
+            navItems = [
+                {nextPage: 'LandingPage', title: 'Logout'},
+                {nextPage: 'ProfilePage', title: 'Profile'},
+            ]
             break
         case 'ProfilePage':
             Child = Profile
+            navItems = [
+                {nextPage: 'LandingPage', title: 'Logout'},
+                {nextPage: 'MainPage', title: 'Main'},
+            ]
             break
         default:
             Child = Landing
@@ -85,7 +98,7 @@ export const App = ({nextPage, navItems}) => {
     return (
         <div>
 
-            {/*<BootstrapNavbar navItems={navItems}/>*/}
+            <BootstrapNavbar navItems={navItems}/>
             <Child/>
             <Footer/>
         </div>
@@ -96,15 +109,22 @@ App.propTypes = {
     nextPage: PropTypes.string.isRequired
 }
 
-export default connect(
-    (state) => {
-        return {
-            nextPage: state.nextPage
-        }
-    },
-    (dispatch) => {
-        return {
-            // addTodo: (text) => dispatch({ type: 'ADD_TODO', text })
-        }
+const mapStateToProps = (state) => {
+    return {
+        nextPage: state.nextPage
     }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // onTodoClick: (id) => {
+        //     dispatch(toggleTodo(id))
+        // }
+    }
+}
+
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
 )(App)
