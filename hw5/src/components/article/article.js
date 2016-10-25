@@ -1,31 +1,32 @@
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
 import Comment from './comment'
 import {Button} from 'react-bootstrap'
 
-const Article = React.createClass({
-    render() {
-        return (
-            <div>
-                <div>
-                    <h4> Profile, Username, posted on timestamp</h4>
-                </div>
-                <div>
-                    <p>
-                        Article content
-                    </p>
-                </div>
-                <div>
-                    <Button bsStyle="primary">Show Comments</Button>
-                    <Button bsStyle="success">Add Comment</Button>
+const Article = ({_id, author, date, img, text, comments}) => (
+    <div>
+        <div>
+            <h4>{`Username : ${author} commented at ${date}`}</h4>
+            <img src={img} alt="image missing" />
+        </div>
+        <p>
+            {text}
+        </p>
+        <div>
+            <Button bsStyle="primary">Show Comments</Button>
+            <Button bsStyle="success">Add Comment</Button>
+        </div>
+        <div>
+            <Comment/>
+        </div>
+    </div>
+)
 
-                </div>
-                <div>
-                    <Comment/>
-                </div>
-            </div>
-        )
-    }
-})
 
+Article.protoTypes = {
+    _id: PropTypes.number.isRequired,
+    author: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+}
 
 export default Article
