@@ -10,7 +10,30 @@ const initState = {
             "date":"2015-07-05T09:26:39.741Z",
             "img":null,
             "comments":[
-
+                {
+                    "commentId":8813337,
+                    "author":"dw20test",
+                    "date":"2015-10-27T12:48:13.453Z",
+                    "text":"PQRS TUV WXYZ !\"§ $%& /() =?* "
+                },
+                {
+                    "commentId":8769281,
+                    "author":"ral8test",
+                    "date":"2015-10-27T06:06:41.540Z",
+                    "text":"my trees, and but a few stray gleams steal into the inner sanctuary, I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms of the insects and flies, then I feel the presence of the Almighty, who formed us in his own image, and the breath of "
+                },
+                {
+                    "commentId":7999300,
+                    "author":"jx17",
+                    "date":"2015-10-22T13:35:52.702Z",
+                    "text":"it might be the mirror of my soul, as my soul is the mirror of the infinite God! O my friend -- but it is too much for my strength -- I sink under the "
+                },
+                {
+                    "commentId":5448130,
+                    "author":"by8",
+                    "date":"2015-10-07T18:44:27.506Z",
+                    "text":"harum quidem rerum "
+                }
             ],
             "author":"ral8"
         },
@@ -20,7 +43,18 @@ const initState = {
             "date":"2015-06-01T19:22:37.347Z",
             "img":null,
             "comments":[
-
+                {
+                    "commentId":7564679,
+                    "author":"dy13",
+                    "date":"2015-09-27T23:26:53.841Z",
+                    "text":"the inner sanctuary, I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown plants are noticed by me: when "
+                },
+                {
+                    "commentId":7694737,
+                    "author":"kl50",
+                    "date":"2015-09-19T17:10:57.222Z",
+                    "text":"from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with "
+                },
             ],
             "author":"jmg3"
         },

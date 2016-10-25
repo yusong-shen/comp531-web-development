@@ -4,22 +4,28 @@
 
 import React, { Component, PropTypes } from 'react'
 
-const Comment = ({username, timestamp, content}) => (
+const Comment = ({commentId, author, date, text}) => (
         <div>
             <div>
-                {`Username : ${username} commented at ${timestamp}`}
+                <h4>{`${author} commented at ${date}`}</h4>
             </div>
             <p>
-                {content}
+                {text}
             </p>
         </div>
 )
 
-
 Comment.protoTypes = {
-    username: PropTypes.string.isRequired,
-    timestamp: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
+    commentId: PropTypes.number.isRequired,
+    author: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    comments: PropTypes.arrayOf(PropTypes.shape({
+        commentId: PropTypes.number.isRequired,
+        author: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+    }).isRequired).isRequired,
 }
 
 export default Comment

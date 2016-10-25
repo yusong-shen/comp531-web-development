@@ -5,7 +5,7 @@ import {Button} from 'react-bootstrap'
 const Article = ({_id, author, date, img, text, comments}) => (
     <div>
         <div>
-            <h4>{`Username : ${author} commented at ${date}`}</h4>
+            <h4>{`${author} Post at ${date}`}</h4>
             <img src={img} alt="image missing" />
         </div>
         <p>
@@ -16,7 +16,14 @@ const Article = ({_id, author, date, img, text, comments}) => (
             <Button bsStyle="success">Add Comment</Button>
         </div>
         <div>
-            <Comment/>
+            <ul>
+                {comments.map(c =>
+                    <Comment
+                        key={c.commentId}
+                        {...c}
+                    />
+                )}
+            </ul>
         </div>
     </div>
 )
