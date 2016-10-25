@@ -1,5 +1,9 @@
 const Reducer = (state =  {
-    nextPage: 'LandingPage'
+    nextPage: 'LandingPage',
+    navItems: [
+        {link: '#/main', title: 'Main'},
+        {link: '#/profile', title: 'Profile'},
+    ]
 }, action) => {
     switch(action.type) {
         case 'navigate':
