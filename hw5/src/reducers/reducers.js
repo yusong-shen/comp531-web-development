@@ -22,6 +22,15 @@ const profileReducer = (state = {
     headline: 'foobar old headline'
 }, action) => {
     switch(action.type) {
+        case 'updateUsername':
+            if (action.username) {
+                return {
+                    ...state,
+                    username: action.username
+                }
+            } else {
+                return state
+            }
         case 'updateEmail':
             if (action.email) {
                 return {
@@ -36,6 +45,15 @@ const profileReducer = (state = {
                 return {
                     ...state,
                     zipcode: action.zipcode
+                }
+            } else {
+                return state
+            }
+        case 'updateHeadline':
+            if (action.headline) {
+                return {
+                    ...state,
+                    headline: action.headline
                 }
             } else {
                 return state

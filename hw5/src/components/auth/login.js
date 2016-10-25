@@ -6,6 +6,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form';
 import * as Actions from '../../actions/action'
+import * as ProfileActions from '../../actions/profileActions'
 
 const validate = values => {
     const errors = {}
@@ -26,6 +27,7 @@ class LoginForm extends React.Component {
     handleFormSubmit = (values) => {
         // alert(JSON.stringify(values, null, 4));
         this.props.navigate('MainPage')
+        this.props.updateUsername(values.username)
     }
 
     renderField = ({ input, label, placeholder, type, meta: { touched, error } }) => (
@@ -58,7 +60,7 @@ class LoginForm extends React.Component {
 // export default LoginForm
 export default connect(
     null,
-    Actions
+    {...Actions, ...ProfileActions}
 )(reduxForm({
     form: 'login',
     validate
