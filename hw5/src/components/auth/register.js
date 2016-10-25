@@ -5,10 +5,12 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form';
 
-import { Form } from 'formsy-react';
-
 const validate = values => {
     const errors = {}
+
+    if (!values.username) {
+        errors.username = "Please enter a username."
+    }
 
     if (!values.email) {
         errors.email = "Please enter an email."
@@ -18,8 +20,8 @@ const validate = values => {
 
     if (!values.zipcode) {
         errors.zipcode = "Please enter zipcode"
-    } else if (!/^\d{5}/i.test(values.email)) {
-        errors.email = 'Zipcode should be 5 digits'
+    } else if (!/^\d{5}/i.test(values.zipcode)) {
+        errors.zipcode = 'Zipcode should be 5 digits'
     }
 
     if (!values.password) {
@@ -58,6 +60,7 @@ class RegisterForm extends React.Component {
                 <div className="col-md-6 col-md-offset-3">
                     <h2 className="text-center">Register</h2>
                     <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
+                        <Field name="username" type="text" component={this.renderField} label="Username"/>
                         <Field name="email" type="text" component={this.renderField} label="Email" placeholder="a@b.com"/>
                         <Field name="zipcode" type="text" component={this.renderField} label="Zipcode" placeholder="77005"/>
                         <Field name="password" type="password" component={this.renderField} label="Password" />

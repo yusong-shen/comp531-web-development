@@ -9,21 +9,22 @@ import  Headline from './../main/headline'
 export const Profile = () => (
     // This is the Profile view.
     <div>
-        <div>
+        <div className="text-center">
             <img src='/img/rice-logo.jpg' width={300} height={100}/>
         </div>
         <div className="row">
-            <div className="col-sm-6">
+            <div className="container text-center">
                 <h4>Profile and Headline</h4>
                 <Headline/>
                 <Avatar/>
             </div>
-            <div className="col-sm-6 form">
+        </div>
+        <div className="row">
+            <div className="container text-center">
                 <h4>Profile Form</h4>
                 <ProfileForm/>
             </div>
         </div>
-
     </div>
 )
 
