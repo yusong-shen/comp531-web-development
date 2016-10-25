@@ -40,17 +40,17 @@ const validate = values => {
 class RegisterForm extends React.Component {
     handleFormSubmit = (values) => {
         alert(JSON.stringify(values, null, 4));
-    };
+    }
 
     renderField = ({ input, label, placeholder, type, meta: { touched, error } }) => (
-        <fieldset className="form-group">
-            <label>{label}</label>
+        <fieldset className={`form-group ${touched && error ? 'has-error' : ''}`}>
+            <label className="control-label">{label}</label>
             <div>
                 <input {...input} placeholder={placeholder} className="form-control" type={type} />
-                {touched && error && <span>{error}</span>}
+                {touched && error && <div className="help-block">{error}</div>}
             </div>
         </fieldset>
-    );
+    )
 
     render() {
         return (
