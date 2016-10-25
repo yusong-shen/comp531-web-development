@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import {updateHeadline} from '../../actions/profileActions'
 import HeadlineForm from './headlineForm'
 
-const Headline = ({username, headline, newHeadline, updateHeadline}) => (
+const Headline = ({username, headline, updateHeadline}) => (
     <div>
         <div>
             <h4>{`Username : ${username}`}</h4>
@@ -17,10 +17,6 @@ const Headline = ({username, headline, newHeadline, updateHeadline}) => (
         <div>
             {`Headline : ${headline}`}
         </div>
-        {/*<input type="text" placeholder="Input new headline..." />*/}
-        {/*<Button bsStyle="primary" onClick={*/}
-            {/*() => { return updateHeadline('update')}*/}
-        {/*}>Update</Button>*/}
         <HeadlineForm/>
 
     </div>
@@ -30,7 +26,6 @@ const Headline = ({username, headline, newHeadline, updateHeadline}) => (
 Headline.protoTypes = {
     username: PropTypes.string.isRequired,
     headline: PropTypes.string.isRequired,
-    newHeadline: PropTypes.string.isRequired,
     updateHeadline: PropTypes.func.isRequired,
 }
 
