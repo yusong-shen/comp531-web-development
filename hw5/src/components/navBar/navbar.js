@@ -31,20 +31,6 @@ export const BootstrapNavbar = ({navItems, navigate}) => {
     )
 }
 
-// ToDoItem.propTypes = {
-//     id: PropTypes.number.isRequired,
-//     text: PropTypes.string.isRequired,
-//     done: PropTypes.bool.isRequired,
-//     toggle: PropTypes.func.isRequired,
-//     remove: PropTypes.func.isRequired
-// }
-//
-// export default connect(null, (dispatch, ownProps) => {
-//     return {
-//         remove: () => dispatch({ type: 'REMOVE_TODO', id: ownProps.id }),
-//         toggle: () => dispatch({ type: 'TOGGLE_TODO', id: ownProps.id })
-//     }
-// })(ToDoItem)
 
 BootstrapNavbar.protoTypes = {
     navItems: PropTypes.arrayOf(PropTypes.shape({

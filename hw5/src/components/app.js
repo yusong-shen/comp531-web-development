@@ -10,7 +10,7 @@ import Profile from './profile/profile'
 import Landing from './auth/landing'
 import BootstrapNavbar from './navBar/navbar'
 import Footer from './footer'
-import setNavItems from './../action'
+import {setNavItems} from './../action'
 
 // // routing logic to determine which view to display.
 // class App extends React.Component {
@@ -75,6 +75,7 @@ export const App = ({nextPage, setNavItems}) => {
     // according to nextPage state
     let Child = Landing
     let navItems = [
+        {nextPage: 'LandingPage', title: 'Landing'},
         {nextPage: 'MainPage', title: 'Main'},
         {nextPage: 'ProfilePage', title: 'Profile'},
     ]
