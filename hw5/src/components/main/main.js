@@ -18,31 +18,29 @@ export const Main = () => (
 
     <div>
 
-        <div className="row">
-            <div className="col-sm-2">
-                <img src='/img/rice-logo.jpg' width={150} height={50}/>
+        <div className="container text-center">
+            <div className="row">
+                <div className="col-sm-8">
+                    <h4>New Post</h4>
+                    <NewPost/>
+                </div>
+                <div className="col-sm-4">
+                    <h4>Profile and Headline</h4>
+                    <Headline/>
+                </div>
             </div>
-            <div className="col-sm-6">
-                <h4>New Post</h4>
-                <NewPost/>
-            </div>
-            <div className="col-sm-4">
-                <h4>Profile and Headline</h4>
-                <Headline/>
-            </div>
-
         </div>
 
-        <div className="row">
-            <div className="col-sm-2">
-            </div>
-            <div className="col-sm-6">
-                <h4>Articles</h4>
-                <ArticlesView/>
-            </div>
-            <div className="col-sm-4">
-                <h4>Following Friends</h4>
-                <AllFollowings/>
+        <div className="container text-center">
+            <div className="row">
+                <div className="col-sm-8">
+                    <h4>Articles</h4>
+                    <ArticlesView/>
+                </div>
+                <div className="col-sm-4">
+                    <h4>Following Friends</h4>
+                    <AllFollowings/>
+                </div>
             </div>
         </div>
 

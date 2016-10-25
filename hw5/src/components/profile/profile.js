@@ -15,13 +15,6 @@ export const Profile = () => (
         </div>
         <div className="row">
             <div className="container text-center">
-                <h4>Profile and Headline</h4>
-                <Headline/>
-                <Avatar/>
-            </div>
-        </div>
-        <div className="row">
-            <div className="container text-center">
                 <ProfileContent/>
             </div>
         </div>
