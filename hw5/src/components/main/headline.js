@@ -4,9 +4,9 @@
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import {Button} from 'react-bootstrap'
 
 import {updateHeadline} from '../../actions/profileActions'
+import HeadlineForm from './headlineForm'
 
 const Headline = ({username, headline, newHeadline, updateHeadline}) => (
     <div>
@@ -17,10 +17,11 @@ const Headline = ({username, headline, newHeadline, updateHeadline}) => (
         <div>
             {`Headline : ${headline}`}
         </div>
-        <input type="text" placeholder="Input new headline..." />
-        <Button bsStyle="primary" onClick={
-            () => { return updateHeadline('update')}
-        }>Update</Button>
+        {/*<input type="text" placeholder="Input new headline..." />*/}
+        {/*<Button bsStyle="primary" onClick={*/}
+            {/*() => { return updateHeadline('update')}*/}
+        {/*}>Update</Button>*/}
+        <HeadlineForm/>
 
     </div>
 

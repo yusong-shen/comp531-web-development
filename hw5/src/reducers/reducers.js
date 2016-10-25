@@ -19,7 +19,7 @@ const profileReducer = (state = {
     username: 'foobar',
     email: 'a@b.com',
     zipcode: '77005',
-    headline: 'foobar old headline'
+    headline: 'foobar old headline',
 }, action) => {
     switch(action.type) {
         case 'updateUsername':
