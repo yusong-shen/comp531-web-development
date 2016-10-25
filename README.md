@@ -31,6 +31,7 @@ The first half course is about Front-End Development, second half course is abou
 15. Simple Node Server
 16. Express Server
 17. REST and Stubbing
+18. "Unit" Test the Back-End
 
 ### Homework
 #### Front-End Part
@@ -41,4 +42,4 @@ The first half course is about Front-End Development, second half course is abou
 5. Frontend App, due Tue 10/25
 
 #### Back-End Part
-6. Draft Back-End, due Thr 11/03
+6. Draft Back-End, due Thr 11/08
