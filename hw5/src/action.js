@@ -18,9 +18,10 @@ export const navigate = (text) => {
     }
 }
 
-export const changeNavItems = (navItems) => {
+export const setNavItems = (navItems) => {
+    console.log('call setNavItems action')
     return {
-        type: 'changeNavItems',
+        type : 'setNavItems',
         navItems
     }
 }

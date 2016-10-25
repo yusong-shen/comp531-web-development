@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import {navigate} from './../../action'
 
-export const BootstrapNavbar = ({navItems}) => {
+export const BootstrapNavbar = ({navItems, navigate}) => {
     return (
         <Navbar inverse>
             <Navbar.Header>
@@ -19,7 +19,10 @@ export const BootstrapNavbar = ({navItems}) => {
                 <Nav pullRight>
                     {navItems.map((item) => {
                         return (<NavItem key={navItems.indexOf(item)}
-                            onClick={() => navigate(item.nextPage)}>
+                            onClick={() => {
+                                console.log(item.nextPage)
+                                return navigate(item.nextPage)
+                            }}>
                             {item.title}</NavItem>)
                     })}
                 </Nav>
@@ -44,10 +47,19 @@ export const BootstrapNavbar = ({navItems}) => {
 // })(ToDoItem)
 
 BootstrapNavbar.protoTypes = {
+    navItems: PropTypes.arrayOf(PropTypes.shape({
+        nextPage: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired
+    }).isRequired).isRequired,
     navigate: PropTypes.func.isRequired
 }
 
-const mapStateToProps = null
+const mapStateToProps = (state) => {
+    return {
+        navItems: state.navItems
+    }
+}
+
 
 const mapDispatchToProps = (dispatch) => {
     return {

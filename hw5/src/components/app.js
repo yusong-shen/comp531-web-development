@@ -10,6 +10,7 @@ import Profile from './profile/profile'
 import Landing from './auth/landing'
 import BootstrapNavbar from './navBar/navbar'
 import Footer from './footer'
+import setNavItems from './../action'
 
 // // routing logic to determine which view to display.
 // class App extends React.Component {
@@ -69,7 +70,7 @@ import Footer from './footer'
 // }
 
 
-export const App = ({nextPage}) => {
+export const App = ({nextPage, setNavItems}) => {
     // decide the Navigation bar and Child View
     // according to nextPage state
     let Child = Landing
@@ -77,6 +78,7 @@ export const App = ({nextPage}) => {
         {nextPage: 'MainPage', title: 'Main'},
         {nextPage: 'ProfilePage', title: 'Profile'},
     ]
+    console.log(nextPage)
     switch (nextPage) {
         case 'MainPage':
             Child = Main
@@ -95,10 +97,11 @@ export const App = ({nextPage}) => {
         default:
             Child = Landing
     }
+    setNavItems(navItems)
     return (
         <div>
 
-            <BootstrapNavbar navItems={navItems}/>
+            <BootstrapNavbar/>
             <Child/>
             <Footer/>
         </div>
@@ -106,7 +109,9 @@ export const App = ({nextPage}) => {
 }
 
 App.propTypes = {
-    nextPage: PropTypes.string.isRequired
+    nextPage: PropTypes.string.isRequired,
+    setNavItems: PropTypes.func.isRequired
+
 }
 
 const mapStateToProps = (state) => {
@@ -120,6 +125,9 @@ const mapDispatchToProps = (dispatch) => {
         // onTodoClick: (id) => {
         //     dispatch(toggleTodo(id))
         // }
+        setNavItems: (navItems) => {
+            dispatch(setNavItems(navItems))
+        }
     }
 }
 
