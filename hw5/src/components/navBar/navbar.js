@@ -5,9 +5,27 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import {navigate} from '../../actions/action'
+import {logoutUser} from '../../actions/authActions'
 
-export const BootstrapNavbar = ({curPage, navigate}) => {
+
+
+export const BootstrapNavbar = ({curPage, navigate, logoutUser}) => {
     // decide the Navigation bar item according to nextPage state
+    const mapNavItem = (item) => {
+        if (item.title == 'Logout') {
+            return (<NavItem key={navItems.indexOf(item)}
+                             onClick={() => {
+                                 return logoutUser()
+                             }}>
+                {item.title}</NavItem>)
+        } else {
+            return (<NavItem key={navItems.indexOf(item)}
+                             onClick={() => {
+                                 return navigate(item.nextPage)
+                             }}>
+                {item.title}</NavItem>)
+        }
+    }
     let navItems = []
     console.log(curPage)
     switch (curPage) {
@@ -36,13 +54,7 @@ export const BootstrapNavbar = ({curPage, navigate}) => {
             </Navbar.Header>
             <Navbar.Collapse>
                 <Nav pullRight>
-                    {navItems.map((item) => {
-                        return (<NavItem key={navItems.indexOf(item)}
-                            onClick={() => {
-                                return navigate(item.nextPage)
-                            }}>
-                            {item.title}</NavItem>)
-                    })}
+                    {navItems.map(item => mapNavItem(item))}
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
@@ -70,6 +82,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         navigate: (nextPage) => {
             dispatch(navigate(nextPage))
+        },
+        logoutUser: () => {
+            dispatch(logoutUser())
         }
     }
 }
