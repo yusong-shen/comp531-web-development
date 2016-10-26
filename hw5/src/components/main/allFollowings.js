@@ -25,7 +25,7 @@ const AllFollowings = ({followings}) => (
 )
 
 AllFollowings.propTypes = {
-    articles: PropTypes.arrayOf(PropTypes.shape({
+    followings: PropTypes.arrayOf(PropTypes.shape({
         username: PropTypes.string.isRequired,
         headline: PropTypes.string.isRequired,
     }).isRequired).isRequired,

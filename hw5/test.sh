@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # ys43test	judge-sentence-return
 
 # POST
