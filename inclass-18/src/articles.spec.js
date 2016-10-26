@@ -69,13 +69,13 @@ describe('Validate Article functionality', () => {
 
 	it('should add two articles with successive article ids, and return the article each time', (done) => {
 		// add a new article
-		fetch(url('/article', {
+		fetch(url('/article'), {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
 				'text':'A post 6'
 			})
-		}))
+		})
 		.then(res => {
 			expect(res.status).to.eql(200)
 			return res.json()
@@ -91,12 +91,12 @@ describe('Validate Article functionality', () => {
 		// verify the article id increases by one
 		// verify the second artice has the correct content
 		.then(oldId => {
-			fetch(url('/article', {
+			fetch(url('/article'), {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
 				text:'A post 7'
-			})}))
+			})})
 			.then(res => {
 				expect(res.status).to.eql(200)
 				return res.json()
