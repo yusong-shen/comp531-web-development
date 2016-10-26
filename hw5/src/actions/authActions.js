@@ -68,13 +68,27 @@ export const loginUser = (username, password) => {
                 dispatch(ProfileActions.updateUsername(response.username))
                 dispatch(authenticateUser(true))
                 dispatch(Actions.navigate('MainPage'))
-                // dispatch(initialVisit())
                 console.log('log in successfully! ', response)
             })
             .catch((err) => {
             // dispatch(updateError(`There was an error logging in as ${username}`))
             alert(err)
         })
+    }
+}
+
+export const logoutUser = () => {
+    return (dispatch) => {
+        resource('PUT', 'logout')
+            .then((response) => {
+                alert('You have logged out')
+                dispatch(authenticateUser(false))
+                dispatch(Actions.navigate('LandingPage'))
+                // TODO : clean the state content
+            })
+            .catch((err) => {
+                alert(err)
+            })
     }
 }
 
