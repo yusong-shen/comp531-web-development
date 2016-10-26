@@ -20,3 +20,13 @@ echo "GET /articles"
 curl -H 'Content-Type: application/json' http://localhost:${PORT}/articles 
 echo ""
 echo ""
+
+echo "GET /articles/0"
+curl -H 'Content-Type: application/json' http://localhost:${PORT}/articles/0
+echo ""
+echo ""
+
+echo "GET /articles/2"
+curl -H 'Content-Type: application/json' http://localhost:${PORT}/articles/2
+echo ""
+echo ""

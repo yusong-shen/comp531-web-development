@@ -1,18 +1,17 @@
 
 const express = require('express')
 const bodyParser = require('body-parser')
+const logger = require('morgan')
 
-const addArticle = (req, res) => {
-     console.log('Payload received', req.body)    
-     res.send(req.body)
-}
 
-const hello = (req, res) => res.send({ hello: 'world' })
 
 const app = express()
 app.use(bodyParser.json())
-app.post('/article', addArticle)
-app.get('/', hello)
+app.use(logger('default'))
+
+require('./src/articles.js')(app)
+require('./src/hello.js')(app)
+
 
 // Get the port from the environment, i.e., Heroku sets it
 const port = process.env.PORT || 3000
