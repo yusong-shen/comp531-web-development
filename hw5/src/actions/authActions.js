@@ -2,9 +2,11 @@
  * Created by yusong on 10/20/16.
  */
 
-import {resource} from './../actions'
-const url = 'https://webdev-dummy.herokuapp.com'
+import {resource} from './../util/utils'
+import * as Actions from  './action'
+import * as ProfileActions from  './profileActions'
 
+// const url = 'https://webdev-dummy.herokuapp.com'
 
 // const resource = (method, endpoint, payload) => {
 //     const options =  {
@@ -51,15 +53,29 @@ const url = 'https://webdev-dummy.herokuapp.com'
 // }
 
 //export { url, login, logout }
+export const authenticateUser = (authenticated) => {
+    return {
+        type: 'authenticateUser',
+        authenticated
+    }
+}
+
 
 export const loginUser = (username, password) => {
     return (dispatch) => {
         resource('POST', 'login', { username, password })
             .then((response) => {
-                dispatch({type: Action.LOGIN_LOCAL, username: response.username})
-                dispatch(initialVisit())
-            }).catch((err) => {
-            dispatch(updateError(`There was an error logging in as ${username}`))
+                dispatch(ProfileActions.updateUsername(response.username))
+                dispatch(authenticateUser(true))
+                dispatch(Actions.navigate('MainPage'))
+                // dispatch(initialVisit())
+                console.log('log in successfully! ', response)
+            })
+            .catch((err) => {
+            // dispatch(updateError(`There was an error logging in as ${username}`))
+            alert(err)
         })
     }
 }
+
+export default loginUser

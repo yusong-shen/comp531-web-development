@@ -3,6 +3,7 @@ import { reducer as FormReducer } from 'redux-form'
 import profileReducer from './profileReducer'
 import articlesReducer from './articlesReducer'
 import followingsReducer from './followingsReducer'
+import  authReducer from './authReducer'
 
 const navigateReducer = (state =  {
     nextPage: 'LandingPage'
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
     profile: profileReducer,
     navigate: navigateReducer,
     articles: articlesReducer,
-    followings: followingsReducer
+    followings: followingsReducer,
+    auth: authReducer,
 });
 
 
