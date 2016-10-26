@@ -69,14 +69,11 @@ describe('Validate Article functionality', () => {
 
 	it('should add two articles with successive article ids, and return the article each time', (done) => {
 		// add a new article
-		const myHeaders = new Headers()
-
-		myHeaders.append('Content-Type', 'application/json')
 		fetch(url('/article', {
 			method: 'POST',
-			headers: myHeaders,
+			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
-				'text':'A post 6' 
+				'text':'A post 6'
 			})
 		}))
 		.then(res => {
@@ -96,9 +93,9 @@ describe('Validate Article functionality', () => {
 		.then(oldId => {
 			fetch(url('/article', {
 			method: 'POST',
-			headers: myHeaders,			
+			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
-				text:'A post 7' 
+				text:'A post 7'
 			})}))
 			.then(res => {
 				expect(res.status).to.eql(200)

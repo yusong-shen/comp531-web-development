@@ -10,7 +10,7 @@ app.use(bodyParser.json())
 app.use(logger('default'))
 
 require('./src/articles.js')(app)
-require('./src/hello.js')(app)
+// require('./src/hello.js')(app)
 
 
 // Get the port from the environment, i.e., Heroku sets it
