@@ -5,10 +5,12 @@
 const initState = {
     followings: [
         {
+            avatar: '',
             username: 'ys43',
             headline: 'headline 1'
         },
         {
+            avatar: '',
             username: 'ys43test',
             headline: 'headline 2'
         },
@@ -17,11 +19,14 @@ const initState = {
 
 const followingsReducer = (state = initState, action) => {
     switch(action.type) {
-        // case 'navigate':
-        //     return {
-        //         ...state,
-        //         nextPage: action.text
-        //     }
+        case 'addFriend':
+            return {
+                ...state,
+                followings: [
+                    ...state.followings,
+                    action.friend
+                ]
+            }
         default:
             return state
     }

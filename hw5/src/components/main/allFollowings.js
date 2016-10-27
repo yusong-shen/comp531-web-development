@@ -6,6 +6,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import Following from './following'
+import AddFriendForm from './addFriendForm'
 
 const AllFollowings = ({followings}) => (
     <div>
@@ -17,9 +18,7 @@ const AllFollowings = ({followings}) => (
                 />
             )}
         </ul>
-        <div>
-            input a new user, add button
-        </div>
+        <AddFriendForm/>
     </div>
 
 )
