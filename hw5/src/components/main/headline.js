@@ -8,11 +8,11 @@ import { connect } from 'react-redux'
 import {updateHeadline} from '../../actions/profileActions'
 import HeadlineForm from './headlineForm'
 
-const Headline = ({username, headline, updateHeadline}) => (
+const Headline = ({username, avatar, headline, updateHeadline}) => (
     <div>
         <div>
             <h4>{`Username : ${username}`}</h4>
-            <img src="https://placekitten.com/200/150?image=8" alt="image missing" />
+            <img src={avatar} alt="image missing" />
         </div>
         <div>
             {`Headline : ${headline}`}
@@ -25,6 +25,7 @@ const Headline = ({username, headline, updateHeadline}) => (
 
 Headline.protoTypes = {
     username: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
     headline: PropTypes.string.isRequired,
     updateHeadline: PropTypes.func.isRequired,
 }
@@ -32,6 +33,7 @@ Headline.protoTypes = {
 const mapStateToProps = (state) => {
     return {
         username: state.profile.username,
+        avatar: state.profile.avatar,
         headline: state.profile.headline
     }
 }

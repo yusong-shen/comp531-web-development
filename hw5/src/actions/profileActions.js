@@ -4,6 +4,12 @@
 
 import {resource} from './../util/utils'
 
+export const updateAvatar = (avatar) => {
+    return {
+        type: 'updateAvatar',
+        avatar
+    }
+}
 
 export const updateUsername = (username) => {
     return {
@@ -34,12 +40,13 @@ export const updateHeadline = (headline) => {
 }
 
 export const fetchField = (field, param) => {
-    return (dispatch) => {resource('GET', field + '/' + param)
+    const endpoint = (param) ? field + '/' + param : field
+    return (dispatch) => {resource('GET', endpoint)
         .then((r) => {
             switch(field) {
-                // case "avatars":
-                //     dispatch(updateAvatar(r.avatars[0].avatar))
-                //     break
+                case "avatars":
+                    dispatch(updateAvatar(r.avatars[0].avatar))
+                    break
                 case "zipcode":
                     console.log(r.zipcode)
                     dispatch(updateZipcode(r.zipcode))

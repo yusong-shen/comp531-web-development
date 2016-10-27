@@ -20,9 +20,10 @@ export const loginUser = (username, password) => {
                 const usr = r.username
                 dispatch(authenticateUser(true))
                 dispatch(ProfileActions.updateUsername(usr))
-                const p1 = dispatch(ProfileActions.fetchField('email', usr))
-                const p2 = dispatch(ProfileActions.fetchField('zipcode', usr))
-                Promise.all([p1, p2]).then(() => {
+                const p1 = dispatch(ProfileActions.fetchField('email'))
+                const p2 = dispatch(ProfileActions.fetchField('zipcode'))
+                const p3 = dispatch(ProfileActions.fetchField('avatars'))
+                Promise.all([p1, p2, p3]).then(() => {
                     dispatch(Actions.navigate('MainPage'))
                 })
                 console.log('log in successfully! ', r)

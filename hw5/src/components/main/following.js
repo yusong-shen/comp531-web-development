@@ -6,11 +6,11 @@
 import React, { Component, PropTypes } from 'react'
 import {Button} from 'react-bootstrap'
 
-const Following = ({username, headline}) => (
+const Following = ({username, avatar, headline}) => (
     <div>
         <div>
             <h4>{username}</h4>
-            <img src="https://placekitten.com/200/150?image=7" alt="image missing" />
+            <img src={avatar} alt="image missing" />
         </div>
         <div>
             {headline}
@@ -23,6 +23,7 @@ const Following = ({username, headline}) => (
 
 Following.protoTypes = {
     username: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
     headline: PropTypes.string.isRequired,
 }
 

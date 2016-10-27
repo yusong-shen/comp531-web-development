@@ -2,6 +2,7 @@
  * Created by yusong on 10/25/16.
  */
 const profileReducer = (state = {
+    avatar: '',
     username: 'foobar',
     email: 'a@b.com',
     zipcode: '77005',
@@ -13,6 +14,15 @@ const profileReducer = (state = {
                 return {
                     ...state,
                     username: action.username
+                }
+            } else {
+                return state
+            }
+        case 'updateAvatar':
+            if (action.avatar) {
+                return {
+                    ...state,
+                    avatar: action.avatar
                 }
             } else {
                 return state

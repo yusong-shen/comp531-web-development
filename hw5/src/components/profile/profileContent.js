@@ -6,12 +6,12 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-const ProfileContent = ({username, zipcode, email}) => (
+const ProfileContent = ({username, avatar, zipcode, email}) => (
     <div>
         <h2 className="text-center">Profile</h2>
         <div>
             <h4>{`Username : ${username}`}</h4>
-            <img src="https://placekitten.com/200/150?image=8" alt="image missing" />
+            <img src={avatar} alt="image missing" />
         </div>
         <div>
             <h4>{`Zipcode : ${zipcode}`}</h4>
@@ -26,6 +26,7 @@ const ProfileContent = ({username, zipcode, email}) => (
 
 ProfileContent.protoTypes = {
     username: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
     zipcode: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
 }
@@ -33,6 +34,7 @@ ProfileContent.protoTypes = {
 const mapStateToProps = (state) => {
     return {
         username: state.profile.username,
+        avatar: state.profile.avatar,
         email: state.profile.email,
         zipcode: state.profile.zipcode,
 
