@@ -39,6 +39,18 @@ export const updateHeadline = (headline) => {
     }
 }
 
+export const putHeadline = (headline) => {
+    return (dispatch) => {
+        resource('PUT', 'headline', {
+            headline
+        }).then ((r) => {
+            dispatch(updateHeadline(r.headline))
+        }).catch((err) => {
+            alert(err)
+        })
+    }
+}
+
 export const fetchField = (field, param) => {
     const endpoint = (param) ? field + '/' + param : field
     return (dispatch) => {resource('GET', endpoint)

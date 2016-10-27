@@ -10,7 +10,8 @@ import * as ProfileActions from '../../actions/profileActions'
 class HeadlineForm extends Component {
     handleFormSubmit = (values) => {
         // alert(JSON.stringify(values, null, 4));
-        this.props.updateHeadline(values.newHeadline)
+        // this.props.updateHeadline(values.newHeadline)
+        this.props.putHeadline(values.newHeadline)
     }
 
     render() {
