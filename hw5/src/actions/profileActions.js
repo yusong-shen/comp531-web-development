@@ -55,13 +55,10 @@ export const fetchField = (field, param) => {
                     console.log(r.email)
                     dispatch(updateEmail(r.email))
                     break
-                // case "dob":
-                //     dispatch(updateBirthday((new Date(r.dob)).toDateString()))
-                //     break
-                // case "headlines":
-                //     dispatch(updateHeadline(r.headlines[0].headline))
-                //     dispatch(updateName(r.headlines[0].username))
-                //     break
+                case "headlines":
+                    dispatch(updateHeadline(r.headlines[0].headline))
+                    dispatch(updateUsername(r.headlines[0].username))
+                    break
             }
         })
         .catch((err) => {

@@ -20,10 +20,9 @@ export const loginUser = (username, password) => {
                 const usr = r.username
                 dispatch(authenticateUser(true))
                 dispatch(ProfileActions.updateUsername(usr))
-                const p1 = dispatch(ProfileActions.fetchField('email'))
-                const p2 = dispatch(ProfileActions.fetchField('zipcode'))
-                const p3 = dispatch(ProfileActions.fetchField('avatars'))
-                Promise.all([p1, p2, p3]).then(() => {
+                const fieldList = ['email', 'zipcode', 'avatars', 'headlines']
+                const pList = fieldList.map((field) => dispatch(ProfileActions.fetchField(field)))
+                Promise.all(pList).then(() => {
                     dispatch(Actions.navigate('MainPage'))
                 })
                 console.log('log in successfully! ', r)
