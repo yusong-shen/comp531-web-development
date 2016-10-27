@@ -8,3 +8,6 @@ GET /articles/:id
 POST /article
 
 • Your implementations should pass the tests
+
+Endpoints for In-Class 19
+articles, headlines, avatars, email, zipcode

@@ -16,10 +16,12 @@ const addArticle = (req, res) => {
      console.log('Payload received', req.body)
      const numArticles = articles['articles'].length;
      const article = {}
+     let result = {}
      article.id = numArticles + 1
      // console.log(typeof(req.body))
      article.text = req.body.text
-     res.send(article)
+     result.articles = [article] 
+     res.send(result)
      articles['articles'].push(article)
 
 }
