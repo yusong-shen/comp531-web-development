@@ -4,13 +4,12 @@
 
 import React from 'react'
 
-export const Avatar = () => (
+export const Avatar = ({avatar}) => (
     // This is the Profile view.
 
     <div>
         <div className="avatar">
-            <h4>Avatar</h4>
-            <img src="https://placekitten.com/200/150?image=10" alt="image missing" />
+            <img src={avatar} width={150} height={150} alt="image missing" />
         </div>
     </div>
 )

@@ -3,18 +3,7 @@
  */
 
 const initState = {
-    followings: [
-        {
-            avatar: '',
-            username: 'ys43',
-            headline: 'headline 1'
-        },
-        {
-            avatar: '',
-            username: 'ys43test',
-            headline: 'headline 2'
-        },
-    ]
+    followings: []
 }
 
 const followingsReducer = (state = initState, action) => {
@@ -26,6 +15,11 @@ const followingsReducer = (state = initState, action) => {
                     ...state.followings,
                     action.friend
                 ]
+            }
+        case 'updateFollowings':
+            return {
+                ...state,
+                followings: action.followings
             }
         default:
             return state

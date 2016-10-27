@@ -7,12 +7,13 @@ import { connect } from 'react-redux'
 
 import {updateHeadline} from '../../actions/profileActions'
 import HeadlineForm from './headlineForm'
+import Avatar from './../profile/avatar'
 
 const Headline = ({username, avatar, headline, updateHeadline}) => (
     <div>
         <div>
             <h4>{`Username : ${username}`}</h4>
-            <img src={avatar} alt="image missing" />
+            <Avatar avatar={avatar}/>
         </div>
         <div>
             {`Headline : ${headline}`}

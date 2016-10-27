@@ -5,13 +5,14 @@
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import Avatar from './avatar'
 
 const ProfileContent = ({username, avatar, zipcode, email}) => (
     <div>
         <h2 className="text-center">Profile</h2>
         <div>
             <h4>{`Username : ${username}`}</h4>
-            <img src={avatar} alt="image missing" />
+            <Avatar avatar={avatar}/>
         </div>
         <div>
             <h4>{`Zipcode : ${zipcode}`}</h4>

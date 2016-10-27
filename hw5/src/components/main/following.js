@@ -5,12 +5,13 @@
 
 import React, { Component, PropTypes } from 'react'
 import {Button} from 'react-bootstrap'
+import Avatar from './../profile/avatar'
 
 const Following = ({username, avatar, headline}) => (
     <div>
         <div>
+            <Avatar avatar={avatar}/>
             <h4>{username}</h4>
-            <img src={avatar} alt="image missing" />
         </div>
         <div>
             {headline}

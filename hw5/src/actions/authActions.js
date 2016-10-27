@@ -6,6 +6,7 @@ import {resource} from './../util/utils'
 import * as Actions from  './action'
 import * as ProfileActions from  './profileActions'
 import * as ArticleActions from './articleActions'
+import * as FollowingActions from './followingActions'
 
 export const authenticateUser = (authenticated) => {
     return {
@@ -24,7 +25,9 @@ export const loginUser = (username, password) => {
                 const fieldList = ['email', 'zipcode', 'avatars', 'headlines']
                 const pList = fieldList.map((field) => dispatch(ProfileActions.fetchField(field)))
                 const p1 = dispatch(ArticleActions.fetchArticles())
+                const p2 = dispatch(FollowingActions.fetchFollowings(usr))
                 pList.push(p1)
+                pList.push(p2)
                 Promise.all(pList).then(() => {
                     dispatch(Actions.navigate('MainPage'))
                 })

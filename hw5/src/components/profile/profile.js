@@ -2,9 +2,7 @@
  * Created by yusong on 10/20/16.
  */
 import React from 'react'
-import Avatar from './avatar'
 import ProfileForm from './profileForm'
-import  Headline from './../main/headline'
 import ProfileContent from './profileContent'
 
 export const Profile = () => (
