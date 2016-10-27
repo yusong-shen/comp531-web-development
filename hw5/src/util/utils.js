@@ -2,7 +2,7 @@
  * Created by yusong on 10/25/16.
  */
 
-const url = 'https://webdev-dummy.herokuapp.com'
+export const url = 'https://webdev-dummy.herokuapp.com'
 
 export const resource = (method, endpoint, payload) => {
     const options =  {

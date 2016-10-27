@@ -42,7 +42,7 @@ export const loginUser = (username, password) => {
 export const logoutUser = () => {
     return (dispatch) => {
         resource('PUT', 'logout')
-            .then((r) => {
+            .then(() => {
                 alert('You have logged out')
                 dispatch(authenticateUser(false))
                 // clean the state content

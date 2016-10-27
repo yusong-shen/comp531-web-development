@@ -75,6 +75,7 @@
     "loader-utils": "^0.2.15",
     "mocha": "^2.4.5",
     "mock-fetch": "https://www.clear.rice.edu/comp431/sample/mock-fetch.tgz",
+    "mockery": "^2.0.0",
     "moment": "^2.13.0",
     "react": "^15.0.2",
     "react-addons-test-utils": "^15.1.0",

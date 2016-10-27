@@ -1,19 +1,20 @@
 import { expect } from 'chai'
 import mockery from 'mockery'
 import fetch, { mock } from 'mock-fetch'
+import resource, {url} from '../util/utils'
 
-import * as profileActions from './profileActions'
 
-
-let Action, actions
+let profileActions
 beforeEach(() => {
     if (mockery.enable) {
         mockery.enable({warnOnUnregistered: false, useCleanCache:true})
         mockery.registerMock('node-fetch', fetch)
         require('node-fetch')
+        // resource = require('../util/utils').default
+        // url = require('../util/utils').url
+        profileActions = require('./profileActions')
+
     }
-    Action = require('./actions').default
-    actions = require('./actions')
 })
 
 afterEach(() => {
@@ -40,10 +41,10 @@ it('should update the status message', (done) => {
     // the complex action is called with dispatch as an argument
     // dispatch is then called with an action as an argument
 
-    profileActions.updateHeadline('does not matter')(
+    profileActions.putHeadline('does not matter')(
         fn => fn(action => {
             expect(action).to.eql({
-                headline, type: actions.UPDATE_PROFILE
+                headline, type: 'updateHeadline'
             })
             done()
         }))
