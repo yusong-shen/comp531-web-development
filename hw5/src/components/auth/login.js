@@ -57,10 +57,11 @@ class LoginForm extends React.Component {
     }
 }
 
+
 // export default LoginForm
 export default connect(
     null,
-    {...ProfileActions, ...AuthActions}
+    {...AuthActions}
 )(reduxForm({
     form: 'login',
     validate
