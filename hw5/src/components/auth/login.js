@@ -61,7 +61,7 @@ class LoginForm extends React.Component {
 // export default LoginForm
 export default connect(
     null,
-    {...AuthActions}
+    {...AuthActions, ...ProfileActions}
 )(reduxForm({
     form: 'login',
     validate

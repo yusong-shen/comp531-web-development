@@ -33,19 +33,19 @@ export const updateHeadline = (headline) => {
     }
 }
 
-export const fetchField = (field) => {
-    return (dispatch) => {resource('GET', field)
+export const fetchField = (field, param) => {
+    return (dispatch) => {resource('GET', field + '/' + param)
         .then((r) => {
             switch(field) {
                 // case "avatars":
                 //     dispatch(updateAvatar(r.avatars[0].avatar))
                 //     break
                 case "zipcode":
-                    alert(r.zipcode)
+                    console.log(r.zipcode)
                     dispatch(updateZipcode(r.zipcode))
                     break
                 case "email" :
-                    alert(r.email)
+                    console.log(r.email)
                     dispatch(updateEmail(r.email))
                     break
                 // case "dob":

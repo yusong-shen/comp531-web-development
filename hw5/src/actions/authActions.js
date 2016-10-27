@@ -16,16 +16,16 @@ export const authenticateUser = (authenticated) => {
 export const loginUser = (username, password) => {
     return (dispatch) => {
         resource('POST', 'login', { username, password })
-            .then((response) => {
-                const usr = response.username
+            .then((r) => {
+                const usr = r.username
                 dispatch(authenticateUser(true))
                 dispatch(ProfileActions.updateUsername(usr))
-                const p1 = dispatch(ProfileActions.fetchField(`email/${usr}`))
-                const p2 = dispatch(ProfileActions.fetchField(`zipcode/${usr}`))
+                const p1 = dispatch(ProfileActions.fetchField('email', usr))
+                const p2 = dispatch(ProfileActions.fetchField('zipcode', usr))
                 Promise.all([p1, p2]).then(() => {
                     dispatch(Actions.navigate('MainPage'))
                 })
-                console.log('log in successfully! ', response)
+                console.log('log in successfully! ', r)
             })
             .catch((err) => {
             alert(err)
