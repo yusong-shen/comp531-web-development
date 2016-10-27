@@ -2,19 +2,33 @@
  * Created by yusong on 10/23/16.
  */
 
-import React from 'react'
-import {Button} from 'react-bootstrap'
 
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form';
+import * as ArticleActions from '../../actions/articleActions'
 
-const SearchBar = React.createClass({
+class SearchBar extends Component {
+    handleFormSubmit = (values) => {
+        this.props.setKeyword(values.keyword)
+    }
+
     render() {
         return (
-            <form className="searchBar">
-                <input type="text" placeholder="Search..." />
+            <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
+                <div>
+                    <Field name="keyword" component="input" type="text" placeholder="Search..."/>
+                    <button type="submit">Search</button>
+                </div>
             </form>
-        )
+        );
     }
-})
+}
+
+// Decorate the form component
+SearchBar = reduxForm({
+    form: 'searchBar' // a unique name for this form
+})(SearchBar);
 
 
-export default SearchBar
+export default connect(null, ArticleActions)(SearchBar)

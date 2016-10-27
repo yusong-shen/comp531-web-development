@@ -6,7 +6,7 @@ import {resource} from './../util/utils'
 
 // /articles/:id*?	GET, if we don't specific the userId,
 // get all the articles for login user
-export const getArticles = (userId) => {
+export const fetchArticles = (userId) => {
     const endpoint = (userId) ? `articles/${userId}` : 'articles'
     return (dispatch) => {
         resource('GET', endpoint, )
@@ -16,5 +16,12 @@ export const getArticles = (userId) => {
             .catch((err) => {
                 alert(err)
             })
+    }
+}
+
+export const setKeyword = (keyword) => {
+    return {
+        type: 'setKeyword',
+        keyword
     }
 }
