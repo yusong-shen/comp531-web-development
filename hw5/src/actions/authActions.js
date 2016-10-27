@@ -5,6 +5,7 @@
 import {resource} from './../util/utils'
 import * as Actions from  './action'
 import * as ProfileActions from  './profileActions'
+import * as ArticleActions from './articleActions'
 
 export const authenticateUser = (authenticated) => {
     return {
@@ -22,6 +23,8 @@ export const loginUser = (username, password) => {
                 dispatch(ProfileActions.updateUsername(usr))
                 const fieldList = ['email', 'zipcode', 'avatars', 'headlines']
                 const pList = fieldList.map((field) => dispatch(ProfileActions.fetchField(field)))
+                const p1 = dispatch(ArticleActions.fetchArticles())
+                pList.push(p1)
                 Promise.all(pList).then(() => {
                     dispatch(Actions.navigate('MainPage'))
                 })
@@ -36,11 +39,12 @@ export const loginUser = (username, password) => {
 export const logoutUser = () => {
     return (dispatch) => {
         resource('PUT', 'logout')
-            .then((response) => {
+            .then((r) => {
                 alert('You have logged out')
                 dispatch(authenticateUser(false))
+                // clean the state content
+                dispatch(ArticleActions.clearArticles())
                 dispatch(Actions.navigate('LandingPage'))
-                // TODO : clean the state content
             })
             .catch((err) => {
                 alert(err)
