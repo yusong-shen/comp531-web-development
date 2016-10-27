@@ -10,7 +10,8 @@ import * as ArticleActions from '../../actions/articleActions'
 
 class SearchBar extends Component {
     handleFormSubmit = (values) => {
-        this.props.setKeyword(values.keyword)
+        const keyword = values.keyword || ''
+        this.props.setKeyword(keyword)
     }
 
     render() {
