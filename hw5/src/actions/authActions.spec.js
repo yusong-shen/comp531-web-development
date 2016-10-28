@@ -41,10 +41,7 @@ describe('Login action tests', () => {
             (action) => {
                 switch (action.type) {
                     case 'authenticateUser':
-                        expect(action).to.eql({
-                            type: 'authenticateUser',
-                            authenticated: true
-                        })
+                        expect(action.authenticated).to.eql(true)
                         break
                 }
             }
@@ -84,15 +81,11 @@ describe('Login action tests', () => {
             method: 'PUT',
             headers: {'Content-Type':'application/json'}
         })
-
         logoutUser()(
             (action) => {
                 switch (action.type) {
                     case 'authenticateUser':
-                        expect(action).to.eql({
-                            type: 'authenticateUser',
-                            authenticated: false
-                        })
+                        expect(action.authenticated).to.eql(false)
                         break
                 }
             }
