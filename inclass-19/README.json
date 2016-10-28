@@ -1,4 +1,4 @@
 {
 	"netid": "ys43",
-	"backend": "http://localhost:3000/"
+	"backend": "https://rb-backend-ys2016.herokuapp.com/"
 }
