@@ -55,7 +55,7 @@ export const fetchFollowings = (userId) => {
                     dispatch(fetchFriendProfile(id))
                 })
                 Promise.all(pList).then(
-                    console.log('fetch all followings')
+                    // console.log('fetch all followings')
                 )
             })
             .catch((err) => {

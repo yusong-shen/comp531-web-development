@@ -25,7 +25,6 @@ const validate = values => {
 class LoginForm extends React.Component {
 
     handleFormSubmit = (values) => {
-        // alert(JSON.stringify(values, null, 4));
         this.props.loginUser(values.username, values.password)
 
     }

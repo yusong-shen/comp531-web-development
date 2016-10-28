@@ -60,11 +60,9 @@ export const fetchField = (field, param) => {
                     dispatch(updateAvatar(r.avatars[0].avatar))
                     break
                 case "zipcode":
-                    console.log(r.zipcode)
                     dispatch(updateZipcode(r.zipcode))
                     break
                 case "email" :
-                    console.log(r.email)
                     dispatch(updateEmail(r.email))
                     break
                 case "headlines":

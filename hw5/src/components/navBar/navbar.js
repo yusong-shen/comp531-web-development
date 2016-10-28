@@ -27,7 +27,6 @@ export const BootstrapNavbar = ({curPage, navigate, logoutUser}) => {
         }
     }
     let navItems = []
-    console.log(curPage)
     switch (curPage) {
         case 'MainPage':
             navItems = [
