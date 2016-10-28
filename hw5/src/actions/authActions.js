@@ -29,7 +29,6 @@ export const loginUser = (username, password) => {
                 pList.push(p1)
                 pList.push(p2)
                 Promise.all(pList).then(() => {
-                    console.log('log in successfully! ', r)
                     dispatch(Actions.navigate('MainPage'))
                 })
             })

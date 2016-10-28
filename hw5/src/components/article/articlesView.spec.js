@@ -3,18 +3,14 @@ import { expect } from 'chai'
 import React from 'react'
 import TestUtils from 'react-addons-test-utils'
 import {findDOMNode} from 'react-dom'
-import {shallow} from 'enzyme'
 
-import ArticleActions from '../../actions/articleActions'
-
-import {ArticlesView} from './articlesView'
+import { ArticlesView } from './articlesView'
 
 
 
 describe('Component test : ArticlesView', () => {
     it('should render articles', () => {
-        const testArticles = {
-            "articles": [
+        const testArticles = [
                 {
                     "_id": 4767123,
                     "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.\r",
@@ -32,7 +28,6 @@ describe('Component test : ArticlesView', () => {
                     "author": "jmg3"
                 }
             ]
-        }
         const node = TestUtils.renderIntoDocument(<div><ArticlesView articles={testArticles} keyword={''}/></div>)
         console.log(node)
         const elements = findDOMNode(node).children[0][1]
