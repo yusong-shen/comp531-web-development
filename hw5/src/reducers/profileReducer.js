@@ -3,10 +3,10 @@
  */
 const profileReducer = (state = {
     avatar: '',
-    username: 'foobar',
-    email: 'a@b.com',
-    zipcode: '77005',
-    headline: 'foobar old headline',
+    username: '',
+    email: '',
+    zipcode: '',
+    headline: '',
 }, action) => {
     switch(action.type) {
         case 'updateUsername':

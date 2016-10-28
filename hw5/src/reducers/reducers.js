@@ -5,7 +5,7 @@ import articlesReducer from './articlesReducer'
 import followingsReducer from './followingsReducer'
 import  authReducer from './authReducer'
 
-const navigateReducer = (state =  {
+export const navigateReducer = (state =  {
     nextPage: 'LandingPage'
 }, action) => {
     switch(action.type) {
