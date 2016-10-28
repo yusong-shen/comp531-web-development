@@ -11,6 +11,13 @@ export const updateArticles = (articles) => {
     }
 }
 
+export const addArticle = (article) => {
+    return {
+        type: 'addArticle',
+        article
+    }
+}
+
 // /articles/:id*?	GET, if we don't specific the userId,
 // get all the articles for login user
 export const fetchArticles = (userId) => {

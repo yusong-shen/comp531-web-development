@@ -21,6 +21,14 @@ const articlesReducer = (state = initState, action) => {
             }
         case 'clearArticles':
             return initState
+        case 'addArticle':
+            return {
+                ...state,
+                articles: [
+                    ...state.articles,
+                    action.articles
+                ]
+            }
         default:
             return state
     }

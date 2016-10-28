@@ -1,9 +1,7 @@
 import { expect } from 'chai'
 import rootReducer, {} from './reducers'
-import profileReducer from './profileReducer'
 import articlesReducer from './articlesReducer'
-import followingsReducer from './followingsReducer'
-import  authReducer from './authReducer'
+
 
 const initState = {
     form: {},
@@ -83,7 +81,5 @@ describe('Validate reducer', () => {
         expect(state.keyword).to.eql('whatever')
     })
 
-    it('should filter displayed articles by the search keyword', () => {
-        // TODO
-    })
+
 })

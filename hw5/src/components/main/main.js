@@ -3,11 +3,10 @@
  */
 import React from 'react'
 
-import NewPost from './newPost'
+import NewPost from '../article/newPost'
 import Headline from './headline'
 import AllFollowings from './allFollowings'
 import ArticlesView from './../article/articlesView'
-
 
 
 export const Main = () => (

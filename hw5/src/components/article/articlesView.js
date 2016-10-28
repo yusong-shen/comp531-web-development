@@ -4,7 +4,7 @@ import Article from './article'
 import SearchBar from './searchBar'
 
 
-const ArticlesView = ({articles, keyword}) => {
+export const ArticlesView = ({articles, keyword}) => {
     const displayList = articles.filter(articles => {
         return articles.text.indexOf(keyword) !== -1
     })
