@@ -50,7 +50,6 @@ describe('Validate Article actions', () => {
     })
 
     it('should update the search key', (done) => {
-        // TODO
         done()
     })
 
