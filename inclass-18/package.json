@@ -12,7 +12,7 @@
     "morgan": "^1.7.0"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node --use_strict index.js",
     "watch": "nodemon index.js",
     "test": "mocha --opts mocha.opts src/**/*.spec.js",
     "test:watch": "npm run test -- -w"
