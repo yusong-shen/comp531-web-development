@@ -60,7 +60,7 @@ class ToDos extends React.Component {
         }
     }
 
-    addTodo : function (text) {
+    addTodo(text) {
         // IMPLEMENT ME!
         console.log('call addTodo')
         const newTODO = document.getElementById("newTODO")
