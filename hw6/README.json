@@ -1,0 +1,5 @@
+{ 
+     "netid": "ys43",
+  "frontend": "http://ricebook.ys2016.surge.sh/",
+   "backend": "https://rb-backend-ys2016.herokuapp.com/"
+}
