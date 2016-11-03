@@ -32,6 +32,10 @@ The first half course is about Front-End Development, second half course is abou
 16. Express Server
 17. REST and Stubbing
 18. "Unit" Test the Back-End
+19. Web hosting in Heroku
+20. Set up MongoDB
+21. Add login and register to App
+22.
 
 ### Homework
 #### Front-End Part

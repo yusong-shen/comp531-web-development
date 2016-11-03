@@ -8,6 +8,7 @@ const app = express()
 app.use(bodyParser.json())
 app.use(logger('default'))
 
+require('./src/auth.js')(app)
 require('./src/profile.js')(app)
 require('./src/articles.js')(app)
 require('./src/hello.js')(app)

@@ -1,32 +1,33 @@
 #!/bin/bash
 PORT=3000
 
-echo "GET /"
-curl -H 'Content-Type: application/json' http://localhost:${PORT}
+echo "POST /login"
+curl -H 'Content-Type: application/json' http://localhost:${PORT}/login -d '{ "username":"defaultUser" , "password":"SomeLongPasswordCoolStuff" }' 
 echo ""
 echo ""
 
-echo "GET /articles"
-curl -H 'Content-Type: application/json' http://localhost:${PORT}/articles
+echo "POST /login"
+curl -H 'Content-Type: application/json' http://localhost:${PORT}/login -d '{ "username":"defaultUser" , "password":"Wrong" }' 
 echo ""
 echo ""
 
-echo "POST /article"
-curl -H 'Content-Type: application/json' http://localhost:${PORT}/article -d "{ \"text\":\"This is my new article! $(date)\" }" 
+echo "POST /login"
+curl -H 'Content-Type: application/json' http://localhost:${PORT}/login -d '{ "username":"defaultUser"}' 
 echo ""
 echo ""
 
-echo "GET /articles"
-curl -H 'Content-Type: application/json' http://localhost:${PORT}/articles 
+echo "POST /register"
+curl -H 'Content-Type: application/json' http://localhost:${PORT}/register -d '{ "username":"testYS01" , "password":"foobar132", "dob":"1233", "zipcode":"77006", "email":"a@b.com" }' 
 echo ""
 echo ""
 
-echo "GET /articles/0"
-curl -H 'Content-Type: application/json' http://localhost:${PORT}/articles/0
+echo "POST /login"
+curl -H 'Content-Type: application/json' http://localhost:${PORT}/login -d '{ "username":"testYS01" , "password":"foobar132" }' 
 echo ""
 echo ""
 
-echo "GET /articles/2"
-curl -H 'Content-Type: application/json' http://localhost:${PORT}/articles/2
-echo ""
-echo ""
+# echo "POST /register"
+# curl -H 'Content-Type: application/json' http://localhost:${PORT}/login -d '{ "username":"testYS02" , "password":"foobar136", "dob":"1233", "zipcode":"77006", "email":"a@b.com" }' 
+# echo ""
+# echo ""
+
