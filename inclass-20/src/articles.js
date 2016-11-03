@@ -1,40 +1,51 @@
 /**
  * Created by yusong on 10/25/16.
  */
-let articles = { articles: [ 
-          { id:1, author: 'Scott', text:'A post 1' },
-          { id:2, author: 'Scott1', text:'A post 2' },
-          { id:3, author: 'Scott2', text:'A post 3' },
-          { id:4, author: 'ys004', text:'A post 4' },
-          { id:5, author: 'ys005', text:'A post 5' },
 
-     ]}
+var Article = require('./model.js').Article
 
-// receives a JSON article, return the article with an id, 
-// and add the article to the list returned by GET
+// POST /article should create a new article in mongo
+// return the saved article with an id,
 const addArticle = (req, res) => {
      console.log('Payload received', req.body)
-     const numArticles = articles['articles'].length;
-     const article = {}
-     let result = {}
-     article.id = numArticles + 1
-     // console.log(typeof(req.body))
-     article.text = req.body.text
-     result.articles = [article] 
-     res.send(result)
-     articles['articles'].push(article)
+     if (req.body.text) {
+     Article.find().exec(function(err, articles) { 
+        console.log("There are " + articles.length + " articles total in db") 
+        new Article({ 
+          id: articles.length + 1, author: 'sep1', img: null, date: new Date().getTime(), 
+          text: req.body.text}).save(function(err, doc) {
+            if (err) {
+              res.send(err)
+            } else {
+              console.log('save successfully! ', doc)
+              res.send({'articles' : [doc]})
+            }
+          })
+     })
+     } else {
+      res.send("error : payload should have a text field.")
+     }
 
 }
-// supplies JSON articles, start with 5 hard coded articles
+
+// GET /articles should retrieve all articles from mongo
+// GET /articles/id should retrieve all articles with that id from mongo
 const getArticles = (req, res) => {
     const id = req.params.id
-    if (!id) {
-        res.send(articles)
-    } else {
-    	const result = {}
-    	result.articles = articles.articles.filter(x => (x.id == id))
-        res.send(result)
+    let condition = {}
+    if (id) {
+      condition.id = id
     }
+    Article.find(condition).exec(function(err, articles) {
+      if (!err){ 
+        console.log('There are ' + articles.length + ' entries ')
+        // console.log(items)
+        res.send({articles})
+      } else {
+        throw err
+      }
+    })
+
 }
 
 

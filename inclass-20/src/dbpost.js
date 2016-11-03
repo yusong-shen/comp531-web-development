@@ -27,21 +27,21 @@ function findByAuthor(author, callback) {
 //////////////////////////////
 // remove these examples 
 
-new Article({ id: 1, author: 'sep1', img: null, date: new Date().getTime(), text: 'This is my first article'}).save()
-new Article({ id: 2, author: 'sep1', img: null, date: new Date().getTime(), text: 'This is my second article'}).save()
-new Article({ id: 3, author: 'jmg3', img: null, date: new Date().getTime(), text: "This is Max's article"}).save(function() {
-     console.log('done with save')
-     Article.find().exec(function(err, items) { 
-          console.log("There are " + items.length + " articles total in db") 
+// new Article({ id: 1, author: 'sep1', img: null, date: new Date().getTime(), text: 'This is my first article'}).save()
+// new Article({ id: 2, author: 'sep1', img: null, date: new Date().getTime(), text: 'This is my second article'}).save()
+// new Article({ id: 3, author: 'jmg3', img: null, date: new Date().getTime(), text: "This is Max's article"}).save(function() {
+//      console.log('done with save')
+//      Article.find().exec(function(err, items) { 
+//           console.log("There are " + items.length + " articles total in db") 
 
-          findByAuthor('sep1', function() {
-              findByAuthor('jmg3', function() {
-                  console.log('complete')
-                  process.exit()
-              })
-          })
-     })
-})
+//           findByAuthor('sep1', function() {
+//               findByAuthor('jmg3', function() {
+//                   console.log('complete')
+//                   process.exit()
+//               })
+//           })
+//      })
+// })
 
 //////////////////////////////
 // remove the above example code
