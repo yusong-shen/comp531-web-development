@@ -25,6 +25,15 @@ const getUser = (username) => {
 	}
 }
 
+const cookieKey = 'sid'
+// key : sid, value : username
+const sessionUser = {}
+
+const generateCode = (userObj) => {
+	const code = md5(JSON.stringify(userObj))
+	return code
+}
+
 // POST /login
 // {username: username, password: password }	
 // { username: :user, result: "success"}	
@@ -51,7 +60,10 @@ const login = (req, res) => {
 	}
 
 	// autherized, set cookie and send back message
-	// res.cookie(cookieKey)
+	// Store the session id in an in-memory map from session to user	
+	const cookieValue = generateCode(userObj)
+	sessionUser[cookieValue] = username
+	res.cookie(cookieKey, cookieValue, {maxAge : 3600*1000, httpOnly : true})
 	const msg = {username : username, result : "success"}
 	res.send(msg)
 }
@@ -82,16 +94,18 @@ const register = (req, res) => {
 }
 
 // PUT /logout
+// /logout	PUT	none	OK	
+// log out of server, clears session id
 const logout = (req, res) => {
 	res.send('log out successfully!')
 }
 
+// /sample	GET	none	
+// [ { id: 1, author: Scott, ... }, { ... } ]	Array of sample posts.
 const getSample = (req, res) => {
 	res.send('array of sample posts.')
 }
 
-// /sample	GET	none	[ { id: 1, author: Scott, ... }, { ... } ]	Array of sample posts.
-// /logout	PUT	none	OK	log out of server, clears session id
 
 module.exports = app => {
      app.post('/login', login)
