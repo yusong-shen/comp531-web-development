@@ -1,15 +1,16 @@
 /**
  * Created by yusong on 10/20/16.
  */
-import React from 'react'
-
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
 import NewPost from '../article/newPost'
 import Headline from './headline'
 import AllFollowings from './allFollowings'
 import ArticlesView from './../article/articlesView'
+import ErrorMsg from './../errorMsg'
 
 
-export const Main = () => (
+export const Main = ({headlineErr}) => (
     // This is the main view.
     // On this view we display the user's avatar, their headline,
     // their feed of articles (with a search fiilter),
@@ -26,6 +27,7 @@ export const Main = () => (
                 <div className="col-sm-4">
                     <h4>Profile and Headline</h4>
                     <Headline/>
+                    {headlineErr? <ErrorMsg strong={'Update failed : '} errMsg={headlineErr} isSuccess={false}/> : null}
                 </div>
             </div>
         </div>
@@ -46,4 +48,14 @@ export const Main = () => (
     </div>
 )
 
-export default Main
+
+
+Main.prototype = {
+    headlineErr: PropTypes.string,
+}
+
+export default connect((state) => {
+    return {
+        headlineErr: state.error.headlineError,
+    }
+})(Main)

@@ -19,6 +19,8 @@ export const errorReducer = (state = {}, action) => {
             return {}
         case 'passwordMsg':
             return { passwordMsg : action.data }
+        case 'headlineError':
+            return { headlineError : action.data }
         default:
             return state
     }

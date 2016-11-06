@@ -29,6 +29,16 @@ const articlesReducer = (state = initState, action) => {
                     action.article
                 ]
             }
+        case 'toggleComments':
+            return {
+                ...state,
+                articles : state.articles.map((x) => {
+                    if (x._id === action._id) {
+                        x.showComments = action.showComments
+                    }
+                    return x
+                })
+            }
         default:
             return state
     }

@@ -18,6 +18,16 @@ export const addArticle = (article) => {
     }
 }
 
+export const toggleComments = (_id, showComments) => {
+    return (dispatch) => {
+        dispatch({
+            type: 'toggleComments',
+            _id, showComments
+        })
+    }
+}
+
+
 // /articles/:id*?	GET, if we don't specific the userId,
 // get all the articles for login user
 export const fetchArticles = (userId) => {
@@ -25,7 +35,14 @@ export const fetchArticles = (userId) => {
     return (dispatch) => {
         resource('GET', endpoint )
             .then((r) => {
-                dispatch(updateArticles(r.articles))
+                // add showComments option
+                const articles = r.articles.map((x) => {
+                    return {
+                        ...x,
+                        showComments : false,
+                    }
+                })
+                dispatch(updateArticles(articles))
             })
             .catch((err) => {
                 alert(err)

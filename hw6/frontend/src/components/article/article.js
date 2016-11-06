@@ -1,32 +1,37 @@
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
 import Comment from './comment'
-import {Button} from 'react-bootstrap'
+import { toggleComments } from './../../actions/articleActions'
 
-const Article = ({_id, author, date, img, text, comments}) => (
-    <div>
+const Article = ({_id, author, date, img, text, comments, showComments, _toggleComments}) => {
+    return (
         <div>
-            <h4>{`${author} Post at ${date}`}</h4>
-            <img src={img} alt="image missing" />
+            <div>
+                <h4>{`${author} Post at ${date}`}</h4>
+                <img src={img} alt="image missing" />
+            </div>
+            <p>
+                {text}
+            </p>
+            <div>
+                <button className="btn btn-primary" onClick={() => {
+                    _toggleComments(_id, !showComments)
+                }}>Show Comments</button>
+                <button className="btn btn-success">Add Comment</button>
+            </div>
+            <div>
+                <ul>
+                    {showComments ? comments.map(c =>
+                        <Comment
+                            key={c.commentId}
+                            {...c}
+                        />
+                    ) : null}
+                </ul>
+            </div>
         </div>
-        <p>
-            {text}
-        </p>
-        <div>
-            <Button bsStyle="primary">Show Comments</Button>
-            <Button bsStyle="success">Add Comment</Button>
-        </div>
-        <div>
-            <ul>
-                {comments.map(c =>
-                    <Comment
-                        key={c.commentId}
-                        {...c}
-                    />
-                )}
-            </ul>
-        </div>
-    </div>
-)
+    )
+}
 
 
 Article.protoTypes = {
@@ -40,6 +45,14 @@ Article.protoTypes = {
         date: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired,
     }).isRequired).isRequired,
+    showComments: PropTypes.bool,
+    _toggleComments: PropTypes.func,
 }
 
-export default Article
+export default connect(null, (dispatch) => {
+    return {
+        _toggleComments : (_id, showComments) => {
+            toggleComments(_id, showComments)(dispatch)
+        }
+    }
+})(Article)

@@ -30,9 +30,9 @@ ArticlesView.propTypes = {
         author: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired,
+        showComments : PropTypes.bool,
     }).isRequired).isRequired,
     keyword: PropTypes.string.isRequired,
-
 }
 
 export default connect((state) => {

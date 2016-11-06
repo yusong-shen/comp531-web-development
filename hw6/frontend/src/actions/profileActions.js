@@ -54,7 +54,8 @@ export const putHeadline = (headline) => {
         }).then ((r) => {
             dispatch(updateHeadline(r.headline))
         }).catch((err) => {
-            alert(err)
+            // alert(err)
+            dispatch({ type : 'headlineError' , data : err})
         })
     }
 }
