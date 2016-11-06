@@ -8,3 +8,9 @@ export const navigate = (text) => {
         text
     }
 }
+
+export const clearError = () => {
+    return (dispatch) => {
+        dispatch( { type : 'errClear'})
+    }
+}

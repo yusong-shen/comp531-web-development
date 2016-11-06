@@ -4,6 +4,7 @@ import articlesReducer from './articlesReducer'
 
 
 const initState = {
+    error: {},
     form: {},
     profile: {
         avatar: '',

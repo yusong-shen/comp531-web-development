@@ -33,7 +33,7 @@ export const loginUser = (username, password) => {
                 })
             })
             .catch((err) => {
-            alert(err)
+                dispatch({type : "loginError", data : err + ' Username or Password doesn\' match.'})
         })
     }
 }

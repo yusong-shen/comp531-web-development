@@ -18,7 +18,7 @@ import rootReducer from './reducers/reducers'
 const logger = createLogger()
 const store = createStore(rootReducer,
     compose(
-        // applyMiddleware(logger),
+        applyMiddleware(logger),
         applyMiddleware(reduxThunk)
     ))
 

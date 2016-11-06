@@ -5,6 +5,17 @@ import articlesReducer from './articlesReducer'
 import followingsReducer from './followingsReducer'
 import  authReducer from './authReducer'
 
+export const errorReducer = (state = {}, action) => {
+    switch (action.type) {
+        case 'loginError':
+            return { loginError : action.data }
+        case 'errClear':
+            return {}
+        default:
+            return state
+    }
+}
+
 export const navigateReducer = (state =  {
     nextPage: 'LandingPage'
 }, action) => {
@@ -26,6 +37,7 @@ const rootReducer = combineReducers({
     articles: articlesReducer,
     followings: followingsReducer,
     auth: authReducer,
+    error: errorReducer,
 });
 
 
