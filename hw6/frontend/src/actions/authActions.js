@@ -59,7 +59,8 @@ export const register = (username, password, email, dob, zipcode) => {
         resource('POST', 'register', { username, password, email, dob, zipcode })
             .then((r) => {
                 const usr = r.username
-                alert(`register as ${usr}`)
+                // alert(`register as ${usr}`)
+                dispatch({type : "registerMsg", data : `register as ${usr}`})
             })
             .catch((err) => {
                 dispatch({type : "registerError", data : err + 'Unable to register'})

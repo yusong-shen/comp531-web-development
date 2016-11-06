@@ -8,7 +8,7 @@ describe('Ricebook Front-End End-to-End testing', () => {
     // TODO : Register a new user
     it('should Register a new user', (done) => {
 
-
+        done()
     })
 
     const preamble = 'you are logged in as'
@@ -25,17 +25,20 @@ describe('Ricebook Front-End End-to-End testing', () => {
         //         expect(text.indexOf(preamble)).to.equal(0)
         //     })
         //     .then(done))
+        done()
+
     })
 
     // TODO
     it('should Create a new article and validate the article appears in the feed', (done) => {
+        done()
 
 
     })
 
     // TODO
     it('should Edit an article and validate the article text has updated', (done) => {
-
+        done()
 
     })
 
@@ -69,47 +72,47 @@ describe('Ricebook Front-End End-to-End testing', () => {
         //         expect(text).to.equal(prefix + '"' + oldHeadline + '"')
         //     })
         //     .then(done))
+        done()
     })
 
     // TODO
     it('should Count the number of followed users', (done) => {
-
+        done()
 
     })
 
     // TODO
     it('should Add the user "Follower" to the list of followed users and verify the count increases by one', (done) => {
-
+        done()
 
     })
 
     // TODO
     it('Remove the user "Follower" from the list of followed users and verify the count decreases by one', (done) => {
-
+        done()
 
     })
 
     // TODO
     it('Search for "Only One Article Like This" and verify only one article shows, and verify the author', (done) => {
-
+        done()
 
     })
 
     // TODO
     it('Navigate to the profile view, Update the user\'s email and verify', (done) => {
-
-
+        done()
     })
 
     // TODO
     it('Navigate to the profile view, Update the user\'s zipcode and verify', (done) => {
-
+        done()
 
     })
 
     // TODO
     it('Navigate to the profile view, Update the user\'s password, verify a "will not change" message is returned', (done) => {
-
+        done()
 
     })
 

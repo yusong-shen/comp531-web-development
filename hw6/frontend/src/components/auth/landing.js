@@ -9,7 +9,7 @@ import RegisterForm from './register'
 import ErrorMsg from './../errorMsg'
 
 
-export const Landing = ({loginErr}) => (
+export const Landing = ({loginErr, registerErr, registerMsg}) => (
     // This is the Landing view.
     <div>
         <div className="text-center">
@@ -17,21 +17,28 @@ export const Landing = ({loginErr}) => (
         </div>
         <div className="row">
             <LoginForm/>
-            {loginErr? <ErrorMsg strong="Login Failed: " errMsg={loginErr} /> : null}
+            {loginErr? <ErrorMsg strong="Login Failed: " errMsg={loginErr} isSuccess={false}/> : null}
         </div>
         <div className="row">
             <RegisterForm/>
+            {registerErr? <ErrorMsg strong="Register Failed: " errMsg={registerErr} isSuccess={false}/> : null}
+            {registerMsg? <ErrorMsg strong="Register Succeed: " errMsg={registerMsg} isSuccess={true}/> : null}
+
         </div>
     </div>
 
 )
 
 Landing.prototype = {
-    loginErr: PropTypes.string
+    loginErr: PropTypes.string,
+    registerErr: PropTypes.string,
+    registerMsg: PropTypes.string
 }
 
 export default connect((state) => {
     return {
-        loginErr: state.error.loginError
+        loginErr: state.error.loginError,
+        registerErr: state.error.registerError,
+        registerMsg: state.error.registerMsg
     }
 })(Landing)

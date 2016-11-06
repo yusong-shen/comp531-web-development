@@ -9,6 +9,10 @@ export const errorReducer = (state = {}, action) => {
     switch (action.type) {
         case 'loginError':
             return { loginError : action.data }
+        case 'registerMsg':
+            return { registerMsg : action.data }
+        case 'registerError':
+            return { registerError : action.data }
         case 'errClear':
             return {}
         default:
