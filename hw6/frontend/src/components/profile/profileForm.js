@@ -27,9 +27,15 @@ const validate = values => {
 
 class ProfileForm extends React.Component {
     handleFormSubmit = (values) => {
-        if (JSON.stringify(values, null, 4) !== '{}') {
-            this.props.updateEmail(values.email)
-            this.props.updateZipcode(values.zipcode)
+        if (values.email) {
+            this.props.putEmail(values.email)
+        }
+        if (values.zipcode) {
+            this.props.putZipcode(values.zipcode)
+        }
+        if (values.password && values.passwordConfirmation &&
+            values.password === values.passwordConfirmation) {
+            this.props.putPassword(values.password)
         }
     }
 

@@ -54,6 +54,15 @@ const profileReducer = (state = {
             } else {
                 return state
             }
+        case 'updateDob':
+            if (action.dob) {
+                return {
+                    ...state,
+                    dob: action.dob
+                }
+            } else {
+                return state
+            }
         default:
             return state
     }

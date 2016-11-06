@@ -10,6 +10,7 @@ var ignore = [
     ]
 
 module.exports = {
+    devServer: { inline: true },
     entry: pkg.main,
     output: { path: path.resolve(__dirname, 'dist'), filename: 'bundle.js' },
     devtool: 'source-map',

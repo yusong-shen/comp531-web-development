@@ -20,10 +20,10 @@ describe('Ricebook Front-End End-to-End testing', () => {
     // TODO
     it('should log in as the test user', (done) => {
         sleep(500)
-        .then(switchToDefault())
-        .then(sleep(500))
-        .then(switchToIframe(findId('iframe')))
-        .then(sleep(500))
+        // .then(switchToDefault())
+        // .then(sleep(500))
+        // .then(switchToIframe(findId('iframe')))
+        // .then(sleep(500))
         .then(findId('username').getText()
             .then(text => {
                 expect(text).to.equal("Username : ys43test")

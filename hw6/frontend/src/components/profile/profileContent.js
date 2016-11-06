@@ -7,22 +7,28 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Avatar from './avatar'
 
-const ProfileContent = ({username, avatar, zipcode, email}) => (
-    <div>
-        <h2 className="text-center">Profile</h2>
+const ProfileContent = ({username, avatar, zipcode, email, dob}) => {
+    const dobDate = new Date(dob).toLocaleDateString()
+    return (
         <div>
-            <h4>{`Username : ${username}`}</h4>
-            <Avatar avatar={avatar}/>
+            <h2 className="text-center">Profile</h2>
+            <div>
+                <h4>{`Username : ${username}`}</h4>
+                <Avatar avatar={avatar}/>
+            </div>
+            <div>
+                <h4>{`Zipcode : ${zipcode}`}</h4>
+            </div>
+            <div>
+                <h4>{`Email : ${email}`}</h4>
+            </div>
+            <div>
+                <h4>{`Date of birth : ${dobDate}`}</h4>
+            </div>
         </div>
-        <div>
-            <h4>{`Zipcode : ${zipcode}`}</h4>
-        </div>
-        <div>
-            <h4>{`Email : ${email}`}</h4>
-        </div>
-    </div>
 
-)
+    )
+}
 
 
 ProfileContent.protoTypes = {
@@ -30,6 +36,7 @@ ProfileContent.protoTypes = {
     avatar: PropTypes.string.isRequired,
     zipcode: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
+    dob: PropTypes.number.isRequired,
 }
 
 const mapStateToProps = (state) => {
@@ -38,7 +45,7 @@ const mapStateToProps = (state) => {
         avatar: state.profile.avatar,
         email: state.profile.email,
         zipcode: state.profile.zipcode,
-
+        dob: state.profile.dob,
     }
 }
 

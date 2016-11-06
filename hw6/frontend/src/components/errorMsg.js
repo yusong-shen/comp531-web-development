@@ -22,7 +22,7 @@ export const ErrorMsg = ({strong, errMsg, errReset, isSuccess})=> {
 
 ErrorMsg.propTypes = {
     strong: PropTypes.string,
-    isSuccess: PropTypes.bool,
+    isSuccess: PropTypes.bool.isRequired,
     errMsg: PropTypes.string.isRequired,
     errReset: PropTypes.func.isRequired
 }

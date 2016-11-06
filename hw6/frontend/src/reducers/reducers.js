@@ -17,6 +17,8 @@ export const errorReducer = (state = {}, action) => {
             return { logoutMsg : action.data }
         case 'errClear':
             return {}
+        case 'passwordMsg':
+            return { passwordMsg : action.data }
         default:
             return state
     }
