@@ -3,7 +3,10 @@
  */
 
 import React from 'react'
+import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form';
+import * as AuthActions from '../../actions/authActions'
+
 
 const validate = values => {
     const errors = {}
@@ -24,6 +27,19 @@ const validate = values => {
         errors.zipcode = 'Zipcode should be 5 digits'
     }
 
+    if (!values.dob) {
+        errors.dob = "please enter your date of birth"
+    } else {
+        const d = new Date(values.dob)
+        if (!!d.valueOf()) {
+            if (d.getFullYear() >= 1998) {
+                errors.dob = 'must be at least 18 years old to register'
+            }
+        } else {
+            errors.dob = 'Date format is incorrect'
+        }
+    }
+
     if (!values.password) {
         errors.password = "Please enter a password."
     }
@@ -41,7 +57,10 @@ const validate = values => {
 
 class RegisterForm extends React.Component {
     handleFormSubmit = (values) => {
-        alert(JSON.stringify(values, null, 4));
+        // alert(JSON.stringify(values, null, 4));
+        const dob = new Date(values.dob).getTime()
+        this.props.register(values.username, values.password,
+            values.email, dob, values.zipcode)
     }
 
     renderField = ({ input, label, placeholder, type, meta: { touched, error } }) => (
@@ -63,6 +82,7 @@ class RegisterForm extends React.Component {
                         <Field name="username" type="text" component={this.renderField} label="Username"/>
                         <Field name="email" type="text" component={this.renderField} label="Email" placeholder="a@b.com"/>
                         <Field name="zipcode" type="text" component={this.renderField} label="Zipcode" placeholder="77005"/>
+                        <Field name="dob" type="date" component={this.renderField} label="Date of Birth" placeholder="mm/dd/yyyy"/>
                         <Field name="password" type="password" component={this.renderField} label="Password" />
                         <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
 
@@ -75,8 +95,10 @@ class RegisterForm extends React.Component {
 }
 
 // export default RegisterForm
-export default reduxForm({
+export default connect(
+    null,
+    {...AuthActions}
+)(reduxForm({
     form: 'register',
     validate
-})(RegisterForm)
-
+})(RegisterForm))

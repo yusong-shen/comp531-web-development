@@ -54,4 +54,17 @@ export const logoutUser = () => {
     }
 }
 
+export const register = (username, password, email, dob, zipcode) => {
+    return (dispatch) => {
+        resource('POST', 'register', { username, password, email, dob, zipcode })
+            .then((r) => {
+                const usr = r.username
+                alert(`register as ${usr}`)
+            })
+            .catch((err) => {
+                dispatch({type : "registerError", data : err + 'Unable to register'})
+            })
+    }
+}
+
 export default loginUser
