@@ -13,7 +13,7 @@ export const BootstrapNavbar = ({curPage, navigate, logoutUser}) => {
     // decide the Navigation bar item according to nextPage state
     const mapNavItem = (item) => {
         if (item.title == 'Logout') {
-            return (<NavItem key={navItems.indexOf(item)}
+            return (<NavItem id='logout' key={navItems.indexOf(item)}
                              onClick={() => {
                                  return logoutUser()
                              }}>

@@ -29,11 +29,11 @@ class LoginForm extends React.Component {
 
     }
 
-    renderField = ({ input, label, placeholder, type, meta: { touched, error } }) => (
+    renderField = ({ id, input, label, placeholder, type, meta: { touched, error } }) => (
         <fieldset className={`form-group ${touched && error ? 'has-error' : ''}`}>
             <label className="control-label">{label}</label>
-            <div>
-                <input {...input} placeholder={placeholder} className="form-control" type={type} />
+            <div >
+                <input id={id} {...input} placeholder={placeholder} className="form-control" type={type} />
                 {touched && error && <div className="help-block">{error}</div>}
             </div>
         </fieldset>
@@ -45,10 +45,10 @@ class LoginForm extends React.Component {
                 <div className="col-md-6 col-md-offset-3">
                     <h2 className="text-center">Log In</h2>
                     <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
-                        <Field name="username" type="text" component={this.renderField} label="Username"/>
-                        <Field name="password" type="password" component={this.renderField} label="Password" />
+                        <Field id="login_username" name="username" type="text" component={this.renderField} label="Username"/>
+                        <Field id="login_password" name="password" type="password" component={this.renderField} label="Password" />
 
-                        <button action="submit" className="btn btn-primary">Log In</button>
+                        <button id="login" action="submit" className="btn btn-primary">Log In</button>
                     </form>
                 </div>
             </div>
