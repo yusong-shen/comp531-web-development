@@ -12,7 +12,7 @@ import Avatar from './../profile/avatar'
 const Headline = ({username, avatar, headline, updateHeadline}) => (
     <div>
         <div>
-            <h4>{`Username : ${username}`}</h4>
+            <h4 id="username">{`Username : ${username}`}</h4>
             <Avatar avatar={avatar}/>
         </div>
         <div>

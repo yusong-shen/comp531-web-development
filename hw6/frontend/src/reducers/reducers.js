@@ -13,6 +13,8 @@ export const errorReducer = (state = {}, action) => {
             return { registerMsg : action.data }
         case 'registerError':
             return { registerError : action.data }
+        case 'logoutMsg':
+            return { logoutMsg : action.data }
         case 'errClear':
             return {}
         default:

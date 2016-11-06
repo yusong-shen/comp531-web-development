@@ -9,13 +9,14 @@ import RegisterForm from './register'
 import ErrorMsg from './../errorMsg'
 
 
-export const Landing = ({loginErr, registerErr, registerMsg}) => (
+export const Landing = ({loginErr, registerErr, registerMsg, logoutMsg}) => (
     // This is the Landing view.
     <div>
         <div className="text-center">
             <img src='/img/rice-logo.jpg' width={300} height={100}/>
         </div>
         <div className="row">
+            {logoutMsg? <ErrorMsg strong="Logout Succeed:" errMsg={logoutMsg} isSuccess={true}/> : null}
             <LoginForm/>
             {loginErr? <ErrorMsg strong="Login Failed: " errMsg={loginErr} isSuccess={false}/> : null}
         </div>
@@ -39,6 +40,7 @@ export default connect((state) => {
     return {
         loginErr: state.error.loginError,
         registerErr: state.error.registerError,
-        registerMsg: state.error.registerMsg
+        registerMsg: state.error.registerMsg,
+        logoutMsg: state.error.logoutMsg
     }
 })(Landing)

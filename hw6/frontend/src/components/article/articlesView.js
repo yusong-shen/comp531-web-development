@@ -6,7 +6,6 @@ import SearchBar from './searchBar'
 
 export const ArticlesView = ({articles, keyword}) => {
     const displayList = articles.filter(article => {
-        console.log(article)
         return article.text.indexOf(keyword) !== -1
     })
     return (

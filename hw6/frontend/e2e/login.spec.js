@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { go, sleep, findId, findCSS, By, sendKeys } from './selenium'
+import { go, sleep, findId, findCSS, By, sendKeys, switchToIframe, switchToDefault } from './selenium'
 import common from './common'
 
 describe('Ricebook Front-End End-to-End testing', () => {
@@ -19,14 +19,16 @@ describe('Ricebook Front-End End-to-End testing', () => {
 
     // TODO
     it('should log in as the test user', (done) => {
-        // sleep(500)
-        // .then(findId('message').getText()
-        //     .then(text => {
-        //         expect(text.indexOf(preamble)).to.equal(0)
-        //     })
-        //     .then(done))
-        done()
-
+        sleep(500)
+        .then(switchToDefault())
+        .then(sleep(500))
+        .then(switchToIframe(findId('iframe')))
+        .then(sleep(500))
+        .then(findId('username').getText()
+            .then(text => {
+                expect(text).to.equal("Username : ys43test")
+            }))
+        .then(done)
     })
 
     // TODO

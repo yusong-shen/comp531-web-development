@@ -42,7 +42,8 @@ export const logoutUser = () => {
     return (dispatch) => {
         resource('PUT', 'logout')
             .then(() => {
-                alert('You have logged out')
+                // alert('You have logged out')
+                dispatch({type : "logoutMsg", data : 'You have logged out'})
                 dispatch(authenticateUser(false))
                 // clean the state content
                 dispatch(ArticleActions.clearArticles())

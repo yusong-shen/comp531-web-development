@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { findId, sleep, switchToIframe } from './selenium'
+import { findId, sleep, switchToIframe, switchToDefault } from './selenium'
 
 // TODO add your test user credentials here!
 exports.creds = {
@@ -9,6 +9,8 @@ exports.creds = {
 
 exports.login = () => 
     sleep(500)
+    .then(switchToDefault())
+    .then(sleep(500))
     .then(switchToIframe(findId('iframe')))
     .then(sleep(500))
     .then(findId('login_username').clear())
@@ -20,6 +22,10 @@ exports.login = () =>
 
 exports.logout = () =>
     sleep(500)
+    .then(switchToDefault())
+    .then(sleep(1000))
+    .then(switchToIframe(findId('iframe')))
+    .then(sleep(1000))
     .then(findId('logout').click())
     .then(sleep(1000))
 
