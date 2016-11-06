@@ -5,7 +5,7 @@
 import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {Button} from 'react-bootstrap'
-import {addArticle} from '../../actions/articleActions'
+import {addRemoteArticle} from '../../actions/articleActions'
 
 export const NewPost = ({_addArticle}) => {
     let newArticle
@@ -23,6 +23,7 @@ export const NewPost = ({_addArticle}) => {
                     </div>
                     <Button bsStyle="primary" onClick={() => {
                         console.log(newArticle.value)
+                        _addArticle(newArticle.value)
                         newArticle.value=""
                     }}>
                         Post
@@ -44,7 +45,7 @@ export default connect(
     (dispatch) => {
         return {
             _addArticle: (text) => {
-                addArticle(text)(dispatch)
+                return addRemoteArticle(text)(dispatch)
             }
         }
     }

@@ -23,9 +23,23 @@ export const addArticle = (article) => {
 export const fetchArticles = (userId) => {
     const endpoint = (userId) ? `articles/${userId}` : 'articles'
     return (dispatch) => {
-        resource('GET', endpoint, )
+        resource('GET', endpoint )
             .then((r) => {
                 dispatch(updateArticles(r.articles))
+            })
+            .catch((err) => {
+                alert(err)
+            })
+    }
+}
+
+export const addRemoteArticle = (text) => {
+    const endpoint = 'article'
+    return (dispatch) => {
+        resource('POST', endpoint, { text })
+            .then((r) => {
+                console.log(r)
+                dispatch(addArticle(r.articles[0]))
             })
             .catch((err) => {
                 alert(err)

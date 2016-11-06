@@ -26,7 +26,7 @@ const articlesReducer = (state = initState, action) => {
                 ...state,
                 articles: [
                     ...state.articles,
-                    action.articles
+                    action.article
                 ]
             }
         default:
