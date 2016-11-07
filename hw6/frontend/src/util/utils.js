@@ -4,15 +4,19 @@
 
 export const url = 'https://webdev-dummy.herokuapp.com'
 
-export const resource = (method, endpoint, payload) => {
+export const resource = (method, endpoint, payload, nonJson) => {
     const options =  {
         method,
         credentials: 'include',
-        headers: {
+    }
+    if (!nonJson) {
+        options.headers = {
             'Content-Type': 'application/json'
         }
     }
-    if (payload) options.body = JSON.stringify(payload)
+    if (payload && !nonJson) options.body = JSON.stringify(payload)
+    // for form data
+    if (payload && nonJson) options.body = payload
 
     return fetch(`${url}/${endpoint}`, options)
         .then(r => {

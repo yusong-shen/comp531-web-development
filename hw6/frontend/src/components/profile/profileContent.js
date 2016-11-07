@@ -5,7 +5,6 @@
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import Avatar from './avatar'
 
 const ProfileContent = ({username, avatar, zipcode, email, dob}) => {
     const dobDate = new Date(dob).toLocaleDateString()
@@ -14,7 +13,9 @@ const ProfileContent = ({username, avatar, zipcode, email, dob}) => {
             <h2 className="text-center">Profile</h2>
             <div>
                 <h4>{`Username : ${username}`}</h4>
-                <Avatar avatar={avatar}/>
+                <div className="avatar">
+                    <img src={avatar} width={300} height={300} alt="image missing" />
+                </div>
             </div>
             <div>
                 <h4>{`Zipcode : ${zipcode}`}</h4>

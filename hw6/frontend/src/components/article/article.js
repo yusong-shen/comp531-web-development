@@ -8,7 +8,7 @@ const Article = ({_id, author, date, img, text, comments, showComments, _toggleC
         <div>
             <div>
                 <h4>{`${author} Post at ${date}`}</h4>
-                <img src={img} alt="image missing" />
+                {img ? <img src={img}  width={400} height={300} alt="image missing" /> : null}
             </div>
             <p>
                 {text}
@@ -45,8 +45,8 @@ Article.protoTypes = {
         date: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired,
     }).isRequired).isRequired,
-    showComments: PropTypes.bool,
-    _toggleComments: PropTypes.func,
+    showComments: PropTypes.bool.isRequired,
+    _toggleComments: PropTypes.func.isRequired,
 }
 
 export default connect(null, (dispatch) => {

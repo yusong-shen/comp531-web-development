@@ -4,7 +4,6 @@
 
 import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
-import {Button} from 'react-bootstrap'
 import {addRemoteArticle} from '../../actions/articleActions'
 
 export const NewPost = ({_addArticle}) => {
@@ -14,20 +13,20 @@ export const NewPost = ({_addArticle}) => {
             <div className="row">
                 <div className="col-sm-6">
                     <input id="file-upload" type="file"/>
-                    <Button bsStyle="success">Cancel</Button>
+                    <button className="btn btn-success">Cancel</button>
                 </div>
                 <div className="col-sm-6" >
                     <div>
                         <textarea rows="5" style={{width:'100%'}} id="post" placeholder="Edit your post here"
                                   ref={(node)=>{ newArticle = node }}/>
                     </div>
-                    <Button bsStyle="primary" onClick={() => {
+                    <button className="btn btn-primary" onClick={() => {
                         console.log(newArticle.value)
                         _addArticle(newArticle.value)
                         newArticle.value=""
                     }}>
                         Post
-                    </Button>
+                    </button>
                 </div>
             </div>
         </div>

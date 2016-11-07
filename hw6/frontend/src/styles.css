@@ -16,3 +16,19 @@
 /*.form{*/
     /*height: 500px;*/
 /*}*/
+
+input[type="file"] {
+    position: relative;
+    text-align: right;
+    /*-moz-opacity:0 ;*/
+    /*filter:alpha(opacity: 0);*/
+    /*opacity: 0;*/
+    /*z-index: 2;*/
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}

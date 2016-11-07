@@ -96,6 +96,19 @@ export const putPassword = (password) => {
     }
 }
 
+export const putAvatar = (avatar) => {
+    return (dispatch) => {
+        // payload is form data
+        resource('PUT', 'avatar', avatar, true)
+            .then ((r) => {
+                dispatch(updateAvatar(r.avatar))
+            })
+            .catch((err) => {
+                alert(err)
+            })
+    }
+}
+
 export const fetchField = (field, param) => {
     const endpoint = (param) ? field + '/' + param : field
     return (dispatch) => {resource('GET', endpoint)
