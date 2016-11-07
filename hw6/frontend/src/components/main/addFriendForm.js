@@ -9,14 +9,15 @@ import * as FollowingActions from '../../actions/followingActions'
 
 class AddFriendForm extends Component {
     handleFormSubmit = (values) => {
-        alert(JSON.stringify(values, null, 4));
+        // alert(JSON.stringify(values, null, 4));
+        this.props.putFollowing(values.userId)
     }
 
     render() {
         return (
             <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
                 <div>
-                    <Field name="friendId" component="input" type="text"/>
+                    <Field name="userId" component="input" type="text"/>
                     <button type="submit">Add</button>
                 </div>
             </form>

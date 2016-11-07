@@ -21,6 +21,11 @@ const followingsReducer = (state = initState, action) => {
                 ...state,
                 followings: action.followings
             }
+        case 'clearFollowings':
+            return {
+                ...state,
+                followings: []
+            }
         default:
             return state
     }

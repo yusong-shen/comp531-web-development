@@ -3,6 +3,7 @@
  */
 import {resource} from './../util/utils'
 
+
 export const addFriend = (friend) => {
     return {
         type: 'addFriend',
@@ -17,6 +18,47 @@ export const updateFollowings = (followings) => {
     }
 }
 
+export const deleteFollowing = (userId) => {
+    return (dispatch) => {
+        const endpoint = `following/${userId}`
+        resource('DELETE', endpoint).then ((r) => {
+            const idList = r.following
+            // console.log(idList)
+            // TODO : get the previous number of followings
+            dispatch({ type : 'clearFollowings'})
+            const pList = idList.map((id) => {
+                dispatch(fetchFriendProfile(id))
+            })
+            Promise.all(pList).then(
+                // console.log('fetch all followings')
+            )
+        }).catch((err) => {
+            alert(err)
+            dispatch({type : 'addFriendError', data : err})
+        })
+    }
+}
+
+export const putFollowing = (userId) => {
+    return (dispatch) => {
+        const endpoint = `following/${userId}`
+        resource('PUT', endpoint).then ((r) => {
+            const idList = r.following
+            // console.log(idList)
+            // TODO : get the previous number of followings
+            dispatch({ type : 'clearFollowings'})
+            const pList = idList.map((id) => {
+                dispatch(fetchFriendProfile(id))
+            })
+            Promise.all(pList).then(
+                // console.log('fetch all followings')
+            )
+        }).catch((err) => {
+            alert(err)
+            dispatch({type : 'addFriendError', data : err})
+        })
+    }
+}
 
 export const fetchFriendProfile = (userId) => {
     // const fieldList = ['avatar', 'headline']

@@ -21,6 +21,8 @@ export const errorReducer = (state = {}, action) => {
             return { passwordMsg : action.data }
         case 'headlineError':
             return { headlineError : action.data }
+        case 'addFriendError':
+            return { addFriendError : action.data }
         default:
             return state
     }

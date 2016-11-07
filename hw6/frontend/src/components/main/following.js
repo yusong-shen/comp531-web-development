@@ -4,28 +4,48 @@
 
 
 import React, { Component, PropTypes } from 'react'
-import {Button} from 'react-bootstrap'
+import {connect} from 'react-redux'
 import Avatar from './../profile/avatar'
+import { deleteFollowing } from './../../actions/followingActions'
 
-const Following = ({username, avatar, headline}) => (
-    <div>
+const Following = ({username, avatar, headline, removeFollowing}) =>  {
+    const handleSubmit = _ => {
+        removeFollowing(username)
+    }
+    return (
         <div>
-            <Avatar avatar={avatar}/>
-            <h4>{username}</h4>
-        </div>
-        <div>
-            {headline}
-        </div>
-        <Button bsStyle="primary">Unfollow</Button>
+            <div>
+                <Avatar avatar={avatar}/>
+                <h4>{username}</h4>
+            </div>
+            <div>
+                {headline}
+            </div>
+            <button className="btn btn-primary" onClick={_ => {
+                handleSubmit()
+            }}>Unfollow</button>
 
-    </div>
+        </div>
 
-)
+    )
+}
+
 
 Following.protoTypes = {
     username: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
     headline: PropTypes.string.isRequired,
+    removeFollowing : PropTypes.func.isRequired,
 }
 
-export default Following
+
+export default connect(
+    null,
+    (dispatch) => {
+        return {
+            removeFollowing: (userId) => {
+                return deleteFollowing(userId)(dispatch)
+            }
+        }
+    }
+)(Following)
