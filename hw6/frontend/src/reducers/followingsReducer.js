@@ -2,6 +2,10 @@
  * Created by yusong on 10/25/16.
  */
 
+// followings schema
+// {
+//     username, avatar, headline
+// }
 const initState = {
     followings: []
 }
@@ -25,6 +29,12 @@ const followingsReducer = (state = initState, action) => {
             return {
                 ...state,
                 followings: []
+            }
+        case 'removeFriend':
+            const result = state.followings.filter(x => x.username !== action.userId)
+            return {
+                ...state,
+                followings: result
             }
         default:
             return state

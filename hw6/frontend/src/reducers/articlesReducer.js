@@ -2,6 +2,15 @@
  * Created by yusong on 10/25/16.
  */
 
+// article schema
+// {
+//     _id, author, date, img, text, comments
+// }
+
+// comment schema
+// {
+//     commentId, author, date, text
+// }
 const initState = {
     keyword: '',
     articles:[]

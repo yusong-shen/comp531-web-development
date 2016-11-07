@@ -8,9 +8,9 @@ import {connect} from 'react-redux'
 import Avatar from './../profile/avatar'
 import { deleteFollowing } from './../../actions/followingActions'
 
-const Following = ({username, avatar, headline, removeFollowing}) =>  {
+const Following = ({username, avatar, headline, deleteFollowing}) =>  {
     const handleSubmit = _ => {
-        removeFollowing(username)
+        deleteFollowing(username)
     }
     return (
         <div>
@@ -35,17 +35,19 @@ Following.protoTypes = {
     username: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
     headline: PropTypes.string.isRequired,
-    removeFollowing : PropTypes.func.isRequired,
+    // removeFollowing : PropTypes.func.isRequired,
 }
 
+// // redux-thunk
+// const mapDispatchToProps = (dispatch, getState) => {
+//     return {
+//         removeFollowing: (userId) => {
+//             return deleteFollowing(userId)(dispatch, getState)
+//         }
+//     }
+// }
 
 export default connect(
     null,
-    (dispatch) => {
-        return {
-            removeFollowing: (userId) => {
-                return deleteFollowing(userId)(dispatch)
-            }
-        }
-    }
+    { deleteFollowing }
 )(Following)

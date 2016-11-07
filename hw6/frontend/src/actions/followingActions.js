@@ -11,6 +11,13 @@ export const addFriend = (friend) => {
     }
 }
 
+export const removeFriend = (userId) => {
+    return {
+        type: 'removeFriend',
+        userId
+    }
+}
+
 export const updateFollowings = (followings) => {
     return {
         type: 'updateFollowings',
@@ -19,19 +26,17 @@ export const updateFollowings = (followings) => {
 }
 
 export const deleteFollowing = (userId) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         const endpoint = `following/${userId}`
         resource('DELETE', endpoint).then ((r) => {
             const idList = r.following
-            // console.log(idList)
-            // TODO : get the previous number of followings
-            dispatch({ type : 'clearFollowings'})
-            const pList = idList.map((id) => {
-                dispatch(fetchFriendProfile(id))
-            })
-            Promise.all(pList).then(
-                // console.log('fetch all followings')
-            )
+            // get the previous followings state
+            const {followings} = getState().followings
+            if (idList.length !== followings.length - 1) {
+                dispatch({type : 'addFriendError', data : 'Unfollow failed'})
+                return
+            }
+            dispatch(removeFriend(userId))
         }).catch((err) => {
             alert(err)
             dispatch({type : 'addFriendError', data : err})
@@ -40,19 +45,21 @@ export const deleteFollowing = (userId) => {
 }
 
 export const putFollowing = (userId) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         const endpoint = `following/${userId}`
         resource('PUT', endpoint).then ((r) => {
             const idList = r.following
-            // console.log(idList)
-            // TODO : get the previous number of followings
-            dispatch({ type : 'clearFollowings'})
-            const pList = idList.map((id) => {
-                dispatch(fetchFriendProfile(id))
-            })
-            Promise.all(pList).then(
-                // console.log('fetch all followings')
-            )
+            // get the previous followings state
+            const {followings} = getState().followings
+            if (idList.indexOf(userId) === -1) {
+                dispatch({type : 'addFriendError', data : 'User is invalid'})
+                return
+            } else if (followings.findIndex(x => x.username === userId) !== -1) {
+                dispatch({type : 'addFriendError', data : 'User has already been your following'})
+                return
+            }
+            dispatch(fetchFriendProfile(userId))
+
         }).catch((err) => {
             alert(err)
             dispatch({type : 'addFriendError', data : err})
