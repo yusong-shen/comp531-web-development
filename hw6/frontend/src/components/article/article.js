@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Comment from './comment'
 import { toggleComments } from './../../actions/articleActions'
 
-const Article = ({_id, author, date, img, text, comments, showComments, _toggleComments}) => {
+const Article = ({_id, author, date, img, text, comments, showComments, _toggleComments, loggedInUser}) => {
     return (
         <div>
             <div>
@@ -18,6 +18,7 @@ const Article = ({_id, author, date, img, text, comments, showComments, _toggleC
                     _toggleComments(_id, !showComments)
                 }}>Show Comments</button>
                 <button className="btn btn-success">Add Comment</button>
+                {loggedInUser === author ? <button className="btn btn-warning">Edit Post</button> : null}
             </div>
             <div>
                 <ul>
@@ -47,9 +48,14 @@ Article.protoTypes = {
     }).isRequired).isRequired,
     showComments: PropTypes.bool.isRequired,
     _toggleComments: PropTypes.func.isRequired,
+    loggedInUser: PropTypes.string.isRequired,
 }
 
-export default connect(null, (dispatch) => {
+export default connect((state) => {
+    return {
+        loggedInUser : state.profile.username
+    }
+}, (dispatch) => {
     return {
         _toggleComments : (_id, showComments) => {
             toggleComments(_id, showComments)(dispatch)

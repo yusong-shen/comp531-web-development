@@ -35,17 +35,8 @@ Following.protoTypes = {
     username: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
     headline: PropTypes.string.isRequired,
-    // removeFollowing : PropTypes.func.isRequired,
+    deleteFollowing: PropTypes.func.isRequired,
 }
-
-// // redux-thunk
-// const mapDispatchToProps = (dispatch, getState) => {
-//     return {
-//         removeFollowing: (userId) => {
-//             return deleteFollowing(userId)(dispatch, getState)
-//         }
-//     }
-// }
 
 export default connect(
     null,
