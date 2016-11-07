@@ -50,10 +50,10 @@ export const fetchArticles = (userId) => {
     }
 }
 
-export const addRemoteArticle = (text) => {
+export const addRemoteArticle = (fd) => {
     const endpoint = 'article'
     return (dispatch) => {
-        resource('POST', endpoint, { text })
+        resource('POST', endpoint, fd, true)
             .then((r) => {
                 console.log(r)
                 dispatch(addArticle(r.articles[0]))
