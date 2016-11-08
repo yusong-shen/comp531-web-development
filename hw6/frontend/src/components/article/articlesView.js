@@ -30,7 +30,8 @@ ArticlesView.propTypes = {
         author: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired,
-        showComments : PropTypes.bool,
+        showComments : PropTypes.bool.isRequired,
+        showAddCommentArea: PropTypes.bool.isRequired,
     }).isRequired).isRequired,
     keyword: PropTypes.string.isRequired,
 }

@@ -58,6 +58,16 @@ const articlesReducer = (state = initState, action) => {
                     return x
                 })
             }
+        case 'toggleAddCommentArea':
+            return {
+                ...state,
+                articles : state.articles.map((x) => {
+                    if (x._id === action._id) {
+                        x.showAddCommentArea = action.showAddCommentArea
+                    }
+                    return x
+                })
+            }
         default:
             return state
     }

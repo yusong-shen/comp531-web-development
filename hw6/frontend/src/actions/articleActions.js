@@ -27,6 +27,15 @@ export const toggleComments = (_id, showComments) => {
     }
 }
 
+export const toggleAddCommentArea = (_id, showAddCommentArea) => {
+    return (dispatch) => {
+        dispatch({
+            type: 'toggleAddCommentArea',
+            _id, showAddCommentArea
+        })
+    }
+}
+
 
 // /articles/:id*?	GET, if we don't specific the userId,
 // get all the articles for login user
@@ -40,6 +49,7 @@ export const fetchArticles = (userId) => {
                     return {
                         ...x,
                         showComments : false,
+                        showAddCommentArea : false,
                     }
                 })
                 dispatch(updateArticles(articles))
@@ -89,10 +99,10 @@ export const addRemoteComment = (_id, text) => {
                         type: 'addComment',
                         _id, comment : addedComment
                     })
-                    dispatch({
-                        type: 'toggleComments',
-                        _id, showComments : false
-                    })
+                    // dispatch({
+                    //     type: 'toggleComments',
+                    //     _id, showComments : false
+                    // })
                 } else {
                     alert('not match comment')
                 }

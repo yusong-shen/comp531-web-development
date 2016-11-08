@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Comment from './comment'
-import { toggleComments, addRemoteComment } from './../../actions/articleActions'
+import { toggleComments, addRemoteComment, toggleAddCommentArea } from './../../actions/articleActions'
 
 
-const Article = ({_id, author, date, img, text, comments, showComments, toggleComments, loggedInUser, addRemoteComment}) => {
+const Article = ({_id, author, date, img, text, comments, showComments, toggleComments,
+    loggedInUser, addRemoteComment, showAddCommentArea, toggleAddCommentArea}) => {
+    let commentArea
     return (
         <div>
             <div>
@@ -19,10 +21,28 @@ const Article = ({_id, author, date, img, text, comments, showComments, toggleCo
                     toggleComments(_id, !showComments)
                 }}>Show Comments</button>
                 <button className="btn btn-success" onClick={() => {
-                    addRemoteComment(_id, 'test')
-                }}>Add Comment</button>
-                {loggedInUser === author ? <button className="btn btn-warning">Edit Post</button> : null}
+                    toggleAddCommentArea(_id, !showAddCommentArea)
+                    console.log(showAddCommentArea)
+                }}>{showAddCommentArea ? 'Cancel' : 'Add Comment'}</button>
+                {loggedInUser === author ?
+                    <button className="btn btn-warning">Edit Post</button>
+                    : null
+                }
             </div>
+            {showAddCommentArea ?
+                <div>
+                <textarea rows="5" style={{width:'100%'}} id="commentArea"
+                          placeholder="Edit your comment here"
+                          ref={(node)=>{ commentArea = node }}/>
+                    <button className="btn btn-success" onClick={() => {
+                        addRemoteComment(_id, commentArea.value)
+                        commentArea.value = ''
+                    }}>Publish Comment</button>
+
+                </div>
+                : null
+            }
+
             <div>
                 <ul>
                     {showComments ? comments.map(c =>
@@ -50,12 +70,15 @@ Article.protoTypes = {
         text: PropTypes.string.isRequired,
     }).isRequired).isRequired,
     showComments: PropTypes.bool.isRequired,
-    _toggleComments: PropTypes.func.isRequired,
+    toggleComments: PropTypes.func.isRequired,
     loggedInUser: PropTypes.string.isRequired,
+    showAddCommentArea: PropTypes.bool.isRequired,
+    addRemoteComment: PropTypes.func.isRequired,
+    toggleAddCommentArea: PropTypes.func.isRequired,
 }
 
 export default connect((state) => {
     return {
         loggedInUser : state.profile.username
     }
-}, { toggleComments, addRemoteComment })(Article)
+}, { toggleComments, addRemoteComment, toggleAddCommentArea })(Article)
