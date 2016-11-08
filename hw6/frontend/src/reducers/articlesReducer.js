@@ -68,6 +68,16 @@ const articlesReducer = (state = initState, action) => {
                     return x
                 })
             }
+        case 'editPost':
+            return {
+                ...state,
+                articles: state.articles.map((x) => {
+                    if (x._id === action._id) {
+                        return action.article
+                    }
+                    return x
+                })
+            }
         default:
             return state
     }

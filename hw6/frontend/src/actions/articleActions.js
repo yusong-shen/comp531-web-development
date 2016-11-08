@@ -99,16 +99,35 @@ export const addRemoteComment = (_id, text) => {
                         type: 'addComment',
                         _id, comment : addedComment
                     })
-                    // dispatch({
-                    //     type: 'toggleComments',
-                    //     _id, showComments : false
-                    // })
                 } else {
                     alert('not match comment')
                 }
             } else {
                 alert('comment add failed')
             }
+
+        })
+        .catch((err) => {
+            alert(err)
+        })
+    }
+}
+
+export const editPost = (_id, text) => {
+    const endpoint = `articles/${_id}`
+    return (dispatch, getState) => {
+        resource('PUT', endpoint, {
+            text
+        })
+        .then((r) => {
+            console.log(r)
+            const remoteArticle = r.articles[0]
+            remoteArticle.showComments = false
+            remoteArticle.showAddCommentArea = false
+            dispatch({
+                type : 'editPost', _id,
+                article : remoteArticle
+            })
 
         })
         .catch((err) => {

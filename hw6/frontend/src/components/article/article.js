@@ -1,21 +1,22 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Comment from './comment'
-import { toggleComments, addRemoteComment, toggleAddCommentArea } from './../../actions/articleActions'
-
+import * as articleActions from './../../actions/articleActions'
+import ContentEditable from './../contentEditable'
 
 const Article = ({_id, author, date, img, text, comments, showComments, toggleComments,
-    loggedInUser, addRemoteComment, showAddCommentArea, toggleAddCommentArea}) => {
+    loggedInUser, addRemoteComment, showAddCommentArea, toggleAddCommentArea, editPost}) => {
     let commentArea
+    let articleContent
     return (
         <div>
             <div>
                 <h4>{`${author} Post at ${date}`}</h4>
                 {img ? <img src={img}  width={400} height={300} alt="image missing" /> : null}
             </div>
-            <p>
-                {text}
-            </p>
+            <ContentEditable html={text}  onChange={(e) => {
+                articleContent = e.target.value
+            }} contentEditable={loggedInUser === author}/>
             <div>
                 <button className="btn btn-primary" onClick={() => {
                     toggleComments(_id, !showComments)
@@ -25,7 +26,11 @@ const Article = ({_id, author, date, img, text, comments, showComments, toggleCo
                     console.log(showAddCommentArea)
                 }}>{showAddCommentArea ? 'Cancel' : 'Add Comment'}</button>
                 {loggedInUser === author ?
-                    <button className="btn btn-warning">Edit Post</button>
+                    <button className="btn btn-warning" onClick={() => {
+                        editPost(_id, articleContent)
+                    }} disabled={false}>
+                        Edit Post
+                    </button>
                     : null
                 }
             </div>
@@ -81,4 +86,4 @@ export default connect((state) => {
     return {
         loggedInUser : state.profile.username
     }
-}, { toggleComments, addRemoteComment, toggleAddCommentArea })(Article)
+}, articleActions)(Article)
