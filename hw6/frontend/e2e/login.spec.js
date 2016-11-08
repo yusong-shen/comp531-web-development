@@ -43,7 +43,7 @@ describe('Ricebook Front-End End-to-End testing', () => {
     })
 
     it('should Create a new article and validate the article appears in the feed', (done) => {
-        const content = "for e2e testing"
+        const content = "for e2e testing - adding new post"
         let numArticle
         sleep(500)
             .then(driver.findElements(By.css('[class="article"]'))
@@ -65,10 +65,41 @@ describe('Ricebook Front-End End-to-End testing', () => {
 
     })
 
-    // TODO
     it('should Edit an article and validate the article text has updated', (done) => {
-        done()
-
+        const date = new Date()
+        const content = `for e2e testing - editing at ${date}`
+        const newContent = `for e2e testing - New content!! editing at ${date}`
+        sleep(500)
+            .then(findId('post').clear())
+            .then(findId('post').sendKeys(content))
+            .then(findId('postBtn').click())
+            .then(sleep(1000))
+            .then(findId('keyword').clear())
+            .then(findId('keyword').sendKeys(content))
+            .then(findId('searchBtn').click())
+            .then(sleep(1000))
+            .then(driver.findElements(By.css('[class="article"]'))
+                .then(nodes => {
+                    const len = nodes.length
+                    console.log(len)
+                    expect(len).to.equal(1)
+                }))
+            .then(sleep(500))
+            .then(findCSS('[class="editPostArea"]').clear())
+            .then(findCSS('[class="editPostArea"]').sendKeys(newContent))
+            .then(findCSS('[class="btn btn-warning editPostBtn"]').click())
+            .then(sleep(1000))
+            .then(findId('keyword').clear())
+            .then(findId('keyword').sendKeys(newContent))
+            .then(findId('searchBtn').click())
+            .then(sleep(1000))
+            .then(driver.findElements(By.css('[class="article"]'))
+                .then(nodes => {
+                    const len = nodes.length
+                    console.log(len)
+                    expect(len).to.equal(1)
+                }))
+            .then(done)
     })
 
     // it("should update the headline and verify the change", (done) => {

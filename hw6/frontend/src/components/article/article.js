@@ -14,7 +14,7 @@ const Article = ({_id, author, date, img, text, comments, showComments, toggleCo
                 <h4 id={`${_id}_author`}>{`${author} Post at ${date}`}</h4>
                 {img ? <img src={img}  width={400} height={300} alt="image missing" /> : null}
             </div>
-            <ContentEditable html={text}  onChange={(e) => {
+            <ContentEditable id={`${_id}_text`} className="editPostArea" html={text}  onChange={(e) => {
                 articleContent = e.target.value
             }} contentEditable={loggedInUser === author}/>
             <div>
@@ -29,7 +29,7 @@ const Article = ({_id, author, date, img, text, comments, showComments, toggleCo
                     {showAddCommentArea ? 'Cancel' : 'Add Comment'}
                 </button>
                 {loggedInUser === author ?
-                    <button className="btn btn-warning" onClick={() => {
+                    <button className="btn btn-warning editPostBtn" onClick={() => {
                         editPost(_id, articleContent)
                     }} disabled={false}>
                         Edit Post
