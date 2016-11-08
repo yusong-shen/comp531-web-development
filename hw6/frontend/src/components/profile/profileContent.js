@@ -12,19 +12,19 @@ const ProfileContent = ({username, avatar, zipcode, email, dob}) => {
         <div>
             <h2 className="text-center">Profile</h2>
             <div>
-                <h4>{`Username : ${username}`}</h4>
+                <h4 id="username">{`Username : ${username}`}</h4>
                 <div className="avatar">
                     <img src={avatar} width={300} height={300} alt="image missing" />
                 </div>
             </div>
             <div>
-                <h4>{`Zipcode : ${zipcode}`}</h4>
+                <h4 id="zipcode">{`Zipcode : ${zipcode}`}</h4>
             </div>
             <div>
-                <h4>{`Email : ${email}`}</h4>
+                <h4 id="email">{`Email : ${email}`}</h4>
             </div>
             <div>
-                <h4>{`Date of birth : ${dobDate}`}</h4>
+                <h4 id="dob">{`Date of birth : ${dobDate}`}</h4>
             </div>
         </div>
 

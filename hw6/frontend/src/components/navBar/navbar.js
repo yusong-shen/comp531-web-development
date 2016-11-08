@@ -19,7 +19,7 @@ export const BootstrapNavbar = ({curPage, navigate, logoutUser}) => {
                              }}>
                 {item.title}</NavItem>)
         } else {
-            return (<NavItem key={navItems.indexOf(item)}
+            return (<NavItem id={item.title + 'Link'} key={navItems.indexOf(item)}
                              onClick={() => {
                                  return navigate(item.nextPage)
                              }}>

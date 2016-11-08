@@ -15,8 +15,8 @@ const Headline = ({username, avatar, headline, updateHeadline}) => (
             <h4 id="username">{`Username : ${username}`}</h4>
             <Avatar avatar={avatar}/>
         </div>
-        <div>
-            {`Headline : ${headline}`}
+        <div id="headline">
+            {headline}
         </div>
         <HeadlineForm/>
 

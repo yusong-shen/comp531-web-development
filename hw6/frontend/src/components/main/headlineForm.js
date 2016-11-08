@@ -18,8 +18,8 @@ class HeadlineForm extends Component {
         return (
             <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
                 <div>
-                    <Field name="newHeadline" component="input" type="text"/>
-                    <button type="submit">Update</button>
+                    <Field id="newHeadline" name="newHeadline" component="input" type="text"/>
+                    <button id="headlineBtn" type="submit">Update</button>
                 </div>
             </form>
         );

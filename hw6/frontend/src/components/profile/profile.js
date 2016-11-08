@@ -28,7 +28,7 @@ export const Profile = ({passwordMsg, uploadAvatar}) => {
             <div className="row">
                 <div className="container text-center">
                     <ProfileContent/>
-                    {passwordMsg ? <ErrorMsg strong={'Password '} errMsg={passwordMsg} isSuccess={true}/> : null}
+                    {passwordMsg ? <ErrorMsg id="passwordMsg" strong={'Password '} errMsg={passwordMsg} isSuccess={true}/> : null}
                 </div>
                 <div className="container">
                     <div className="col-sm-offset-5 col-sm-4">

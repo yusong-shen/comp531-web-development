@@ -39,11 +39,11 @@ class ProfileForm extends React.Component {
         }
     }
 
-    renderField = ({ input, label, placeholder, type, meta: { touched, error } }) => (
+    renderField = ({ id, input, label, placeholder, type, meta: { touched, error } }) => (
         <fieldset className={`form-group ${touched && error ? 'has-error' : ''}`}>
             <label className="control-label">{label}</label>
             <div>
-                <input {...input} placeholder={placeholder} className="form-control" type={type} />
+                <input id={id} {...input} placeholder={placeholder} className="form-control" type={type} />
                 {touched && error && <div className="help-block">{error}</div>}
             </div>
         </fieldset>
@@ -55,12 +55,12 @@ class ProfileForm extends React.Component {
                 <div className="col-md-6 col-md-offset-3">
                     <h2 className="text-center">Profile Update</h2>
                     <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
-                        <Field name="email" type="text" component={this.renderField} label="Email" placeholder="a@b.com"/>
-                        <Field name="zipcode" type="text" component={this.renderField} label="Zipcode" placeholder="77005"/>
-                        <Field name="password" type="password" component={this.renderField} label="Password" />
-                        <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
+                        <Field id="update_email" name="email" type="text" component={this.renderField} label="Email" placeholder="a@b.com"/>
+                        <Field id="update_zipcode" name="zipcode" type="text" component={this.renderField} label="Zipcode" placeholder="77005"/>
+                        <Field id="update_password" name="password" type="password" component={this.renderField} label="Password" />
+                        <Field id="update_passwordConfirmation" name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
 
-                        <button action="submit" className="btn btn-primary">Update</button>
+                        <button id="updateBtn" action="submit" className="btn btn-primary">Update</button>
                     </form>
                 </div>
             </div>
