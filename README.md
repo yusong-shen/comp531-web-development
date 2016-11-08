@@ -35,7 +35,10 @@ The first half course is about Front-End Development, second half course is abou
 19. Web hosting in Heroku
 20. Set up MongoDB
 21. Add login and register to App
-22.
+22. CORS(Cross-Origin Resource Sharing) : Integrate front and back
+23.
+24.
+25.
 
 ### Homework
 #### Front-End Part
@@ -46,4 +49,6 @@ The first half course is about Front-End Development, second half course is abou
 5. Frontend App, due Tue 10/25
 
 #### Back-End Part
-6. Draft Back-End, due Thr 11/08
+6. Draft Back-End, due Tuesday 11/08
+7. Integrate Webapp, due Tuesday 11/22
+8. Final Webapp, due Tuesday 12/13
