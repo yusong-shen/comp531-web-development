@@ -66,7 +66,10 @@ export const addRemoteArticle = (fd) => {
         resource('POST', endpoint, fd, true)
             .then((r) => {
                 console.log(r)
-                dispatch(addArticle(r.articles[0]))
+                const remoteArticle = r.articles[0]
+                remoteArticle.showComments = false
+                remoteArticle.showAddCommentArea = false
+                dispatch(addArticle(remoteArticle))
             })
             .catch((err) => {
                 alert(err)
@@ -115,9 +118,32 @@ export const addRemoteComment = (_id, text) => {
 
 export const editPost = (_id, text) => {
     const endpoint = `articles/${_id}`
-    return (dispatch, getState) => {
+    return (dispatch) => {
         resource('PUT', endpoint, {
             text
+        })
+        .then((r) => {
+            console.log(r)
+            const remoteArticle = r.articles[0]
+            remoteArticle.showComments = false
+            remoteArticle.showAddCommentArea = false
+            dispatch({
+                type : 'editPost', _id,
+                article : remoteArticle
+            })
+
+        })
+        .catch((err) => {
+            alert(err)
+        })
+    }
+}
+
+export const editComment = (_id, commentId, text) => {
+    const endpoint = `articles/${_id}`
+    return (dispatch) => {
+        resource('PUT', endpoint, {
+            text, commentId
         })
         .then((r) => {
             console.log(r)

@@ -20,11 +20,14 @@ const Article = ({_id, author, date, img, text, comments, showComments, toggleCo
             <div>
                 <button className="btn btn-primary" onClick={() => {
                     toggleComments(_id, !showComments)
-                }}>Show Comments</button>
+                }}>
+                    Show Comments
+                </button>
                 <button className="btn btn-success" onClick={() => {
                     toggleAddCommentArea(_id, !showAddCommentArea)
-                    console.log(showAddCommentArea)
-                }}>{showAddCommentArea ? 'Cancel' : 'Add Comment'}</button>
+                }}>
+                    {showAddCommentArea ? 'Cancel' : 'Add Comment'}
+                </button>
                 {loggedInUser === author ?
                     <button className="btn btn-warning" onClick={() => {
                         editPost(_id, articleContent)
@@ -36,14 +39,16 @@ const Article = ({_id, author, date, img, text, comments, showComments, toggleCo
             </div>
             {showAddCommentArea ?
                 <div>
-                <textarea rows="5" style={{width:'100%'}} id="commentArea"
-                          placeholder="Edit your comment here"
-                          ref={(node)=>{ commentArea = node }}/>
+                    <textarea rows="5" style={{width:'100%'}} id="commentArea"
+                              placeholder="Edit your comment here"
+                              ref={(node)=>{ commentArea = node }}/>
+
                     <button className="btn btn-success" onClick={() => {
                         addRemoteComment(_id, commentArea.value)
                         commentArea.value = ''
-                    }}>Publish Comment</button>
-
+                    }}>
+                        Publish Comment
+                    </button>
                 </div>
                 : null
             }
@@ -53,6 +58,7 @@ const Article = ({_id, author, date, img, text, comments, showComments, toggleCo
                     {showComments ? comments.map(c =>
                         <Comment
                             key={c.commentId}
+                            _id={_id}
                             {...c}
                         />
                     ) : null}
