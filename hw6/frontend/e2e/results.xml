@@ -1,0 +1,26 @@
+
+> starter@1.0.0 e2e:base /Users/yusong/Code/comp531-web-development/hw6/frontend
+> mocha --opts e2e/mocha.opts e2e/*.spec.js "--reporter" "xunit"
+
+8
+9
+1
+1
+9
+10
+9
+1
+<testsuite name="Mocha Tests" tests="12" failures="0" errors="0" skipped="0" timestamp="Tue, 08 Nov 2016 18:05:31 GMT" time="35.162">
+<testcase classname="Ricebook Front-End End-to-End testing" name="should log in as the test user" time="0.549"/>
+<testcase classname="Ricebook Front-End End-to-End testing" name="should Create a new article and validate the article appears in the feed" time="1.732"/>
+<testcase classname="Ricebook Front-End End-to-End testing" name="should Edit an article and validate the article text has updated" time="6.958"/>
+<testcase classname="Ricebook Front-End End-to-End testing" name="should update the headline and verify the change" time="4.095"/>
+<testcase classname="Ricebook Front-End End-to-End testing" name="should Count the number of followed users" time="0.517"/>
+<testcase classname="Ricebook Front-End End-to-End testing" name="should Add the user &quot;Follower&quot; to the list of followed users and verify the count increases by one" time="1.203"/>
+<testcase classname="Ricebook Front-End End-to-End testing" name="Remove the user &quot;Follower&quot; from the list of followed users and verify the count decreases by one" time="1.158"/>
+<testcase classname="Ricebook Front-End End-to-End testing" name="Search for &quot;Only One Article Like This&quot; and verify only one article shows, and verify the author" time="1.812"/>
+<testcase classname="Ricebook Front-End End-to-End testing" name="Navigate to the profile view, Update the user's email and verify" time="3.116"/>
+<testcase classname="Ricebook Front-End End-to-End testing" name="Navigate to the profile view, Update the user's zipcode and verify" time="1.891"/>
+<testcase classname="Ricebook Front-End End-to-End testing" name="Navigate to the profile view, Update the user's password, verify a &quot;will not change&quot; message is returned" time="1.513"/>
+<testcase classname="shutdown" name="now" time="0.058"/>
+</testsuite>
