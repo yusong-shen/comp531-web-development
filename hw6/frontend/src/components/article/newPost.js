@@ -40,7 +40,7 @@ export const NewPost = ({_addArticle}) => {
                         <textarea rows="5" style={{width:'100%'}} id="post" placeholder="Edit your post here"
                                   ref={(node)=>{ newArticle = node }}/>
                     </div>
-                    <button className="btn btn-primary" onClick={() => {
+                    <button className="btn btn-primary" id="postBtn" onClick={() => {
                         console.log(newArticle.value)
                         addText(newArticle.value)
                         handleSubmit()

@@ -42,10 +42,26 @@ describe('Ricebook Front-End End-to-End testing', () => {
         .then(done)
     })
 
-    // TODO
     it('should Create a new article and validate the article appears in the feed', (done) => {
-        done()
-
+        const content = "for e2e testing"
+        let numArticle
+        sleep(500)
+            .then(driver.findElements(By.css('[class="article"]'))
+                .then(nodes => {
+                    numArticle = nodes.length
+                    console.log(numArticle)
+                    expect(numArticle).to.be.at.least(1)
+                }))
+            .then(findId('post').clear())
+            .then(findId('post').sendKeys(content))
+            .then(findId('postBtn').click())
+            .then(sleep(1000))
+            .then(driver.findElements(By.css('[class="article"]'))
+                .then(nodes => {
+                    console.log(nodes.length)
+                    expect(nodes.length).to.equal(numArticle + 1)
+                }))
+            .then(done)
 
     })
 
@@ -82,62 +98,75 @@ describe('Ricebook Front-End End-to-End testing', () => {
     //         .then(done)
     // })
 
+    // TODO : abstract countElements
     // const countElements = (_css) =>
     //     driver.findElements(By.css(_css))
     //         .then(nodes => {
     //             return nodes.length
     //         })
 
+    //
+    // let numFollowers
+    // it('should Count the number of followed users', (done) => {
+    //     sleep(500)
+    //         .then(driver.findElements(By.css('[name="follower"]'))
+    //             .then(nodes => {
+    //                 numFollowers = nodes.length
+    //                 console.log(numFollowers)
+    //                 expect(numFollowers).to.be.at.least(2)
+    //             }))
+    //         .then(done)
+    // })
+    //
+    // it('should Add the user "Follower" to the list of followed users and verify the count increases by one', (done) => {
+    //     const oldNumFollowers = numFollowers
+    //     const username = 'Follower'
+    //     sleep(500)
+    //     .then(findId('addFriendInput').clear())
+    //     .then(findId('addFriendInput').sendKeys(username))
+    //     .then(findId('addFriendBtn').click())
+    //     .then(sleep(500))
+    //     .then(driver.findElements(By.css('[name="follower"]'))
+    //         .then(nodes => {
+    //             numFollowers = nodes.length
+    //             console.log(numFollowers)
+    //             expect(numFollowers).to.equal(oldNumFollowers + 1)
+    //         }))
+    //     .then(done)
+    // })
+    //
+    // it('Remove the user "Follower" from the list of followed users and verify the count decreases by one', (done) => {
+    //     const oldNumFollowers = numFollowers
+    //     const username = 'Follower'
+    //     sleep(500)
+    //         .then(findId('addFriendInput').clear())
+    //         .then(findId('addFriendInput').sendKeys(username))
+    //         .then(findId(`unfollowBtn_${username}`).click())
+    //         .then(sleep(500))
+    //         .then(driver.findElements(By.css('[name="follower"]'))
+    //             .then(nodes => {
+    //                 numFollowers = nodes.length
+    //                 console.log(numFollowers)
+    //                 expect(numFollowers).to.equal(oldNumFollowers - 1)
+    //             }))
+    //         .then(done)
+    // })
 
-    let numFollowers
-    it('should Count the number of followed users', (done) => {
-        sleep(500)
-            .then(driver.findElements(By.css('[name="follower"]'))
-                .then(nodes => {
-                    numFollowers = nodes.length
-                    console.log(numFollowers)
-                    expect(numFollowers).to.be.at.least(2)
-                }))
-            .then(done)
-    })
-
-    it('should Add the user "Follower" to the list of followed users and verify the count increases by one', (done) => {
-        const oldNumFollowers = numFollowers
-        const username = 'Follower'
-        sleep(500)
-        .then(findId('addFriendInput').clear())
-        .then(findId('addFriendInput').sendKeys(username))
-        .then(findId('addFriendBtn').click())
-        .then(sleep(500))
-        .then(driver.findElements(By.css('[name="follower"]'))
-            .then(nodes => {
-                numFollowers = nodes.length
-                console.log(numFollowers)
-                expect(numFollowers).to.equal(oldNumFollowers + 1)
-            }))
-        .then(done)
-    })
-
-    it('Remove the user "Follower" from the list of followed users and verify the count decreases by one', (done) => {
-        const oldNumFollowers = numFollowers
-        const username = 'Follower'
-        sleep(500)
-            .then(findId('addFriendInput').clear())
-            .then(findId('addFriendInput').sendKeys(username))
-            .then(findId(`unfollowBtn_${username}`).click())
-            .then(sleep(500))
-            .then(driver.findElements(By.css('[name="follower"]'))
-                .then(nodes => {
-                    numFollowers = nodes.length
-                    console.log(numFollowers)
-                    expect(numFollowers).to.equal(oldNumFollowers - 1)
-                }))
-            .then(done)
-    })
-
-    // TODO
     it('Search for "Only One Article Like This" and verify only one article shows, and verify the author', (done) => {
-        done()
+        const keyword = "Only One Article Like This"
+        // const username = common.creds.username
+        sleep(500)
+            .then(findId('keyword').clear())
+            .then(findId('keyword').sendKeys(keyword))
+            .then(findId('searchBtn').click())
+            .then(sleep(1000))
+            .then(driver.findElements(By.css('[class="article"]'))
+                .then(nodes => {
+                    const len = nodes.length
+                    console.log(len)
+                    expect(len).to.equal(1)
+                }))
+            .then(done)
 
     })
 

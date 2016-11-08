@@ -11,7 +11,7 @@ const Article = ({_id, author, date, img, text, comments, showComments, toggleCo
     return (
         <div className="article">
             <div>
-                <h4>{`${author} Post at ${date}`}</h4>
+                <h4 id={`${_id}_author`}>{`${author} Post at ${date}`}</h4>
                 {img ? <img src={img}  width={400} height={300} alt="image missing" /> : null}
             </div>
             <ContentEditable html={text}  onChange={(e) => {
