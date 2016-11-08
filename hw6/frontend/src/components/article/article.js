@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Comment from './comment'
-import { toggleComments } from './../../actions/articleActions'
+import { toggleComments, addRemoteComment } from './../../actions/articleActions'
 
-const Article = ({_id, author, date, img, text, comments, showComments, _toggleComments, loggedInUser}) => {
+
+const Article = ({_id, author, date, img, text, comments, showComments, toggleComments, loggedInUser, addRemoteComment}) => {
     return (
         <div>
             <div>
@@ -15,9 +16,11 @@ const Article = ({_id, author, date, img, text, comments, showComments, _toggleC
             </p>
             <div>
                 <button className="btn btn-primary" onClick={() => {
-                    _toggleComments(_id, !showComments)
+                    toggleComments(_id, !showComments)
                 }}>Show Comments</button>
-                <button className="btn btn-success">Add Comment</button>
+                <button className="btn btn-success" onClick={() => {
+                    addRemoteComment(_id, 'test')
+                }}>Add Comment</button>
                 {loggedInUser === author ? <button className="btn btn-warning">Edit Post</button> : null}
             </div>
             <div>
@@ -55,10 +58,4 @@ export default connect((state) => {
     return {
         loggedInUser : state.profile.username
     }
-}, (dispatch) => {
-    return {
-        _toggleComments : (_id, showComments) => {
-            toggleComments(_id, showComments)(dispatch)
-        }
-    }
-})(Article)
+}, { toggleComments, addRemoteComment })(Article)

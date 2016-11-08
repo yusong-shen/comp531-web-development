@@ -48,6 +48,16 @@ const articlesReducer = (state = initState, action) => {
                     return x
                 })
             }
+        case 'addComment':
+            return {
+                ...state,
+                articles : state.articles.map((x) => {
+                    if (x._id === action._id) {
+                        x.comments.push(action.comment)
+                    }
+                    return x
+                })
+            }
         default:
             return state
     }
