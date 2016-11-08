@@ -1,12 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
-
+const cookieParser = require('cookie-parser')
 
 
 const app = express()
 app.use(bodyParser.json())
 app.use(logger('default'))
+app.use(cookieParser())
 
 require('./src/auth.js')(app)
 require('./src/profile.js')(app)

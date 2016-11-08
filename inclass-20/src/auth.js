@@ -43,19 +43,19 @@ const login = (req, res) => {
 	var username = req.body.username
 	var password = req.body.password
 	if (!username || !password) {
-		res.sendStatus(400)
+		res.status(400).send('does not provide username or password')
 		return
 	}
 	var userObj = getUser(username)
 	if (!userObj) {
 		// unauthorized
-		res.sendStatus(401)
+		res.status(401).send('user does not exist')
 		return
 	}
 	const hash = md5(userObj.salt + password)
 	if (hash !== userObj.hash) {
 		// unauthorized
-		res.sendStatus(401)
+		res.status(401).send('password does not match')
 		return		
 	}
 
@@ -63,7 +63,8 @@ const login = (req, res) => {
 	// Store the session id in an in-memory map from session to user	
 	const cookieValue = generateCode(userObj)
 	sessionUser[cookieValue] = username
-	res.cookie(cookieKey, cookieValue, {maxAge : 3600*1000, httpOnly : true})
+	res.cookie(cookieKey, cookieValue, { maxAge : 3600*1000, httpOnly : true})
+	console.log('set cookies : ', req.cookies)
 	const msg = {username : username, result : "success"}
 	res.send(msg)
 }
@@ -80,7 +81,8 @@ const register = (req, res) => {
 	var zipcode = req.body.zipcode
 
 	if (getUser(username)) {
-		res.send(`${username} has already been registered.`)
+		// 409 Conflict
+		res.status(409).send(`${username} has already been registered.`)
 		return
 	}
 
@@ -93,14 +95,39 @@ const register = (req, res) => {
 	res.send(msg)
 }
 
+const isLoggedIn = (req, res, next) => {
+	// read cookie
+	console.log(req.cookies)
+	console.log(sessionUser)
+	const sid = req.cookies[cookieKey]
+
+	if (!sid) {
+		return res.status(401).send('sid undefined - user session does not exist')
+	}
+
+	const username = sessionUser[sid]
+	if (username) {
+		req.username = username
+		next()
+	} else {
+		res.status(401).send('user session does not exist')
+	}
+}
+
 // PUT /logout
 // /logout	PUT	none	OK	
 // log out of server, clears session id
 const logout = (req, res) => {
-	res.send('log out successfully!')
+	const username = req.username
+	console.log('log out as ', username)
+	// clear session id and set empty cookie
+	const sid = req.cookies[cookieKey]
+	delete sessionUser[sid]
+	res.clearCookie(cookieKey)
+	res.send('OK')
 }
 
-// /sample	GET	none	
+// /sample	GET	none
 // [ { id: 1, author: Scott, ... }, { ... } ]	Array of sample posts.
 const getSample = (req, res) => {
 	res.send('array of sample posts.')
@@ -111,6 +138,6 @@ module.exports = app => {
      app.post('/login', login)
      app.post('/register', register)
      app.get('/sample', getSample)  
-     app.put('/logout', logout)  
+     app.put('/logout', isLoggedIn, logout)  
 
 }
