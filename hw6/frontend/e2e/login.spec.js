@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { go, sleep, findId, findCSS, By, sendKeys } from './selenium'
+import { go, sleep, findId, findCSS, By, sendKeys, driver} from './selenium'
 import common from './common'
 
 describe('Ricebook Front-End End-to-End testing', () => {
@@ -82,22 +82,57 @@ describe('Ricebook Front-End End-to-End testing', () => {
     //         .then(done)
     // })
 
-    // TODO
+    // const countElements = (_css) =>
+    //     driver.findElements(By.css(_css))
+    //         .then(nodes => {
+    //             return nodes.length
+    //         })
+
+
+    let numFollowers
     it('should Count the number of followed users', (done) => {
-        done()
-
+        sleep(500)
+            .then(driver.findElements(By.css('[name="follower"]'))
+                .then(nodes => {
+                    numFollowers = nodes.length
+                    console.log(numFollowers)
+                    expect(numFollowers).to.be.at.least(2)
+                }))
+            .then(done)
     })
 
-    // TODO
     it('should Add the user "Follower" to the list of followed users and verify the count increases by one', (done) => {
-        done()
-
+        const oldNumFollowers = numFollowers
+        const username = 'Follower'
+        sleep(500)
+        .then(findId('addFriendInput').clear())
+        .then(findId('addFriendInput').sendKeys(username))
+        .then(findId('addFriendBtn').click())
+        .then(sleep(500))
+        .then(driver.findElements(By.css('[name="follower"]'))
+            .then(nodes => {
+                numFollowers = nodes.length
+                console.log(numFollowers)
+                expect(numFollowers).to.equal(oldNumFollowers + 1)
+            }))
+        .then(done)
     })
 
-    // TODO
     it('Remove the user "Follower" from the list of followed users and verify the count decreases by one', (done) => {
-        done()
-
+        const oldNumFollowers = numFollowers
+        const username = 'Follower'
+        sleep(500)
+            .then(findId('addFriendInput').clear())
+            .then(findId('addFriendInput').sendKeys(username))
+            .then(findId(`unfollowBtn_${username}`).click())
+            .then(sleep(500))
+            .then(driver.findElements(By.css('[name="follower"]'))
+                .then(nodes => {
+                    numFollowers = nodes.length
+                    console.log(numFollowers)
+                    expect(numFollowers).to.equal(oldNumFollowers - 1)
+                }))
+            .then(done)
     })
 
     // TODO

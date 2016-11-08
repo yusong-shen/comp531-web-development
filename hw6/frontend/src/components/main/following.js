@@ -8,12 +8,12 @@ import {connect} from 'react-redux'
 import Avatar from './../profile/avatar'
 import { deleteFollowing } from './../../actions/followingActions'
 
-const Following = ({username, avatar, headline, deleteFollowing}) =>  {
+const Following = ({name, username, avatar, headline, deleteFollowing}) =>  {
     const handleSubmit = _ => {
         deleteFollowing(username)
     }
     return (
-        <div>
+        <div name={name}>
             <div>
                 <Avatar avatar={avatar}/>
                 <h4>{username}</h4>
@@ -21,7 +21,7 @@ const Following = ({username, avatar, headline, deleteFollowing}) =>  {
             <div>
                 {headline}
             </div>
-            <button className="btn btn-primary" onClick={_ => {
+            <button id={`unfollowBtn_${username}`} className="btn btn-primary" onClick={_ => {
                 handleSubmit()
             }}>Unfollow</button>
 

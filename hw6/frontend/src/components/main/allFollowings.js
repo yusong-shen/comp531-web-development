@@ -16,11 +16,12 @@ const AllFollowings = ({followings, addFriendErr}) => (
                 <Following
                     key={followings.indexOf(following)}
                     {...following}
+                    name="follower"
                 />
             )}
         </ul>
         <AddFriendForm/>
-        {addFriendErr ? <ErrorMsg strong={'Error : '} errMsg={addFriendErr} isSuccess={false}/> : null}
+        {addFriendErr ? <ErrorMsg id="addFriendErr" strong={'Error : '} errMsg={addFriendErr} isSuccess={false}/> : null}
 
     </div>
 

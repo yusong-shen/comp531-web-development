@@ -18,8 +18,8 @@ class SearchBar extends Component {
         return (
             <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
                 <div>
-                    <Field name="keyword" component="input" type="text" placeholder="Search..."/>
-                    <button type="submit">Search</button>
+                    <Field id="keyword" name="keyword" component="input" type="text" placeholder="Search..."/>
+                    <button id="searchBtn" type="submit">Search</button>
                 </div>
             </form>
         );

@@ -17,8 +17,8 @@ class AddFriendForm extends Component {
         return (
             <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
                 <div>
-                    <Field name="userId" component="input" type="text"/>
-                    <button type="submit">Add</button>
+                    <Field id="addFriendInput" name="userId" component="input" type="text"/>
+                    <button id="addFriendBtn" type="submit">Add</button>
                 </div>
             </form>
         );

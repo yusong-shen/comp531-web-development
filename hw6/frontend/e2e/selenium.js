@@ -2,7 +2,7 @@ const webdriver = require('selenium-webdriver')
 
 const url = 'http://localhost:8080/'
 
-const driver = new webdriver.Builder()
+export const driver = new webdriver.Builder()
     .forBrowser('chrome')
     .build()
 
