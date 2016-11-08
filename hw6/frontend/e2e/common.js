@@ -9,10 +9,6 @@ exports.creds = {
 
 exports.login = () => 
     sleep(500)
-    // .then(switchToDefault())
-    // .then(sleep(500))
-    // .then(switchToIframe(findId('iframe')))
-    // .then(sleep(500))
     .then(findId('login_username').clear())
     .then(findId('login_password').clear())
     .then(findId('login_username').sendKeys(exports.creds.username))
@@ -22,10 +18,6 @@ exports.login = () =>
 
 exports.logout = () =>
     sleep(500)
-    // .then(switchToDefault())
-    // .then(sleep(1000))
-    // .then(switchToIframe(findId('iframe')))
-    // .then(sleep(1000))
     .then(findId('logout').click())
     .then(sleep(1000))
 

@@ -63,11 +63,11 @@ class RegisterForm extends React.Component {
             values.email, dob, values.zipcode)
     }
 
-    renderField = ({ input, label, placeholder, type, meta: { touched, error } }) => (
+    renderField = ({ id, input, label, placeholder, type, meta: { touched, error } }) => (
         <fieldset className={`form-group ${touched && error ? 'has-error' : ''}`}>
             <label className="control-label">{label}</label>
             <div>
-                <input {...input} placeholder={placeholder} className="form-control" type={type} />
+                <input id={id} {...input} placeholder={placeholder} className="form-control" type={type} />
                 {touched && error && <div className="help-block">{error}</div>}
             </div>
         </fieldset>
@@ -79,14 +79,14 @@ class RegisterForm extends React.Component {
                 <div className="col-md-6 col-md-offset-3">
                     <h2 className="text-center">Register</h2>
                     <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
-                        <Field name="username" type="text" component={this.renderField} label="Username"/>
-                        <Field name="email" type="text" component={this.renderField} label="Email" placeholder="a@b.com"/>
-                        <Field name="zipcode" type="text" component={this.renderField} label="Zipcode" placeholder="77005"/>
-                        <Field name="dob" type="date" component={this.renderField} label="Date of Birth" placeholder="mm/dd/yyyy"/>
-                        <Field name="password" type="password" component={this.renderField} label="Password" />
-                        <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
+                        <Field id="rg_username" name="username" type="text" component={this.renderField} label="Username"/>
+                        <Field id="rg_email" name="email" type="text" component={this.renderField} label="Email" placeholder="a@b.com"/>
+                        <Field id="rg_zipcode" name="zipcode" type="text" component={this.renderField} label="Zipcode" placeholder="77005"/>
+                        <Field id="rg_dob" name="dob" type="date" component={this.renderField} label="Date of Birth" placeholder="mm/dd/yyyy"/>
+                        <Field id="rg_password" name="password" type="password" component={this.renderField} label="Password" />
+                        <Field id="rg_passwordConfirmation" name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
 
-                        <button action="submit" className="btn btn-primary">Register</button>
+                        <button id="register_btn" action="submit" className="btn btn-primary">Register</button>
                     </form>
                 </div>
             </div>

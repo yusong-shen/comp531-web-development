@@ -23,7 +23,7 @@ export const Landing = ({loginErr, registerErr, registerMsg, logoutMsg}) => (
         <div className="row">
             <RegisterForm/>
             {registerErr? <ErrorMsg strong="Register Failed: " errMsg={registerErr} isSuccess={false}/> : null}
-            {registerMsg? <ErrorMsg strong="Register Succeed: " errMsg={registerMsg} isSuccess={true}/> : null}
+            {registerMsg? <ErrorMsg id="registerMsg" strong="Register Succeed: " errMsg={registerMsg} isSuccess={true}/> : null}
 
         </div>
     </div>

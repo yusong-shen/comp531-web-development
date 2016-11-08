@@ -1,17 +1,33 @@
 import { expect } from 'chai'
-import { go, sleep, findId, findCSS, By, sendKeys, switchToIframe, switchToDefault } from './selenium'
+import { go, sleep, findId, findCSS, By, sendKeys } from './selenium'
 import common from './common'
 
 describe('Ricebook Front-End End-to-End testing', () => {
 
 
-    // TODO : Register a new user
-    it('should Register a new user', (done) => {
-
-        done()
+    // Register a new user
+    before('should Register a new user', (done) => {
+        go()
+        .then(sleep(1000))
+        .then(findId('rg_username').clear())
+        .then(findId('rg_email').clear())
+        .then(findId('rg_zipcode').clear())
+        .then(findId('rg_password').clear())
+        .then(findId('rg_passwordConfirmation').clear())
+        .then(findId('rg_username').sendKeys('testUser'))
+        .then(findId('rg_email').sendKeys('test@ricebook.com'))
+        .then(findId('rg_zipcode').sendKeys('77005'))
+        .then(findId('rg_dob').sendKeys('01/01/1990'))
+        .then(findId('rg_password').sendKeys('random'))
+        .then(findId('rg_passwordConfirmation').sendKeys('random'))
+        .then(findId('register_btn').click())
+        .then(sleep(1000))
+        .then(findId('registerMsg').getText()
+            .then(text => {
+                expect(text).to.equal("register as testUser")
+            }))
+        .then(done)
     })
-
-    const preamble = 'you are logged in as'
 
     before('should log in', (done) => {
         go().then(common.login).then(done)
@@ -20,10 +36,6 @@ describe('Ricebook Front-End End-to-End testing', () => {
     // TODO
     it('should log in as the test user', (done) => {
         sleep(500)
-        // .then(switchToDefault())
-        // .then(sleep(500))
-        // .then(switchToIframe(findId('iframe')))
-        // .then(sleep(500))
         .then(findId('username').getText()
             .then(text => {
                 expect(text).to.equal("Username : ys43test")

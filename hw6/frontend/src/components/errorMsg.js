@@ -6,7 +6,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import { clearError } from './../actions/action'
-export const ErrorMsg = ({strong, errMsg, errReset, isSuccess})=> {
+export const ErrorMsg = ({id, strong, errMsg, errReset, isSuccess})=> {
     let className = isSuccess ? "alert alert-success fade in" : "alert alert-danger fade in"
     return (
         <div className={className}>
@@ -14,7 +14,7 @@ export const ErrorMsg = ({strong, errMsg, errReset, isSuccess})=> {
                onClick={(e)=> {
                    errReset()
                }}>&times;</a>
-            <strong>{strong}</strong>{errMsg}
+            <strong>{strong}</strong><p id={id}>{errMsg}</p>
         </div>
     )
 }
