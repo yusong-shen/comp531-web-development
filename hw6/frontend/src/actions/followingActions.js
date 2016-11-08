@@ -3,6 +3,7 @@
  */
 import {resource} from './../util/utils'
 
+import {fetchArticles} from './articleActions'
 
 export const addFriend = (friend) => {
     return {

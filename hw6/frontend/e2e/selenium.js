@@ -1,6 +1,9 @@
 const webdriver = require('selenium-webdriver')
 
-const url = 'http://localhost:8080/'
+// const url = 'http://localhost:8080/'
+const url = 'http://ricebook.ys43.surge.sh/'
+// const url = 'http://localhost:3000/'
+
 
 export const driver = new webdriver.Builder()
     .forBrowser('chrome')
