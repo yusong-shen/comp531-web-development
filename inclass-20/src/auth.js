@@ -1,28 +1,10 @@
 const md5 = require('md5')
 
+var User = require('./model.js').User
 
-const defaultUserObj = {
-	username: 'defaultUser',
-	email: 'foo@bar.com',
-	zipcode: '77005',
-	dob: new Date().getTime()
-}
+const getUser = (username, callback) => {
+    User.find({ username : username}).exec(callback)
 
-defaultUserObj.salt = 'some long long salt' + Math.random().toString()
-defaultUserObj.hash = md5(defaultUserObj.salt + 'SomeLongPasswordCoolStuff')
-
-const users = {
-	users : [defaultUserObj]
-}
-
-
-const getUser = (username) => {
-	const result = users.users.filter((user) => user.username === username)
-	if (result.length === 0) {
-		return
-	} else {
-		return result[0]
-	}
 }
 
 const cookieKey = 'sid'
@@ -30,7 +12,7 @@ const cookieKey = 'sid'
 const sessionUser = {}
 
 const generateCode = (userObj) => {
-	const code = md5(JSON.stringify(userObj))
+	const code = md5(userObj.username)
 	return code
 }
 
@@ -46,27 +28,41 @@ const login = (req, res) => {
 		res.status(400).send('does not provide username or password')
 		return
 	}
-	var userObj = getUser(username)
-	if (!userObj) {
-		// unauthorized
-		res.status(401).send('user does not exist')
-		return
-	}
-	const hash = md5(userObj.salt + password)
-	if (hash !== userObj.hash) {
-		// unauthorized
-		res.status(401).send('password does not match')
-		return		
-	}
+	getUser(username, function (err, users) {
+        if (!err) {
+            if (users.length === 0) {
+                console.log(`can\'t find user ${username}`)
+                return
+            } else {
+                console.log('find the user : ', users[0])
+                const userObj =  users[0]
+                console.log('login : ')
+                console.log(userObj)
+                if (!userObj) {
+                    // unauthorized
+                    res.status(401).send('user does not exist')
+                    return
+                }
+                const hash = md5(userObj.salt + password)
+                if (hash !== userObj.hash) {
+                    // unauthorized
+                    res.status(401).send('password does not match')
+                    return
+                }
 
-	// autherized, set cookie and send back message
-	// Store the session id in an in-memory map from session to user	
-	const cookieValue = generateCode(userObj)
-	sessionUser[cookieValue] = username
-	res.cookie(cookieKey, cookieValue, { maxAge : 3600*1000, httpOnly : true})
-	console.log('set cookies : ', req.cookies)
-	const msg = {username : username, result : "success"}
-	res.send(msg)
+                // autherized, set cookie and send back message
+                // Store the session id in an in-memory map from session to user
+                const cookieValue = generateCode(userObj)
+                sessionUser[cookieValue] = username
+                res.cookie(cookieKey, cookieValue, { maxAge : 3600*1000, httpOnly : true})
+                console.log('set cookies : ', req.cookies)
+                const msg = {username : username, result : "success"}
+                res.send(msg)
+            }
+        } else {
+            throw err
+        }
+    })
 }
 
 // POST /register
@@ -89,10 +85,18 @@ const register = (req, res) => {
 	const userObj = { username, email, dob, zipcode}
 	userObj.salt = 'some long long salt' + Math.random().toString()
 	userObj.hash = md5(userObj.salt + password)
-	users.users.push(userObj)
+	// users.users.push(userObj)
+    new User(userObj).save(function(err, doc) {
+        if (err) {
+            res.send(err)
+        } else {
+            console.log('save successfully! ', doc)
+            const msg = {username : username, result : "success"}
+            res.send(msg)
+        }
+    })
 
-	const msg = {username : username, result : "success"}	
-	res.send(msg)
+
 }
 
 const isLoggedIn = (req, res, next) => {

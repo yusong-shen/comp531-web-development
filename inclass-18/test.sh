@@ -7,7 +7,7 @@ echo ""
 echo ""
 
 echo "GET /articles"
-curl -H 'Content-Type: application/json' http://localhost:${PORT}/articles
+curl -H 'Content-Type: application/json' http://localhost:${PORT}/articles -i
 echo ""
 echo ""
 

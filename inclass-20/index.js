@@ -3,11 +3,24 @@ const bodyParser = require('body-parser')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 
+const middlewareCORS = (req, res, next) => {
+    console.log('call middlewareCORS()')
+    console.log(req.headers)
+    const origin = req.headers.origin
+    if (origin) {
+        res.set('Access-Control-Allow-Origin', origin)
+    }
+    res.set('Access-Control-Allow-Credentials', true)
+    res.set('Access-Control-Allow-Headers', 'Authorization, Content-Type')
+    res.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+    next()
+}
 
 const app = express()
 app.use(bodyParser.json())
 app.use(logger('default'))
 app.use(cookieParser())
+app.use(middlewareCORS)
 
 require('./src/auth.js')(app)
 require('./src/profile.js')(app)
