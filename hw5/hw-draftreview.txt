@@ -1,0 +1,50 @@
+================================
+     COMP531 Draft Review     
+Fall 2016           ys43
+================================
+feature             : 5 / 9
+--------------------------------
+Review for hd15
+https://dh-ricebook.surge.sh
+likebest            : 3 / 4
+improve             : 4 / 4
+compare             : 5 / 5
+--------------------------------
+Review for pl26
+https://puffy-face.surge.sh
+likebest            : 3 / 4
+improve             : 4 / 4
+compare             : 5 / 5
+--------------------------------
+Review for bb26
+https://ricebook.bb26.surge.sh
+likebest            : 3 / 4
+improve             : 4 / 4
+compare             : 5 / 5
+--------------------------------
+Review for qw12
+https://rebel-cry.surge.sh
+likebest            : 4 / 4
+improve             : 4 / 4
+compare             : 5 / 5
+--------------------------------
+Review for kl50
+https://ricebooks_kejunliu50.surge.sh
+likebest            : 4 / 4
+improve             : 4 / 4
+compare             : 5 / 5
+--------------------------------
+Review for jr58
+https://jr58-frontend.surge.sh
+likebest            : 3 / 4
+improve             : 4 / 4
+compare             : 5 / 5
+--------------------------------
+Review for sz40
+https://earsplitting-leather.surge.sh
+likebest            : 3 / 4
+improve             : 4 / 4
+compare             : 5 / 5
+--------------------------------
+     Total          91 / 100
+================================
