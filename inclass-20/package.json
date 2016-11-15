@@ -12,7 +12,8 @@
     "express": "^4.13.3",
     "md5": "^2.2.1",
     "mongoose": "^4.6.5",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "redis": "^2.6.3"
   },
   "scripts": {
     "start": "node --use_strict index.js",

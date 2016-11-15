@@ -37,7 +37,7 @@ The first half course is about Front-End Development, second half course is abou
 21. Add login and register to App
 22. CORS(Cross-Origin Resource Sharing) : Integrate front and back
 23. add OAuth login
-24.
+24. Redis caching store
 25.
 
 ### Homework
