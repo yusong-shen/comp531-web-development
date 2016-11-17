@@ -232,6 +232,7 @@ module.exports = app => {
     }))
     app.use('/auth/facebook/login', passport.authenticate('facebook', {scope : 'email'}))
 
+
     app.use('/profile', profile)
     app.use('/fail', fail)
 }

@@ -34,7 +34,7 @@ const getArticles = (req, res) => {
     const id = req.params.id
     let condition = {}
     if (id) {
-      condition.id = id
+      condition._id = id
     }
     Article.find(condition).exec(function(err, articles) {
       if (!err){ 
