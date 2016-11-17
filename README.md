@@ -38,7 +38,8 @@ The first half course is about Front-End Development, second half course is abou
 22. CORS(Cross-Origin Resource Sharing) : Integrate front and back
 23. add OAuth login
 24. Redis caching store
-25.
+25. Adding Cloudinary : upload image
+26.
 
 ### Homework
 #### Front-End Part

@@ -13,7 +13,7 @@ const ProfileContent = ({username, avatar, zipcode, email, dob}) => {
             <h2 className="text-center">Profile</h2>
             <div>
                 <h4 id="username">{`Username : ${username}`}</h4>
-                <div className="avatar">
+                <div>
                     <img src={avatar} width={300} height={300} alt="image missing" />
                 </div>
             </div>
