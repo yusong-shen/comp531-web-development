@@ -1,3 +1,7 @@
+body {
+    background-color: #E3F2FD;
+}
+
 .footer {
     color : #ffffff;
     background-color: #373a3c;
@@ -15,25 +19,13 @@
 input[type="file"] {
     position: relative;
     text-align: right;
-    /*-moz-opacity:0 ;*/
-    /*filter:alpha(opacity: 0);*/
-    /*opacity: 0;*/
-    /*z-index: 2;*/
 }
-
-.custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-}
-
 
 .card {
     position: relative;
     display: block;
     margin-bottom: 0.75rem;
-    background-color: #fff;
+    background-color: #BBDEFB;
     border-radius: 0.25rem;
     border: 1px solid rgba(0, 0, 0, 0.125);
 }
