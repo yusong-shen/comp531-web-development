@@ -21,13 +21,25 @@ export const Main = ({headlineErr}) => (
         <div className="container text-center">
             <div className="row">
                 <div className="col-sm-8">
-                    <h4>New Post</h4>
-                    <NewPost/>
+                    <div className="card">
+                        <h4>New Post</h4>
+                        <NewPost/>
+                    </div>
+
+                    <h4>Articles</h4>
+                    <ArticlesView/>
                 </div>
-                <div className="col-sm-4">
-                    <h4>Profile and Headline</h4>
-                    <Headline/>
-                    {headlineErr? <ErrorMsg strong={'Update failed : '} errMsg={headlineErr} isSuccess={false}/> : null}
+                <div className="col-sm-1"></div>
+                <div className="col-sm-3">
+                    <div className="card">
+                        <h4>Profile and Headline</h4>
+                        <Headline/>
+                        {headlineErr? <ErrorMsg strong={'Update failed : '} errMsg={headlineErr} isSuccess={false}/> : null}
+                    </div>
+                    <div className="card">
+                        <h4>Following Friends</h4>
+                        <AllFollowings/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,12 +47,11 @@ export const Main = ({headlineErr}) => (
         <div className="container text-center">
             <div className="row">
                 <div className="col-sm-8">
-                    <h4>Articles</h4>
-                    <ArticlesView/>
+
                 </div>
-                <div className="col-sm-4">
-                    <h4>Following Friends</h4>
-                    <AllFollowings/>
+                <div className="col-sm-1"></div>
+                <div className="col-sm-3 card">
+
                 </div>
             </div>
         </div>

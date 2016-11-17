@@ -12,7 +12,7 @@ export const Comment = ({_id, commentId, author, date, text,
     loggedInUser, editComment}) => {
     let commentContent
     return (
-        <div className="comment">
+        <div className="comment card">
             <div>
                 <h5>{`${author} commented at ${date}`}</h5>
             </div>
