@@ -34,8 +34,8 @@ export const Comment = ({_id, commentId, author, date, text,
 }
 
 Comment.protoTypes = {
-    _id: PropTypes.number.isRequired,
-    commentId: PropTypes.number.isRequired,
+    _id: PropTypes.string.isRequired,
+    commentId: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,

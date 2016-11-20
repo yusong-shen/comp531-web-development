@@ -26,7 +26,7 @@ export const ArticlesView = ({articles, keyword}) => {
 
 ArticlesView.propTypes = {
     articles: PropTypes.arrayOf(PropTypes.shape({
-        _id: PropTypes.number.isRequired,
+        _id: PropTypes.string.isRequired,
         author: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired,

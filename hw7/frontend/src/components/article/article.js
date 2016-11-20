@@ -60,8 +60,8 @@ const Article = ({_id, author, date, img, text, comments, showComments, toggleCo
                             {showComments ? comments.map(c =>
                                 <Comment
                                     key={c.commentId}
-                                    _id={_id}
                                     {...c}
+                                    _id={_id}
                                 />
                             ) : null}
                         </ul>
@@ -75,12 +75,12 @@ const Article = ({_id, author, date, img, text, comments, showComments, toggleCo
 
 
 Article.protoTypes = {
-    _id: PropTypes.number.isRequired,
+    _id: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     comments: PropTypes.arrayOf(PropTypes.shape({
-        commentId: PropTypes.number.isRequired,
+        commentId: PropTypes.string.isRequired,
         author: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired,

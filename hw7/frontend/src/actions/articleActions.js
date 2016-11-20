@@ -84,7 +84,7 @@ export const addRemoteComment = (_id, text) => {
             text, commentId : -1
         })
         .then((r) => {
-            console.log(r)
+            // console.log(r)
             if (!r.articles) {
                 alert('articles is undefined')
                 return
@@ -96,7 +96,7 @@ export const addRemoteComment = (_id, text) => {
                 const f = (remote) => (localArticle.comments.findIndex(local => remote.commentId === local.commentId) === -1)
                 const addedComment = remoteArticle.comments.find(f)
                 // console.log(localArticle.comments)
-                console.log(addedComment)
+                // console.log(addedComment)
                 if (addedComment) {
                     dispatch({
                         type: 'addComment',
