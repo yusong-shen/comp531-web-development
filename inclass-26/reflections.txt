@@ -1,0 +1,21 @@
+• What did you hope to learn but did not?
+More backend technology like Docker, AWS deploy, Load balancing etc.
+
+• What did you really enjoy learning about?
+I can use what I learn to build something I can play with. Especially those dynamic front-end action. Knowing what it's really going on under all those library is also important, the Virtual DOM part really help me understand how the view library like React works.
+
+• What worked well in the course? and how?
+In-class exercise works really well, it not only make our understanding for course material more solid, but also reduce the learning curve to complete the big homework assignment.
+
+
+• What did not work well in the course and how might it be improved?
+React/Redux is really helpful after I become more familiar with them, but I am really struggling with them at the beginning. Increasing the lecture hour about React/Redux may be helpful.
+
+
+• What could I have done to help you more, presentation of material, design of in class exercises, goals of projects – and be specific please!
+I feel like having a inclass exercise for how to write functional Javascript maybe helpful, for example, like this page : http://reactivex.io/learnrx/
+I find it's also useful if you can cover some examples about how to use Promise with Mongoose, chaining of callback is really ugly in some sense.
+
+• Anything else you like to say?
+Thanks for all your hardwork, I really enjoy this course!
+
