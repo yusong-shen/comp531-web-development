@@ -1,7 +1,7 @@
 /**
  * Created by yusong on 10/25/16.
  */
-const isLocal = true
+const isLocal = false
 
 // export const url =  isLocal ? 'http://localhost:3000' : 'https://webdev-dummy.herokuapp.com'
 export const url =  isLocal ? 'http://localhost:3000' : 'https://rb-backend-ys2016-mongo.herokuapp.com'

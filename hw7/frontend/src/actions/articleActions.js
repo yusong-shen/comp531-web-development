@@ -65,7 +65,7 @@ export const addRemoteArticle = (fd) => {
     return (dispatch) => {
         resource('POST', endpoint, fd, true)
             .then((r) => {
-                console.log(r)
+                // console.log(r)
                 const remoteArticle = r.articles[0]
                 remoteArticle.showComments = false
                 remoteArticle.showAddCommentArea = false
@@ -85,7 +85,6 @@ export const addRemoteComment = (_id, text) => {
         })
         .then((r) => {
             // console.log(r)
-            console.log(r)
             const remoteArticle = r.articles[0]
             remoteArticle.showComments = true
             remoteArticle.showAddCommentArea = true

@@ -15,6 +15,12 @@ export const authenticateUser = (authenticated) => {
     }
 }
 
+export const fetchAllContent = () => {
+    return (dispatch) => {
+
+    }
+}
+
 export const loginUser = (username, password) => {
     return (dispatch) => {
         resource('POST', 'login', { username, password })
