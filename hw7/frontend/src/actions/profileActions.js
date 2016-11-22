@@ -47,6 +47,12 @@ export const updateDob = (dob) => {
     }
 }
 
+export const updatePreview = (previewUrl) => {
+    return (dispatch) => {
+        dispatch({type : 'updatePreview', previewUrl})
+    }
+}
+
 export const putHeadline = (headline) => {
     return (dispatch) => {
         resource('PUT', 'headline', {

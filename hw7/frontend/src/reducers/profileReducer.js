@@ -63,6 +63,11 @@ const profileReducer = (state = {
             } else {
                 return state
             }
+        case 'updatePreview':
+            return {
+                ...state,
+                previewUrl : action.previewUrl
+            }
         default:
             return state
     }

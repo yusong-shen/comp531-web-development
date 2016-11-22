@@ -37,8 +37,8 @@ const articlesReducer = (state = initState, action) => {
             return {
                 ...state,
                 articles: [
-                    ...state.articles,
-                    action.article
+                    action.article,
+                    ...state.articles
                 ]
             }
         case 'toggleComments':

@@ -85,29 +85,14 @@ export const addRemoteComment = (_id, text) => {
         })
         .then((r) => {
             // console.log(r)
-            if (!r.articles) {
-                alert('articles is undefined')
-                return
-            }
+            console.log(r)
             const remoteArticle = r.articles[0]
-            const localArticle = getState().articles.articles.find(x => x._id === _id)
-            if (localArticle.comments.length === remoteArticle.comments.length - 1) {
-                // find the added comment
-                const f = (remote) => (localArticle.comments.findIndex(local => remote.commentId === local.commentId) === -1)
-                const addedComment = remoteArticle.comments.find(f)
-                // console.log(localArticle.comments)
-                // console.log(addedComment)
-                if (addedComment) {
-                    dispatch({
-                        type: 'addComment',
-                        _id, comment : addedComment
-                    })
-                } else {
-                    alert('not match comment')
-                }
-            } else {
-                alert('comment add failed')
-            }
+            remoteArticle.showComments = true
+            remoteArticle.showAddCommentArea = true
+            dispatch({
+                type : 'editPost', _id,
+                article : remoteArticle
+            })
 
         })
         .catch((err) => {

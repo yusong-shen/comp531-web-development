@@ -23,7 +23,7 @@ const Article = ({_id, author, date, img, text, comments, showComments, toggleCo
                         <button className="btn btn-primary" onClick={() => {
                             toggleComments(_id, !showComments)
                         }}>
-                            Show Comments
+                            {`Show Comments (${comments.length})`}
                         </button>
                         <button className="btn btn-success" onClick={() => {
                             toggleAddCommentArea(_id, !showAddCommentArea)
