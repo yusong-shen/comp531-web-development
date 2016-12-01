@@ -1,0 +1,25 @@
+• We heard several topics today
+15 databases 16 vue.js
+17 aria
+18 d3
+19  redis vs memcached
+20  typescript
+21  GraphQL
+22  webGL
+23 webRTC
+24 web assembly 
+25 web security 
+26 advertising 
+27 web cralers 
+28 semantic web
+
+1. Which presentation was the most polished and delivered, and why?
+The 17th presentation about ARIA by Liuliu. The presentation is well organized and I can feel presenter's enthusiasm. She first mentioned the motivation and introduce some key concepts about ARIA, and the code demo is quite neat.
+
+
+2. Which topic did you learn the most from and what did you learn?
+The 17th presentation about ARIA by Liuliu. I didn't notice this topic before I heard her presentation, it's quite helpful to know ARIA since this can be really useful for those one with disability. I think we can even use it to develop fantastic app with multiple dimension's user experience.
+
+
+3. Which talk did you like the best and why?
+The same as above. It has both rich content and is well delivered. I may try it on my own side project.
