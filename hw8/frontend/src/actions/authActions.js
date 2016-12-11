@@ -15,9 +15,28 @@ export const authenticateUser = (authenticated) => {
     }
 }
 
-export const fetchAllContent = () => {
+export const initVisit = () => {
     return (dispatch) => {
-
+        resource('GET', 'headline')
+            .then(r => {
+                console.log('have already login')
+                console.log(r)
+                const usr = r.username
+                dispatch(ProfileActions.updateUsername(usr))
+                const fieldList = ['email', 'zipcode', 'avatars', 'headlines', 'dob']
+                const pList = fieldList.map((field) => dispatch(ProfileActions.fetchField(field)))
+                const p1 = dispatch(ArticleActions.fetchArticles())
+                const p2 = dispatch(FollowingActions.fetchFollowings(usr))
+                pList.push(p1)
+                pList.push(p2)
+                Promise.all(pList).then(() => {
+                    dispatch(Actions.navigate('MainPage'))
+                })
+            })
+            .catch(err => {
+                console.log('not yet login')
+                console.log(err)
+            })
     }
 }
 

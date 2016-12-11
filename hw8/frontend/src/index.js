@@ -6,11 +6,11 @@ require("bootstrap-webpack")
 require('./styles.css')
 
 import React from 'react'
-import { render } from 'react-dom'
+import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import createLogger from 'redux-logger'
 import { createStore, compose, applyMiddleware } from 'redux'
-import reduxThunk from 'redux-thunk';
+import reduxThunk from 'redux-thunk'
 
 import App from './components/app'
 import rootReducer from './reducers/reducers'
@@ -22,9 +22,14 @@ const store = createStore(rootReducer,
         applyMiddleware(reduxThunk)
     ))
 
-render(
-	<Provider store={store}>
-        <App />
-	</Provider>,
+class MyComponent extends React.Component {
+    render() {
+        return <Provider store={store}>
+            <App />
+        </Provider>
+    }
+}
+
+ReactDOM.render(<MyComponent />,
 	document.getElementById('app')
 )

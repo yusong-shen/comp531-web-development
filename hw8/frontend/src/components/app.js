@@ -11,28 +11,35 @@ import Profile from './profile/profile'
 import Landing from './auth/landing'
 import BootstrapNavbar from './navBar/navbar'
 import Footer from './footer'
+import { initVisit } from './../actions/authActions'
 
-// routing logic to determine which view to display.
-export const App = ({nextPage}) => {
-    // decide  Child View according to nextPage state
-    let Child = Landing
-    switch (nextPage) {
-        case 'MainPage':
-            Child = Main
-            break
-        case 'ProfilePage':
-            Child = Profile
-            break
-        default:
-            Child = Landing
+class App extends React.Component {
+    componentWillMount() {
+        console.log('componentWillMount')
+        this.props._initVisit()
     }
-    return (
-        <div>
-            <BootstrapNavbar/>
-            <Child/>
-            <Footer/>
-        </div>
-    )
+
+    render() {
+        const nextPage = this.props.nextPage;
+        let Child = Landing
+        switch (nextPage) {
+            case 'MainPage':
+                Child = Main
+                break
+            case 'ProfilePage':
+                Child = Profile
+                break
+            default:
+                Child = Landing
+        }
+        return (
+            <div>
+                <BootstrapNavbar/>
+                <Child/>
+                <Footer/>
+            </div>
+        )
+    }
 }
 
 App.propTypes = {
@@ -45,7 +52,13 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = null
+const mapDispatchToProps = (dispatch) => {
+    return {
+        _initVisit : _ => {
+            return initVisit()(dispatch)
+        }
+    }
+}
 
 
 export default connect(

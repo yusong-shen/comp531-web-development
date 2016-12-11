@@ -1,10 +1,10 @@
 /**
  * Created by yusong on 10/25/16.
  */
-const isLocal = false
+const isLocal = true
 
 // export const url =  isLocal ? 'http://localhost:3000' : 'https://webdev-dummy.herokuapp.com'
-export const url =  isLocal ? 'http://localhost:3000' : 'https://rb-backend-ys2016-mongo.herokuapp.com'
+export const url =  isLocal ? 'http://localhost:3000' : 'https://rb-backend-ys2016-final.herokuapp.com'
 
 export const resource = (method, endpoint, payload, nonJson) => {
     const options =  {

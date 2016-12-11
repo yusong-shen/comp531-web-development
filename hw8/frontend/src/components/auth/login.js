@@ -52,7 +52,7 @@ class LoginForm extends React.Component {
                         <button id="login" action="submit" className="btn btn-primary">Log In</button>
                      </form>
                     <a href={`${url}/auth/google/login`} className="btn btn-danger">Login with Google</a>
-                    <a href={`${url}/auth/facebook/login`} className="btn btn-info">Login with Facebook</a>
+                    {/*<a href={`${url}/auth/facebook/login`} className="btn btn-info">Login with Facebook</a>*/}
                 </div>
             </div>
         )
