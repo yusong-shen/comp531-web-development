@@ -27,6 +27,12 @@ export const Profile = ({passwordMsg, uploadAvatar, previewUrl, _updatePreview})
             // _updatePreview(null)
         }
     }
+    const handleLink = _ => {
+        console.log("link")
+    }
+    const handleUnlink = _ => {
+        console.log("Unlink")
+    }
     return (
         // This is the Profile view.
         <div>
@@ -37,6 +43,12 @@ export const Profile = ({passwordMsg, uploadAvatar, previewUrl, _updatePreview})
                 <div className="container text-center">
                     <ProfileContent/>
                     {passwordMsg ? <ErrorMsg id="passwordMsg" strong={'Password '} errMsg={passwordMsg} isSuccess={true}/> : null}
+                    <button className="btn btn-info" onClick={() => {
+                        handleLink()
+                    }}>Link Account</button>
+                    <button className="btn btn-danger" onClick={() => {
+                        handleUnlink()
+                    }}>Unlink Account</button>
                 </div>
                 <div className="container">
                     <div className="col-sm-offset-5 col-sm-4">
@@ -49,6 +61,7 @@ export const Profile = ({passwordMsg, uploadAvatar, previewUrl, _updatePreview})
                         }}>Upload</button>
                     </div>
                 </div>
+
                 <div className="container text-center">
                     {previewUrl ?
                         <div>
