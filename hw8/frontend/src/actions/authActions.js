@@ -15,24 +15,26 @@ export const authenticateUser = (authenticated) => {
     }
 }
 
+const fetchAll = (dispatch) => {
+    return (r) => {
+        const usr = r.username
+        dispatch(ProfileActions.updateUsername(usr))
+        const fieldList = ['email', 'zipcode', 'avatars', 'headlines', 'dob', 'authType']
+        const pList = fieldList.map((field) => dispatch(ProfileActions.fetchField(field)))
+        const p1 = dispatch(ArticleActions.fetchArticles())
+        const p2 = dispatch(FollowingActions.fetchFollowings(usr))
+        pList.push(p1)
+        pList.push(p2)
+        Promise.all(pList).then(() => {
+            dispatch(Actions.navigate('MainPage'))
+        })
+    }
+}
+
 export const initVisit = () => {
     return (dispatch) => {
         resource('GET', 'headline')
-            .then(r => {
-                console.log('have already login')
-                console.log(r)
-                const usr = r.username
-                dispatch(ProfileActions.updateUsername(usr))
-                const fieldList = ['email', 'zipcode', 'avatars', 'headlines', 'dob']
-                const pList = fieldList.map((field) => dispatch(ProfileActions.fetchField(field)))
-                const p1 = dispatch(ArticleActions.fetchArticles())
-                const p2 = dispatch(FollowingActions.fetchFollowings(usr))
-                pList.push(p1)
-                pList.push(p2)
-                Promise.all(pList).then(() => {
-                    dispatch(Actions.navigate('MainPage'))
-                })
-            })
+            .then(r => fetchAll(dispatch)(r))
             .catch(err => {
                 console.log('not yet login')
                 console.log(err)
@@ -43,20 +45,7 @@ export const initVisit = () => {
 export const loginUser = (username, password) => {
     return (dispatch) => {
         resource('POST', 'login', { username, password })
-            .then((r) => {
-                const usr = r.username
-                dispatch(authenticateUser(true))
-                dispatch(ProfileActions.updateUsername(usr))
-                const fieldList = ['email', 'zipcode', 'avatars', 'headlines', 'dob', 'authType']
-                const pList = fieldList.map((field) => dispatch(ProfileActions.fetchField(field)))
-                const p1 = dispatch(ArticleActions.fetchArticles())
-                const p2 = dispatch(FollowingActions.fetchFollowings(usr))
-                pList.push(p1)
-                pList.push(p2)
-                Promise.all(pList).then(() => {
-                    dispatch(Actions.navigate('MainPage'))
-                })
-            })
+            .then((r) => fetchAll(dispatch)(r))
             .catch((err) => {
                 dispatch({type : "loginError", data : err + ' Username or Password doesn\' match.'})
         })

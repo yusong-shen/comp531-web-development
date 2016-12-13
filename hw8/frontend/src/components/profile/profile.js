@@ -37,8 +37,10 @@ export const Profile = ({passwordMsg, uploadAvatar, previewUrl,
         _unlinkAccount()
         console.log("Unlink")
     }
-    const linkAccountMsg = 'click Link Account button will redirect you to the login page, ' +
-        'then enter the account information you want to link'
+    const linkAccountMsg = 'Link : click Link Account button will redirect you to the login page, ' +
+        'then enter the account information you want to link.'
+    const unlinkAccountMsg = 'Unlink : it will redirect you to the main page'
+
     return (
         // This is the Profile view.
         <div>
@@ -51,13 +53,9 @@ export const Profile = ({passwordMsg, uploadAvatar, previewUrl,
                     {passwordMsg ? <ErrorMsg id="passwordMsg" strong={'Password '} errMsg={passwordMsg} isSuccess={true}/> : null}
                     <a href={`${url}/linkAccount`} className="btn btn-info">Link Account</a>
                     <a href={`${url}/unlinkAccount`} className="btn btn-danger">Unlink Account</a>
-                    {/*<button className="btn btn-info" onClick={() => {*/}
-                        {/*handleLink()*/}
-                    {/*}}>Link Account</button>*/}
-                    {/*<button className="btn btn-danger" onClick={() => {*/}
-                        {/*handleUnlink()*/}
-                    {/*}}>Unlink Account</button>*/}
-                    <ErrorMsg id="linkAccountMsg" strong={'Link Account : '} errMsg={linkAccountMsg} isSuccess={false}/>
+                    <ErrorMsg id="linkAccountMsg" strong={'Link Account: '} errMsg={linkAccountMsg} isSuccess={false}/>
+                    <ErrorMsg id="unlinkAccountMsg" strong={'Unlink Account: '} errMsg={unlinkAccountMsg} isSuccess={false}/>
+
                 </div>
                 <div className="container">
                     <div className="col-sm-offset-5 col-sm-4">
