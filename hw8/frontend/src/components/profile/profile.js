@@ -6,9 +6,11 @@ import { connect } from 'react-redux'
 import ProfileForm from './profileForm'
 import ProfileContent from './profileContent'
 import ErrorMsg from './../errorMsg'
-import {putAvatar, updatePreview} from './../../actions/profileActions'
+import {putAvatar, updatePreview, linkAccount, unlinkAccount} from './../../actions/profileActions'
+import { url } from '../../util/utils'
 
-export const Profile = ({passwordMsg, uploadAvatar, previewUrl, _updatePreview}) => {
+export const Profile = ({passwordMsg, uploadAvatar, previewUrl,
+    _updatePreview, _linkAccount, _unlinkAccount}) => {
     let fd = new FormData()
     const handleImageChange = (e) => {
         let file = e.target.files[0]
@@ -28,11 +30,15 @@ export const Profile = ({passwordMsg, uploadAvatar, previewUrl, _updatePreview})
         }
     }
     const handleLink = _ => {
+        _linkAccount()
         console.log("link")
     }
     const handleUnlink = _ => {
+        _unlinkAccount()
         console.log("Unlink")
     }
+    const linkAccountMsg = 'click Link Account button will redirect you to the login page, ' +
+        'then enter the account information you want to link'
     return (
         // This is the Profile view.
         <div>
@@ -43,12 +49,15 @@ export const Profile = ({passwordMsg, uploadAvatar, previewUrl, _updatePreview})
                 <div className="container text-center">
                     <ProfileContent/>
                     {passwordMsg ? <ErrorMsg id="passwordMsg" strong={'Password '} errMsg={passwordMsg} isSuccess={true}/> : null}
+                    {/*<a href={`${url}/linkAccount`} className="btn btn-info">Link Account</a>*/}
+                    {/*<a href={`${url}/unlinkAccount`} className="btn btn-danger">Unlink Account</a>*/}
                     <button className="btn btn-info" onClick={() => {
                         handleLink()
                     }}>Link Account</button>
                     <button className="btn btn-danger" onClick={() => {
                         handleUnlink()
                     }}>Unlink Account</button>
+                    <ErrorMsg id="linkAccountMsg" strong={'Link Account : '} errMsg={linkAccountMsg} isSuccess={false}/>
                 </div>
                 <div className="container">
                     <div className="col-sm-offset-5 col-sm-4">
@@ -98,6 +107,12 @@ export default connect((state) => {
         },
         _updatePreview: (previewUrl) => {
             updatePreview(previewUrl)(dispatch)
+        },
+        _linkAccount: () => {
+            linkAccount()(dispatch)
+        },
+        _unlinkAccount: () => {
+            unlinkAccount()(dispatch)
         }
     }
 })(Profile)

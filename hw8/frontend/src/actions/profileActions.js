@@ -142,3 +142,27 @@ export const fetchField = (field, param) => {
         })
     }
 }
+
+export const linkAccount = () => {
+    return (dispatch) => {
+        resource('GET', 'linkAccount')
+            .then((r) => {
+                console.log(r)
+            })
+            .catch((err) => {
+                alert(err)
+            })
+    }
+}
+
+export const unlinkAccount = () => {
+    return (dispatch) => {
+        resource('GET', 'unlinkAccount')
+            .then((r) => {
+                console.log(r)
+            })
+            .catch((err) => {
+                alert(err)
+            })
+    }
+}
