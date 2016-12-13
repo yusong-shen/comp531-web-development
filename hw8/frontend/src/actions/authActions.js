@@ -47,7 +47,7 @@ export const loginUser = (username, password) => {
                 const usr = r.username
                 dispatch(authenticateUser(true))
                 dispatch(ProfileActions.updateUsername(usr))
-                const fieldList = ['email', 'zipcode', 'avatars', 'headlines', 'dob']
+                const fieldList = ['email', 'zipcode', 'avatars', 'headlines', 'dob', 'authType']
                 const pList = fieldList.map((field) => dispatch(ProfileActions.fetchField(field)))
                 const p1 = dispatch(ArticleActions.fetchArticles())
                 const p2 = dispatch(FollowingActions.fetchFollowings(usr))

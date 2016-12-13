@@ -135,6 +135,9 @@ export const fetchField = (field, param) => {
                     break
                 case "dob":
                     dispatch(updateDob(r.dob))
+                    break
+                case "authType":
+                    dispatch({type : 'updateAuthType', authType : JSON.stringify(r)})
             }
         })
         .catch((err) => {

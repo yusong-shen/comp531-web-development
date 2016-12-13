@@ -7,6 +7,7 @@ const profileReducer = (state = {
     email: '',
     zipcode: '',
     headline: '',
+    authType: ''
 }, action) => {
     switch(action.type) {
         case 'updateUsername':
@@ -67,6 +68,15 @@ const profileReducer = (state = {
             return {
                 ...state,
                 previewUrl : action.previewUrl
+            }
+        case 'updateAuthType':
+            if (action.authType) {
+                return {
+                    ...state,
+                    authType: action.authType
+                }
+            } else {
+                return state
             }
         default:
             return state

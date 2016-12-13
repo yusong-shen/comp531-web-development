@@ -49,14 +49,14 @@ export const Profile = ({passwordMsg, uploadAvatar, previewUrl,
                 <div className="container text-center">
                     <ProfileContent/>
                     {passwordMsg ? <ErrorMsg id="passwordMsg" strong={'Password '} errMsg={passwordMsg} isSuccess={true}/> : null}
-                    {/*<a href={`${url}/linkAccount`} className="btn btn-info">Link Account</a>*/}
-                    {/*<a href={`${url}/unlinkAccount`} className="btn btn-danger">Unlink Account</a>*/}
-                    <button className="btn btn-info" onClick={() => {
-                        handleLink()
-                    }}>Link Account</button>
-                    <button className="btn btn-danger" onClick={() => {
-                        handleUnlink()
-                    }}>Unlink Account</button>
+                    <a href={`${url}/linkAccount`} className="btn btn-info">Link Account</a>
+                    <a href={`${url}/unlinkAccount`} className="btn btn-danger">Unlink Account</a>
+                    {/*<button className="btn btn-info" onClick={() => {*/}
+                        {/*handleLink()*/}
+                    {/*}}>Link Account</button>*/}
+                    {/*<button className="btn btn-danger" onClick={() => {*/}
+                        {/*handleUnlink()*/}
+                    {/*}}>Unlink Account</button>*/}
                     <ErrorMsg id="linkAccountMsg" strong={'Link Account : '} errMsg={linkAccountMsg} isSuccess={false}/>
                 </div>
                 <div className="container">

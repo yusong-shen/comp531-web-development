@@ -6,7 +6,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-const ProfileContent = ({username, avatar, zipcode, email, dob}) => {
+const ProfileContent = ({username, avatar, zipcode, email, dob, authType}) => {
     const dobDate = new Date(dob).toLocaleDateString()
     return (
         <div>
@@ -16,6 +16,9 @@ const ProfileContent = ({username, avatar, zipcode, email, dob}) => {
                 <div>
                     <img src={avatar} width={300} height={300} alt="image missing" />
                 </div>
+            </div>
+            <div>
+                <h4 id="authType">{`Auth Type : ${authType}`}</h4>
             </div>
             <div>
                 <h4 id="zipcode">{`Zipcode : ${zipcode}`}</h4>
@@ -47,6 +50,7 @@ const mapStateToProps = (state) => {
         email: state.profile.email,
         zipcode: state.profile.zipcode,
         dob: state.profile.dob,
+        authType: state.profile.authType
     }
 }
 
